@@ -6,13 +6,14 @@ import Contract from "./Contract"
 import Homepage from "./Homepage"
 import Consulting from "./Consulting"
 import ApplyService from "./ApplyService"
-import Application from "./Application"
+import Register from "./Register"
 import Announcement from "./Announcement"
 import QnA from "./QnA"
 import Press from "./Press"
 import { styled } from "styled-components"
 import Header from "~/components/Header"
 import Footer from "~/components/Footer"
+import Inquiry from "./Inquiry"
 // const Main = React.lazy(() => import("./main/index"))
 
 export default function RootRouter() {
@@ -47,10 +48,11 @@ export default function RootRouter() {
                     <Route path={"/homepage"} element={<Homepage />} />
                     <Route path={"/consulting"} element={<Consulting />} />
                     <Route path={"/apply-service"} element={<ApplyService />} />
-                    <Route path={"/application"} element={<Application />} />
+                    <Route path={"/register"} element={<Register />} />
                     <Route path={"/announcement"} element={<Announcement />} />
                     <Route path={"/qna"} element={<QnA />} />
                     <Route path={"/press"} element={<Press />} />
+                    <Route path={"/inquiry"} element={<Inquiry />} />
                 </Routes>
                 <Footer />
             </SMainWrapper>

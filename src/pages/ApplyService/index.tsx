@@ -60,7 +60,7 @@ const ApplyService = () => {
                     </SBorderLeft>
 
                     <SBorderBtn>
-                        이지조인에 의뢰하기
+                        이지조인 서비스 신청하기
                         <SArrowRight src={require("~/assets/images/arrow-right-cwP.png")} />
                     </SBorderBtn>
                 </SPage1Border>
@@ -233,7 +233,7 @@ const SBorderSubText = styled.div`
 
 const SBorderBtn = styled.div`
     display: inline-flex;
-    width: 330px;
+    width: 400px;
     padding: 20px 32px;
     margin: 0 96px 0 0;
     justify-content: center;

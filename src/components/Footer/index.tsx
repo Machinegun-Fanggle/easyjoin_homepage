@@ -109,7 +109,7 @@ const SLink = styled(NavLink)<{ activeClassName: string }>`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    text-decoration: none; // 기본 상태에서 밑줄 제거
+    // text-decoration: none; // 기본 상태에서 밑줄 제거
     border: 0;
     position: relative; // 밑줄을 위한 위치 설정
 

@@ -1,8 +1,27 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 
 const Header = () => {
+    const [isBgWhite, setIsBgWhite] = useState(false)
+    const location = useLocation()
+
+    useEffect(() => {
+        if (
+            location.pathname === "/apply-service" ||
+            location.pathname === "/announcement" ||
+            location.pathname === "/inquiry" ||
+            location.pathname === "/customer-service" ||
+            location.pathname === "/terms-of-use" ||
+            location.pathname === "/privacy-policy" ||
+            location.pathname === "/qna" ||
+            location.pathname === "/register" ||
+            location.pathname === "/press"
+        )
+            setIsBgWhite(true)
+        else setIsBgWhite(false)
+    }, [location])
+
     return (
         <SHeader>
             <SInnerHeader>
@@ -12,28 +31,28 @@ const Header = () => {
 
                 <SNavigation>
                     <SLinkWrapper>
-                        <SLink to={"service"} activeClassName="active">
+                        <SLink isBgWhite={isBgWhite} to={"service"} activeClassName="active">
                             이지조인 서비스
                         </SLink>
-                        <SLink to={"contract"} activeClassName="active">
+                        <SLink isBgWhite={isBgWhite} to={"contract"} activeClassName="active">
                             전자계약
                         </SLink>
-                        <SLink to={"homepage"} activeClassName="active">
+                        <SLink isBgWhite={isBgWhite} to={"homepage"} activeClassName="active">
                             홈페이지 제작
                         </SLink>
-                        <SLink to={"consulting"} activeClassName="active">
+                        <SLink isBgWhite={isBgWhite} to={"consulting"} activeClassName="active">
                             부동산 개발 컨설팅
                         </SLink>
-                        <SLink to={"apply-service"} activeClassName="active">
+                        <SLink isBgWhite={isBgWhite} to={"register"} activeClassName="active">
                             서비스 신청
                         </SLink>
-                        <SLink to={"announcement"} activeClassName="active">
+                        <SLink isBgWhite={isBgWhite} to={"announcement"} activeClassName="active">
                             고객 지원
                         </SLink>
                     </SLinkWrapper>
                     <SBtnWrapper>
-                        <SBtn1>로그인</SBtn1>
-                        <SBtn2>도입문의</SBtn2>
+                        {/* <SBtn1>로그인</SBtn1> */}
+                        <SBtn2 to={"/inquiry"}>도입문의</SBtn2>
                     </SBtnWrapper>
                 </SNavigation>
             </SInnerHeader>
@@ -59,8 +78,8 @@ const SInnerHeader = styled.div`
     align-items: center;
 `
 
-const SLink = styled(NavLink)<{ activeClassName: string }>`
-    color: var(--whfff, #fff);
+const SLink = styled(NavLink)<{ activeClassName: string; isBgWhite: boolean }>`
+    color: ${(props) => (props.isBgWhite ? "var(--gray-900, #0d0d0d)" : "var(--whfff, #fff)")};
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
@@ -156,7 +175,7 @@ const SBtn1 = styled.div`
     }
 `
 
-const SBtn2 = styled.div`
+const SBtn2 = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,4 +201,5 @@ const SBtn2 = styled.div`
         border: 2px solid var(--0858F7, #0858f7);
         width: 80px;
     }
+    text-decoration: none; // 기본 상태에서 밑줄 제거
 `

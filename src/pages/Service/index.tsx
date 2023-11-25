@@ -4,7 +4,6 @@ import styled from "styled-components"
 
 // 메인 컴포넌트 함수
 const Service = () => {
-    const ref = useRef(null)
     const ref2 = useRef(null)
     const ref3 = useRef(null)
     const ref4 = useRef(null)
@@ -22,14 +21,12 @@ const Service = () => {
             },
         )
 
-        if (ref.current) observer.observe(ref.current)
         if (ref2.current) observer.observe(ref2.current)
         if (ref3.current) observer.observe(ref3.current)
         if (ref4.current) observer.observe(ref4.current)
         if (ref5.current) observer.observe(ref5.current)
 
         return () => {
-            if (ref.current) observer.unobserve(ref.current)
             if (ref2.current) observer.unobserve(ref2.current)
             if (ref3.current) observer.unobserve(ref3.current)
             if (ref4.current) observer.unobserve(ref4.current)
@@ -74,7 +71,7 @@ const Service = () => {
                     <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
                 </div>
             </SPage1Back>
-            <SPage2 ref={ref}>
+            <SPage2 ref={ref2}>
                 <div
                     style={{
                         display: "flex",

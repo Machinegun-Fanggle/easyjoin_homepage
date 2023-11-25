@@ -1,5 +1,6 @@
 // 리액트 메인 컴포넌트
 import React, { useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 // 메인 컴포넌트 함수
@@ -7,6 +8,13 @@ const Main = () => {
     const ref = useRef(null)
     const ref2 = useRef(null)
     const ref3 = useRef(null)
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth", // 부드러운 스크롤 효과
+        })
+    }
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -111,8 +119,16 @@ const Main = () => {
                     </div>
                 </SPage3Text>
                 <SBtnWrapper ref={ref3}>
-                    <SPage3Btn>서비스 신청하기</SPage3Btn>
-                    <SPage3Btn style={{ background: "#fff", color: "#000" }}>도입문의</SPage3Btn>
+                    <SPage3Btn onClick={scrollToTop} to={"/register"}>
+                        서비스 신청하기
+                    </SPage3Btn>
+                    <SPage3Btn
+                        onClick={scrollToTop}
+                        to={"/inquiry"}
+                        style={{ background: "#fff", color: "#000" }}
+                    >
+                        도입문의
+                    </SPage3Btn>
                 </SBtnWrapper>
             </SPage3>
         </SPageWrapper>
@@ -389,7 +405,7 @@ const SBtnWrapper = styled.div`
     }
 `
 
-const SPage3Btn = styled.div`
+const SPage3Btn = styled(Link)`
     display: flex;
     width: 304px;
     height: 63px;
@@ -406,4 +422,5 @@ const SPage3Btn = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: 160%; /* 38.4px */
+    text-decoration: none; // 기본 상태에서 밑줄 제거
 `
