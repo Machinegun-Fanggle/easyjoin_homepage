@@ -1,6 +1,6 @@
  .gnb-SW9 {
     /* margin-bottom: 20.9rem; */
-    width: 1200px;
+    /* width: 100%; */
     display: flex;
     align-items: center;
     flex-shrink: 0;
@@ -16,7 +16,7 @@
 }
  .gnb-SW9 .auto-group-p26x-8tm {
     box-sizing: border-box;
-    /* padding: 0.1rem 0rem 0.2rem 19.1rem; */
+    padding: 0.1rem 0rem 0.2rem 9rem;
     height: 100%;
     display: flex;
     align-items: center;

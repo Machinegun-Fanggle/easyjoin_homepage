@@ -3,31 +3,27 @@ import React from "react"
 import "./main.css"
 import styled from "styled-components"
 
-const AppContainer = styled.div<{ windowWidth: number; windowHeight: number }>`
-    display: flex;
-    flex-direction: column;
-    // width: 100%;
-    height: auto;
-    transform: scale(${(props) => props.windowWidth / 3047.62});
-    transform-origin: center top;
-    background-color: #ffffff;
-    // background-color: red;
-`
-
-const STemp = styled.div<{ windowWidth: number; windowHeight: number }>`
-    display: flex;
-    flex-direction: column;
-    height: ${(props) => props.windowHeight * 1 - props.windowWidth / 3047.62}px; // 식 고치기
-    width: 100%;
-    overflow: hidden;
-`
-
 // 메인 컴포넌트 함수
 const Main = () => {
     return (
-        <div style={{ display: "flex", width: "100%", justifyContent: "center", height: "auto" }}>
+        <div
+            style={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                background: "blue",
+                overflowX: "hidden",
+            }}
+        >
             <AppContainer windowWidth={window.innerWidth} windowHeight={window.innerHeight}>
                 <STemp windowWidth={window.innerWidth} windowHeight={window.innerHeight}>
+                    <img
+                        src={require("../../assets/images/rectangle-7-bg-3cR.png")}
+                        height={(window.innerHeight / 62) * 100}
+                        width={(window.innerWidth / 62) * 100}
+                        style={{ position: "relative", display: "flex", flexDirection: "column" }}
+                    />
+
                     <div className="auto-group-cs8k-y6m">
                         <p className="item--epV">
                             부동산 개발사업의
@@ -38,17 +34,18 @@ const Main = () => {
                             <br />
                             전자계약 솔루션
                         </p>
-                        <p className="item--Tmw">
-                            <span className="item--Tmw-sub-0">
-                                부동산 개발 주체 및 각 단체가 회원을 더 쉽게 모집하고
-                                <br />
-                                다양한 단체의 가입 계약을 전자계약으로 체결하고 관리하는
-                                <br />
-                            </span>
-                            <span className="item--Tmw-sub-1">부동산 통합 전자계약 솔루션</span>
+                        <p className="item--epV">
+                            <p className="item--Tmw">
+                                <span className="item--Tmw-sub-0">
+                                    부동산 개발 주체 및 각 단체가 회원을 더 쉽게 모집하고
+                                    <br />
+                                    다양한 단체의 가입 계약을 전자계약으로 체결하고 관리하는
+                                    <br />
+                                </span>
+                                <span className="item--Tmw-sub-1">부동산 통합 전자계약 솔루션</span>
+                                <div className="frame-4-tGu">도입문의</div>
+                            </p>
                         </p>
-                        <div className="frame-4-tGu">도입문의</div>
-                        <div className="auto-group-cs8k-y6m-bg"></div>
                     </div>
                 </STemp>
                 <div className="auto-group-zjj1-XjB">
@@ -67,6 +64,7 @@ const Main = () => {
                     <div className="rectangle-8-mvM">
                         <div className="rectangle-8-mvM-bg"></div>
                     </div>
+
                     <div className="auto-group-m3qw-xV3">
                         <img
                             className="contract-3-1-p1T"
@@ -84,6 +82,7 @@ const Main = () => {
                             />
                         </div>
                     </div>
+
                     <p className="item--WqK">다양한 단체가입 적용 가능</p>
                     <div className="auto-group-wdtw-opR">
                         <div className="line-9-Mb3"></div>
@@ -125,3 +124,23 @@ const Main = () => {
     )
 }
 export default Main
+
+const AppContainer = styled.div<{ windowWidth: number; windowHeight: number }>`
+    display: flex;
+    flex-direction: column;
+    // width: 100%;
+    height: auto;
+    transform: scale(${(props) => props.windowWidth / 3047.62});
+    transform-origin: center top;
+    background-color: #ffffff;
+    background-color: red;
+`
+
+const STemp = styled.div<{ windowWidth: number; windowHeight: number }>`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    // background-color: red;
+`
