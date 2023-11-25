@@ -1,68 +1,40 @@
 import React from "react"
 import styled from "styled-components"
-
-const StyledHeader = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px 15px;
-    background-color: #f8f9fa;
-`
-
-const Logo = styled.img`
-    height: 60px; // 로고 크기
-    margin-left: 250px;
-`
-
-const Menu = styled.div`
-    display: flex;
-    align-items: center; // 세로 중앙 정렬
-    p {
-        margin: 0 20px;
-        font-size: 23px; // 글씨 크기
-        cursor: pointer;
-        &:hover {
-            color: #007bff;
-        }
-    }
-`
-
-const Buttons = styled.div`
-    button {
-        margin-left: 15px;
-        padding: 8px 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-        font-size: 23px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        &:hover {
-            background-color: #0056b3;
-        }
-    }
-`
+import "./header.css"
 
 const Header = () => {
     return (
-        <StyledHeader>
-            <Logo src={require("~/assets/images/logo-AJq.png")} />
-            <div style={{ display: "flex" }}>
-                <Menu>
-                    <p>이지조인서비스</p>
-                    <p>전자계약</p>
-                    <p>홈페이지 제작</p>
-                    <p>부동산 개발 컨설팅</p>
-                    <p>서비스 신청</p>
-                </Menu>
-                <Buttons>
-                    <button style={{ marginLeft: 150 }}>로그인</button>
-                    <button style={{ marginRight: 150 }}>도입문의</button>
-                </Buttons>
+        <AppContainer windowWidth={window.innerWidth}>
+            <div className="gnb-SW9">
+                <img className="logo-na1" src={require("~/assets/images/logo-2vR.png")} />
+                <div className="auto-group-p26x-8tm">
+                    <div className="frame-1-mRw">
+                        <p className="item--6UD">이지조인 서비스</p>
+                        <p className="item--C1T">전자계약</p>
+                        <p className="item--7u7">홈페이지 제작</p>
+                        <p className="item--eu3">부동산 개발 컨설팅</p>
+                        <p className="item--Na9">서비스 신청</p>
+                        <p className="item--upy">고객 지원</p>
+                    </div>
+                    <div className="frame-2-CZB">
+                        <div className="button-type-1-xYM">로그인</div>
+                        <div className="button-type-1-N6H">도입문의</div>
+                    </div>
+                </div>
             </div>
-        </StyledHeader>
+        </AppContainer>
     )
 }
 
 export default Header
+
+const AppContainer = styled.div<{ windowWidth: number }>`
+    transform: scale(${(props) => props.windowWidth / 3047.62});
+    transform-origin: center center; // 축소의 기준점 설정
+    height: 3.6rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    // background: red;
+`
