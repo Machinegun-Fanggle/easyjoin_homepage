@@ -401,7 +401,7 @@ const Service = () => {
                                     <div className="sns-amK">
                                         <img
                                             className="group-11-isX"
-                                            src={require("../../assets/images/group-11-fTB.png")}
+                                            src={require("../../assets/images/group-11.png")}
                                         />
                                         <div className="icoi-dzV">
                                             <img

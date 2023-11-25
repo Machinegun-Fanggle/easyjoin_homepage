@@ -37,7 +37,7 @@ const Announcement = () => {
                             <div className="frame-646-niq">
                                 <img
                                     className="search-md-hau"
-                                    src={require("~/assets/images/search-md-neq.png")}
+                                    src={require("~/assets/images/search-md.png")}
                                 />
                                 <p className="item--2t5">궁금한 점이 있다면 검색해보세요!</p>
                             </div>
@@ -260,7 +260,7 @@ const Announcement = () => {
                                     <div className="sns-Sry">
                                         <img
                                             className="group-11-yru"
-                                            src={require("~/assets/images/group-11-uf3.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-X7j">
                                             <img

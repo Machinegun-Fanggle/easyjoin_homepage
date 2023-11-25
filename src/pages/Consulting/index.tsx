@@ -279,7 +279,7 @@ const Consulting = () => {
                                     <div className="sns-4To">
                                         <img
                                             className="group-11-byX"
-                                            src={require("~/assets/images/group-11-7Do.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-ruT">
                                             <img
