@@ -21,7 +21,13 @@ const Main = () => {
                         src={require("../../assets/images/rectangle-7-bg-3cR.png")}
                         height={(window.innerHeight / 62) * 100}
                         width={(window.innerWidth / 62) * 100}
-                        style={{ position: "relative", display: "flex", flexDirection: "column" }}
+                        style={{
+                            position: "relative",
+                            display: "flex",
+                            flexDirection: "column",
+                            overflowX: "hidden",
+                            overflowY: "hidden",
+                        }}
                     />
 
                     <div className="auto-group-cs8k-y6m">
@@ -134,6 +140,7 @@ const AppContainer = styled.div<{ windowWidth: number; windowHeight: number }>`
     transform-origin: center top;
     background-color: #ffffff;
     background-color: red;
+    // overflow-x: hidden;
 `
 
 const STemp = styled.div<{ windowWidth: number; windowHeight: number }>`
@@ -141,6 +148,5 @@ const STemp = styled.div<{ windowWidth: number; windowHeight: number }>`
     display: flex;
     flex-direction: column;
     width: 100%;
-    overflow: hidden;
     // background-color: red;
 `
