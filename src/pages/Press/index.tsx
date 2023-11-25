@@ -215,7 +215,7 @@ const Press = () => {
                                     <div className="sns-7Hf">
                                         <img
                                             className="group-11-3BK"
-                                            src={require("~/assets/images/group-11-U5B.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-NUV">
                                             <img

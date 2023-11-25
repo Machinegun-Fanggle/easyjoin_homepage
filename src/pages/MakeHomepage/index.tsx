@@ -337,7 +337,7 @@ const MakeHomepage = () => {
                                     <div className="sns-e5K">
                                         <img
                                             className="group-11-Bb3"
-                                            src={require("~/assets/images/group-11-qfs.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-vYd">
                                             <img

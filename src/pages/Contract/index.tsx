@@ -540,7 +540,7 @@ const Contract = () => {
                                     <div className="sns-Dvu">
                                         <img
                                             className="group-11-Zjs"
-                                            src={require("~/assets/images/group-11-oNu.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-t1T">
                                             <img

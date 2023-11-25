@@ -51,7 +51,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-7Cq"
-                                    src={require("~/assets/images/chevron-down-9iV.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-pN9">
@@ -64,7 +64,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-zJZ"
-                                    src={require("~/assets/images/chevron-down-d7T.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-78H">
@@ -105,7 +105,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-PxH"
-                                    src={require("~/assets/images/chevron-down-BD7.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-iDs">
@@ -116,7 +116,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-Kcy"
-                                    src={require("~/assets/images/chevron-down-vvy.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-FFj">
@@ -130,7 +130,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-eBP"
-                                    src={require("~/assets/images/chevron-down-oLR.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-Mbb">
@@ -143,7 +143,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-Y3o"
-                                    src={require("~/assets/images/chevron-down-9J5.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-f8R">
@@ -157,7 +157,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-UEH"
-                                    src={require("~/assets/images/chevron-down-mJm.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-Pc9">
@@ -168,7 +168,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-CT7"
-                                    src={require("~/assets/images/chevron-down-tnq.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-ve1">
@@ -181,7 +181,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-76D"
-                                    src={require("~/assets/images/chevron-down-ooK.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-dKT">
@@ -192,7 +192,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-SgD"
-                                    src={require("~/assets/images/chevron-down-7S5.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-B81">
@@ -205,7 +205,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-Nbo"
-                                    src={require("~/assets/images/chevron-down-Pg1.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-ta9">
@@ -218,7 +218,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-hR7"
-                                    src={require("~/assets/images/chevron-down-j4h.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-q1X">
@@ -229,7 +229,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-RP3"
-                                    src={require("~/assets/images/chevron-down-Fqw.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                             <div className="faq-accordion-LW1">
@@ -242,7 +242,7 @@ const QnA = () => {
                                 </div>
                                 <img
                                     className="chevron-down-jwT"
-                                    src={require("~/assets/images/chevron-down-gjo.png")}
+                                    src={require("~/assets/images/chevron-down-black.png")}
                                 />
                             </div>
                         </div>
@@ -347,7 +347,7 @@ const QnA = () => {
                                     <div className="sns-HC9">
                                         <img
                                             className="group-11-E7P"
-                                            src={require("~/assets/images/group-11-yzV.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-Amj">
                                             <img

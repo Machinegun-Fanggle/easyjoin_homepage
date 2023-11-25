@@ -71,7 +71,7 @@ const Application = () => {
                                 <p className="item--p1b">이지조인 서비스 신청하기</p>
                                 <img
                                     className="arrow-right-JBf"
-                                    src={require("~/assets/images/arrow-right-cJH.png")}
+                                    src={require("~/assets/images/arrow-right.png")}
                                 />
                             </div>
                         </div>
@@ -100,7 +100,7 @@ const Application = () => {
                                         <p className="item--m4Z">선택</p>
                                         <img
                                             className="chevron-down-6Mj"
-                                            src={require("~/assets/images/chevron-down-qau.png")}
+                                            src={require("~/assets/images/chevron-down-white.png")}
                                         />
                                     </div>
                                 </div>
@@ -292,7 +292,7 @@ const Application = () => {
                                     <div className="sns-XkH">
                                         <img
                                             className="group-11-Ghs"
-                                            src={require("~/assets/images/group-11-KL1.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-CbX">
                                             <img

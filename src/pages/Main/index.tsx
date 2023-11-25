@@ -191,7 +191,7 @@ const Main = () => {
                                     <div className="sns-d5F">
                                         <img
                                             className="group-11-kvZ"
-                                            src={require("~/assets/images/group-11-dNd.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-VNM">
                                             <img

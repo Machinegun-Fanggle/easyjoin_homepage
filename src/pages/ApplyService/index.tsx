@@ -185,7 +185,7 @@ const ApplyService = () => {
                                 <p className="item--cQm">이지조인 서비스 신청하기</p>
                                 <img
                                     className="arrow-right-vAZ"
-                                    src={require("~/assets/images/arrow-right-dH7.png")}
+                                    src={require("~/assets/images/arrow-right.png")}
                                 />
                             </div>
                         </div>
@@ -271,7 +271,7 @@ const ApplyService = () => {
                                     <div className="sns-cdb">
                                         <img
                                             className="group-11-xSZ"
-                                            src={require("~/assets/images/group-11-xPf.png")}
+                                            src={require("~/assets/images/group-11.png")}
                                         />
                                         <div className="icoi-VSV">
                                             <img
