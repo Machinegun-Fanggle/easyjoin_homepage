@@ -6,6 +6,22 @@ const Header = () => {
     const [isBgWhite, setIsBgWhite] = useState(false)
     const location = useLocation()
 
+    const [showDropdown, setShowDropdown] = useState<string | null>(null)
+
+    const handleMouseEnter = (linkName: string) => setShowDropdown(linkName)
+
+    const handleMouseLeave = () => setShowDropdown(null)
+
+    const dropdownContents = {
+        service: (
+            <SDropdown>
+                <SDropdownLink to="/announcement">공지사항</SDropdownLink>
+                <SDropdownLink to="/qna">자주묻는 질문</SDropdownLink>
+                <SDropdownLink to="/press">언론보도</SDropdownLink>
+            </SDropdown>
+        ),
+    }
+
     useEffect(() => {
         if (
             location.pathname === "/apply-service" ||
@@ -46,9 +62,19 @@ const Header = () => {
                         <SLink isBgWhite={isBgWhite} to={"register"} activeClassName="active">
                             서비스 신청
                         </SLink>
-                        <SLink isBgWhite={isBgWhite} to={"announcement"} activeClassName="active">
-                            고객 지원
-                        </SLink>
+                        <SLinkContainer
+                            onMouseEnter={() => handleMouseEnter("service")}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <SLink
+                                isBgWhite={isBgWhite}
+                                to={"announcement"}
+                                activeClassName="active"
+                            >
+                                고객 지원
+                            </SLink>
+                            {showDropdown === "service" && dropdownContents.service}
+                        </SLinkContainer>
                     </SLinkWrapper>
                     <SBtnWrapper>
                         {/* <SBtn1>로그인</SBtn1> */}
@@ -202,4 +228,28 @@ const SBtn2 = styled(Link)`
         width: 80px;
     }
     text-decoration: none; // 기본 상태에서 밑줄 제거
+`
+
+const SLinkContainer = styled.div`
+    position: relative;
+    display: inline-block;
+`
+
+const SDropdown = styled.div`
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+`
+
+const SDropdownLink = styled(Link)`
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+        background-color: #f1f1f1;
+    }
 `
