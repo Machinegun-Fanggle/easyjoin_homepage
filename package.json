@@ -117,6 +117,7 @@
 },
   "scripts": {
     "start": "craco start",
+    "dev": "craco start",
         "build": "craco build",
         "test": "craco test",
         "starts": "react-scripts start",
@@ -125,7 +126,7 @@
         "wina": "BROWSER='chrome' react-scripts start",
         "eject": "react-scripts eject",
         "wepa": "webpack serve",
-        "dev": "webpack",
+        
         "jest": "jest",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "prettier": "npx prettier --write ./src"
