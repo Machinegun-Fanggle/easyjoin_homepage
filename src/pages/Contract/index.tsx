@@ -32,26 +32,6 @@ const Contract = () => {
             <div className="item-2--S2y">
                 <AppContainer windowWidth={window.innerWidth}>
                     <div className="auto-group-czuf-gxu">
-                        <div className="gnb-PsK">
-                            <img
-                                className="logo-HC1"
-                                src={require("~/assets/images/logo-S7P.png")}
-                            />
-                            <div className="frame-1-CZs">
-                                <p className="item--9V7">이지조인 서비스</p>
-                                <div className="gnb-text-CiH">전자계약</div>
-                                <div className="auto-group-xkj5-HDw">
-                                    <p className="item--R5F">홈페이지 제작</p>
-                                    <p className="item--KgR">부동산 개발 컨설팅</p>
-                                    <p className="item--48D">서비스 신청</p>
-                                    <p className="item--bP3">고객 지원</p>
-                                </div>
-                            </div>
-                            <div className="frame-2-885">
-                                <div className="button-type-1-AqT">로그인</div>
-                                <div className="button-type-1-pQD">도입문의</div>
-                            </div>
-                        </div>
                         <div className="auto-group-abjt-WXw">
                             <div className="auto-group-bket-s7b">
                                 <p className="item--zxu">이지조인</p>
@@ -472,108 +452,6 @@ const Contract = () => {
                                     />
                                 </div>
                                 <p className="item--TRP">문서함 관리</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="footer-Lk5">
-                        <div className="top-line-tWh"></div>
-                        <div className="footer-container-SHK">
-                            <div className="footer-contents-9hX">
-                                <div className="foot-nav-WHB">
-                                    <p className="item--EDB">회사소개</p>
-                                    <div className="auto-group-v1c7-wdP">
-                                        <div className="bar-5Do"></div>
-                                        <p className="item--Zem">서비스 소개</p>
-                                        <div className="bar-H4y"></div>
-                                        <p className="item--p4u">고객센터</p>
-                                        <div className="bar-Ymb"></div>
-                                        <p className="item--VRw">이용약관</p>
-                                        <div className="bar-RaV"></div>
-                                        <p className="item--NEq">개인정보처리방침</p>
-                                    </div>
-                                </div>
-                                <div className="bottom-F3j">
-                                    <div className="company-info-1Ho">
-                                        <div className="frame-606-xTw">
-                                            <div className="frame-602-6q3">
-                                                <p className="item--f7T">대표</p>
-                                                <p className="item--C7P">이병훈</p>
-                                            </div>
-                                            <div className="frame-607-Kxh">
-                                                <p className="item--Uqb">주소</p>
-                                                <p className="a37-26R">
-                                                    울산광역시 북구 매곡 1로 15-1, 413호 A37
-                                                </p>
-                                            </div>
-                                            <div className="frame-605-9Rw">
-                                                <p className="item--6MB">사업자등록번호</p>
-                                                <p className="item-415-86-02577-yfs">
-                                                    415-86-02577
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="frame-608-Gey">
-                                            <div className="frame-604-6e1">
-                                                <p className="item--r7P">고객센터 대표번호</p>
-                                                <p className="item-1670-2251-xgD">1670-2251</p>
-                                            </div>
-                                            <div className="frame-608-6XX">
-                                                <p className="item--eow">상담시간</p>
-                                                <p className="item-10-17-11-30-12-30-n9T">
-                                                    평일 10 ~ 17시 (점심시간 11:30 ~ 12:30)
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p className="easyjoin-inc-all-rights-reserved-U2H">
-                                        © 2023 EasyJoin INC. All rights reserved.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="auto-group-zk55-ar1">
-                                <div className="frame-616-8Mj">사업자정보확인</div>
-                                <div className="auto-group-s5gx-8m3">
-                                    <img
-                                        className="logo-5RP"
-                                        src={require("~/assets/images/logo-vgu.png")}
-                                    />
-                                    <div className="sns-Dvu">
-                                        <img
-                                            className="group-11-Zjs"
-                                            src={require("~/assets/images/group-11.png")}
-                                        />
-                                        <div className="icoi-t1T">
-                                            <img
-                                                className="mask-group-nMj"
-                                                src={require("~/assets/images/mask-group-o4Z.png")}
-                                            />
-                                            <img
-                                                className="mask-group-Jqs"
-                                                src={require("~/assets/images/mask-group-2Hs.png")}
-                                            />
-                                            <img
-                                                className="mask-group-qqo"
-                                                src={require("~/assets/images/mask-group-qcq.png")}
-                                            />
-                                            <img
-                                                className="mask-group-yBK"
-                                                src={require("~/assets/images/mask-group-rHj.png")}
-                                            />
-                                            <img
-                                                className="mask-group-u4y"
-                                                src={require("~/assets/images/mask-group-v9s.png")}
-                                            />
-                                            <img
-                                                className="mask-group-qjK"
-                                                src={require("~/assets/images/mask-group-E2R.png")}
-                                            />
-                                        </div>
-                                        <img
-                                            className="icof-Mhf"
-                                            src={require("~/assets/images/icof-6nR.png")}
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

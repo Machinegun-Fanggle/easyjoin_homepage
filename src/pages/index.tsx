@@ -11,7 +11,8 @@ import Announcement from "./Announcement"
 import QnA from "./QnA"
 import Press from "./Press"
 import { styled } from "styled-components"
-import Header from "~/Header"
+import Header from "~/components/Header"
+import Footer from "~/components/Footer"
 // const Main = React.lazy(() => import("./main/index"))
 
 export default function RootRouter() {
@@ -51,7 +52,7 @@ export default function RootRouter() {
                     <Route path={"/qna"} element={<QnA />} />
                     <Route path={"/press"} element={<Press />} />
                 </Routes>
-                {/* <Footer /> */}
+                <Footer />
             </SMainWrapper>
             <Header />
         </SWrapper>
