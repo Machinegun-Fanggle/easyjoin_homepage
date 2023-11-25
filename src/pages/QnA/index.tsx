@@ -261,26 +261,6 @@ const QnA = () => {
                                 <p className="item--k1K">궁금한 점이 있다면 검색해보세요!</p>
                             </div>
                         </div>
-                        <div className="gnb-zgM">
-                            <img
-                                className="logo-va1"
-                                src={require("~/assets/images/logo-CJq.png")}
-                            />
-                            <div className="frame-1-3Pj">
-                                <div className="auto-group-h3t9-PTb">
-                                    <p className="item--7uP">이지조인서비스</p>
-                                    <p className="item--eeR">전자계약</p>
-                                    <p className="item--a2H">홈페이지 제작</p>
-                                    <p className="item--6mK">부동산 개발 컨설팅</p>
-                                    <p className="item--2us">서비스 신청</p>
-                                </div>
-                                <div className="gnb-text-mcZ">고객지원</div>
-                            </div>
-                            <div className="frame-2-GpD">
-                                <div className="button-type-1-pKw">로그인</div>
-                                <div className="button-type-1-tah">도입문의</div>
-                            </div>
-                        </div>
                     </div>
                     <div className="footer-AYD">
                         <div className="top-line-WMB"></div>

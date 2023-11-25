@@ -34,27 +34,7 @@ const ApplyService = () => {
                         <p className="item--6Lm">
                             상담 문의를 남겨주시면 확인후 빠르게 연락드리겠습니다.
                         </p>
-                        <div className="gnb-vKo">
-                            <img
-                                className="logo-eWh"
-                                src={require("~/assets/images/logo-aso.png")}
-                            />
-                            ``
-                            <div className="frame-1-m5X">
-                                <div className="auto-group-wqek-JLM">
-                                    <p className="item--2GM">이지조인서비스</p>
-                                    <p className="item--Xyo">전자계약</p>
-                                    <p className="item--4Tw">홈페이지 제작</p>
-                                    <p className="item--bCy">부동산 개발 컨설팅</p>
-                                </div>
-                                <div className="gnb-text-Wqj">서비스 신청</div>
-                                <p className="item--Bgy">고객 지원</p>
-                            </div>
-                            <div className="frame-2-sZo">
-                                <div className="button-type-1-cGV">로그인</div>
-                                <div className="button-type-1-5vm">도입문의</div>
-                            </div>
-                        </div>
+
                         <div className="frame-920-xDs">
                             <div className="service-list-GkM">
                                 <div className="component-14-1hw">

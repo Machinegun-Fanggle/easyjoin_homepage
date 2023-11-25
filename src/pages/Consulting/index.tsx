@@ -31,28 +31,6 @@ const Consulting = () => {
             <div className="item-4--J4M">
                 <AppContainer windowWidth={window.innerWidth}>
                     <div className="auto-group-gbzu-nVK">
-                        <div className="gnb-6F7">
-                            <img
-                                className="logo-S45"
-                                src={require("~/assets/images/logo-okq.png")}
-                            />
-                            <div className="frame-1-9jB">
-                                <div className="auto-group-stgb-Vo3">
-                                    <p className="item--qM7">이지조인서비스</p>
-                                    <p className="item--jSV">전자계약</p>
-                                    <p className="item--2wP">홈페이지 제작</p>
-                                </div>
-                                <div className="gnb-text-Mim">부동산 개발 컨설팅</div>
-                                <div className="auto-group-q1wk-G53">
-                                    <p className="item--CjP">서비스 신청</p>
-                                    <p className="item--87F">고객 지원</p>
-                                </div>
-                            </div>
-                            <div className="frame-2-qnM">
-                                <div className="button-type-1-zQM">로그인</div>
-                                <div className="button-type-1-G6y">도입문의</div>
-                            </div>
-                        </div>
                         <div className="auto-group-tvr1-jFT">
                             <div className="auto-group-9rmm-Uiq">
                                 <p className="item--q3b">이지조인</p>

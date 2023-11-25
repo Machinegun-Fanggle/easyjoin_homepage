@@ -32,26 +32,6 @@ const Press = () => {
                 <AppContainer windowWidth={window.innerWidth}>
                     {" "}
                     <div className="auto-group-xysf-qad">
-                        <div className="gnb-wdf">
-                            <img
-                                className="logo-HhX"
-                                src={require("~/assets/images/logo-4HK.png")}
-                            />
-                            <div className="frame-1-CZb">
-                                <div className="auto-group-lmpw-9Dw">
-                                    <p className="item--svd">이지조인서비스</p>
-                                    <p className="item--zEZ">전자계약</p>
-                                    <p className="item--6oP">홈페이지 제작</p>
-                                    <p className="item--pzH">부동산 개발 컨설팅</p>
-                                    <p className="item--xqb">서비스 신청</p>
-                                </div>
-                                <div className="gnb-text-5vD">고객지원</div>
-                            </div>
-                            <div className="frame-2-aMB">
-                                <div className="button-type-1-Jny">로그인</div>
-                                <div className="button-type-1-BLy">도입문의</div>
-                            </div>
-                        </div>
                         <p className="item--fX3">언론보도</p>
                         <div className="auto-group-4dsb-Aih">
                             <div className="group-5-6cM">

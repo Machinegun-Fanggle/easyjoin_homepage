@@ -47,29 +47,6 @@ const MakeHomepage = () => {
                             <br />
                             맞춤형 마케팅 할 수 있도록 지원합니다.
                         </p>
-                        <div className="gnb-HVP">
-                            <img
-                                className="logo-oid"
-                                src={require("~/assets/images/logo-8g5.png")}
-                            />
-
-                            <div className="frame-1-Kgy">
-                                <div className="auto-group-fasf-GMK">
-                                    <p className="item--1Ju">이지조인서비스</p>
-                                    <p className="item--uv5">전자계약</p>
-                                </div>
-                                <div className="gnb-text-3Fb">홈페이지 제작</div>
-                                <div className="auto-group-ttdz-93j">
-                                    <p className="item--5CH">부동산 개발 컨설팅</p>
-                                    <p className="item--PTs">서비스 신청</p>
-                                    <p className="item--iFF">고객 지원</p>
-                                </div>
-                            </div>
-                            <div className="frame-2-SS9">
-                                <div className="button-type-1-BPj">로그인</div>
-                                <div className="button-type-1-rEy">도입문의</div>
-                            </div>
-                        </div>
                     </div>
                     <div className="auto-group-zfhv-vEq">
                         <div className="frame-23-eRj">

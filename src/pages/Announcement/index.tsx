@@ -174,26 +174,6 @@ const Announcement = () => {
                                 src={require("~/assets/images/group-3-K9f.png")}
                             />
                         </div>
-                        <div className="gnb-D2d">
-                            <img
-                                className="logo-jFs"
-                                src={require("~/assets/images/logo-AJq.png")}
-                            />
-                            <div className="frame-1-TBs">
-                                <div className="auto-group-xxnb-CQM">
-                                    <p className="item--Kzm">이지조인서비스</p>
-                                    <p className="item--3fs">전자계약</p>
-                                    <p className="item--B1P">홈페이지 제작</p>
-                                    <p className="item--EEZ">부동산 개발 컨설팅</p>
-                                    <p className="item--A8D">서비스 신청</p>
-                                </div>
-                                <div className="gnb-text-t4D">고객지원</div>
-                            </div>
-                            <div className="frame-2-yrM">
-                                <div className="button-type-1-XN5">로그인</div>
-                                <div className="button-type-1-DEu">도입문의</div>
-                            </div>
-                        </div>
                     </div>
                     <div className="footer-4mK">
                         <div className="top-line-bmF"></div>

@@ -38,26 +38,7 @@ const Application = () => {
                         <p className="item--rJR">
                             상담 문의를 남겨주시면 확인후 빠르게 연락드리겠습니다.
                         </p>
-                        <div className="gnb-5gy">
-                            <img
-                                className="logo-PxZ"
-                                src={require("~/assets/images/logo-MiD.png")}
-                            />
-                            <div className="frame-1-J3w">
-                                <div className="auto-group-hkgp-dru">
-                                    <p className="item--NpV">이지조인서비스</p>
-                                    <p className="item--hLy">전자계약</p>
-                                    <p className="item--Dq7">홈페이지 제작</p>
-                                    <p className="item--Luj">부동산 개발 컨설팅</p>
-                                </div>
-                                <div className="gnb-text-TUZ">서비스 신청</div>
-                                <p className="item--Yku">고객 지원</p>
-                            </div>
-                            <div className="frame-2-UeZ">
-                                <div className="button-type-1-piR">로그인</div>
-                                <div className="button-type-1-K9P">도입문의</div>
-                            </div>
-                        </div>
+
                         <div className="auto-group-rlqq-zWR">
                             <img
                                 className="contract-3-1-5Gy"
