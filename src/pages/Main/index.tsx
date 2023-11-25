@@ -1,11 +1,12 @@
 // 리액트 메인 컴포넌트
 import React, { useEffect, useRef } from "react"
-import "./main.css"
 import styled from "styled-components"
 
 // 메인 컴포넌트 함수
 const Main = () => {
     const ref = useRef(null)
+    const ref2 = useRef(null)
+    const ref3 = useRef(null)
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -19,14 +20,14 @@ const Main = () => {
             },
         )
 
-        if (ref.current) {
-            observer.observe(ref.current)
-        }
+        if (ref.current) observer.observe(ref.current)
+        if (ref2.current) observer.observe(ref2.current)
+        if (ref3.current) observer.observe(ref3.current)
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current)
-            }
+            if (ref.current) observer.unobserve(ref.current)
+            if (ref2.current) observer.unobserve(ref2.current)
+            if (ref3.current) observer.unobserve(ref3.current)
         }
     }, [])
 
@@ -101,7 +102,7 @@ const Main = () => {
             </SPage2>
 
             <SPage3>
-                <SPage3Text>
+                <SPage3Text ref={ref2}>
                     가장 쉽고 빠른
                     <br />
                     <div style={{ display: "flex" }}>
@@ -109,7 +110,7 @@ const Main = () => {
                         <div style={{ color: "#2779F4", margin: "0 0 0 10px" }}>이지조인</div>
                     </div>
                 </SPage3Text>
-                <SBtnWrapper>
+                <SBtnWrapper ref={ref3}>
                     <SPage3Btn>서비스 신청하기</SPage3Btn>
                     <SPage3Btn style={{ background: "#fff", color: "#000" }}>도입문의</SPage3Btn>
                 </SBtnWrapper>
@@ -179,7 +180,7 @@ const SPage1Front = styled.div`
             opacity: 1;
         }
     }
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
 `
 
 const SMainText = styled.div`
@@ -233,7 +234,7 @@ const SButton = styled.div`
             opacity: 1;
         }
     }
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
 `
 
 const SPage2 = styled.div`
@@ -361,6 +362,13 @@ const SPage3Text = styled.div`
     font-weight: 700;
     line-height: 140%; /* 56px */
     align-items: center;
+
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
 `
 
 const SBtnWrapper = styled.div`
@@ -373,6 +381,12 @@ const SBtnWrapper = styled.div`
     font-weight: 700;
     line-height: 140%;
     gap: 24px;
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
 `
 
 const SPage3Btn = styled.div`

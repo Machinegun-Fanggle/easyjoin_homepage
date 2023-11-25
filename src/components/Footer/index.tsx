@@ -1,124 +1,196 @@
 import React from "react"
 import styled from "styled-components"
-import "./footer.css"
+import { Link, NavLink } from "react-router-dom"
 
 const Footer = () => {
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth", // 부드러운 스크롤 효과
+        })
+    }
     return (
-        <AppContainer windowWidth={window.innerWidth}>
-            <div className="footer-fQh">
-                <div className="top-line-b3T"></div>
-                <div className="footer-container-vbX">
-                    <div className="footer-contents-GQV">
-                        <div className="foot-nav-28m">
-                            <p className="item--Z8h">회사소개</p>
-                            <div className="auto-group-vqaf-3pZ">
-                                <div className="bar-APP"></div>
-                                <p className="item--heD">서비스 소개</p>
-                                <div className="bar-2gV"></div>
-                                <p className="item--NEZ">고객센터</p>
-                                <div className="bar-VKB"></div>
-                                <p className="item--Rid">이용약관</p>
-                                <div className="bar-MsB"></div>
-                                <p className="item--HVw">개인정보처리방침</p>
-                            </div>
-                        </div>
-                        <div className="bottom-1Rw">
-                            <div className="company-info-Apd">
-                                <div className="frame-606-6CV">
-                                    <div className="frame-602-qQy">
-                                        <p className="item--Zrm">대표</p>
-                                        <p className="item--t8M">이병훈</p>
-                                    </div>
-                                    <div className="frame-607-oFK">
-                                        <p className="item--A5s">주소</p>
-                                        <p className="a37-Vtq">
-                                            울산광역시 북구 매곡 1로 15-1, 413호 A37
-                                        </p>
-                                    </div>
-                                    <div className="frame-605-E5j">
-                                        <p className="item--mbT">사업자등록번호</p>
-                                        <p className="item-415-86-02577-hV7">415-86-02577</p>
-                                    </div>
-                                </div>
-                                <div className="frame-608-CRs">
-                                    <div className="frame-604-8KX">
-                                        <p className="item--faM">고객센터 대표번호</p>
-                                        <p className="item-1670-2251-JtD">1670-2251</p>
-                                    </div>
-                                    <div className="frame-608-3au">
-                                        <p className="item--QwF">상담시간</p>
-                                        <p className="item-10-17-11-30-12-30-YnZ">
-                                            평일 10 ~ 17시 (점심시간 11:30 ~ 12:30)
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <p className="easyjoin-inc-all-rights-reserved-3jK">
-                                © 2023 EasyJoin INC. All rights reserved.
-                            </p>
-                        </div>
+        <SFooter>
+            <SInnerFooter>
+                <SWrapper>
+                    <SLinkWrapper>
+                        <SLink to={"/"} activeClassName="active" onClick={scrollToTop}>
+                            회사소개
+                        </SLink>
+                        <SBar />
+                        <SLink to={"service"} activeClassName="active" onClick={scrollToTop}>
+                            서비스 소개
+                        </SLink>
+                        <SBar />
+                        <SLink
+                            to={"customer-service"}
+                            activeClassName="active"
+                            onClick={scrollToTop}
+                        >
+                            고객센터
+                        </SLink>
+                        <SBar />
+                        <SLink to={"terms-of-use"} activeClassName="active" onClick={scrollToTop}>
+                            이용약관
+                        </SLink>
+                        <SBar />
+                        <SLink to={"privacy-policy"} activeClassName="active" onClick={scrollToTop}>
+                            개인정보처리방침
+                        </SLink>
+                    </SLinkWrapper>
+
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            width: "90%",
+                            marginTop: "60px 0 0 0",
+                        }}
+                    >
+                        <SFooterInfoWrapper
+                            style={{
+                                display: "flex",
+                                justifyContent: "left",
+                                alignItems: "flex-start",
+                            }}
+                        >
+                            <STitle style={{ margin: "0 16px 0 0" }}>대표</STitle>이병훈
+                            <STitle>주소</STitle>울산광역시 북구 매곡 1로 15-1, 413호 A37
+                            <STitle>사업자등록번호</STitle>415-86-02577
+                        </SFooterInfoWrapper>
+                        <SFooterInfoWrapper
+                            style={{
+                                display: "flex",
+                                justifyContent: "left",
+                                marginTop: "8px",
+                            }}
+                        >
+                            <STitle style={{ margin: "0 16px 0 0" }}>고객센터 대표번호</STitle>
+                            1670-2251
+                            <STitle>상담시간</STitle>평일 10 ~ 17시 (점심시간 11:30 ~ 12:30)
+                        </SFooterInfoWrapper>
                     </div>
-                    <div className="auto-group-jwh9-LiR">
-                        <div className="frame-616-VLR">사업자정보확인</div>
-                        <div className="auto-group-ngi7-YJh">
-                            <img
-                                className="logo-gA1"
-                                src={require("~/assets/images/logo-WJH.png")}
-                            />
-                            <div className="sns-d5F">
-                                <img
-                                    className="group-11-kvZ"
-                                    src={require("~/assets/images/group-11.png")}
-                                />
-                                <div className="icoi-VNM">
-                                    <img
-                                        className="mask-group-QVK"
-                                        src={require("~/assets/images/mask-group-YJ1.png")}
-                                    />
-                                    <img
-                                        className="mask-group-9C1"
-                                        src={require("~/assets/images/mask-group-Cvy.png")}
-                                    />
-                                    <img
-                                        className="mask-group-Uzy"
-                                        src={require("~/assets/images/mask-group-2oP.png")}
-                                    />
-                                    <img
-                                        className="mask-group-Q7w"
-                                        src={require("~/assets/images/mask-group-EGV.png")}
-                                    />
-                                    <img
-                                        className="mask-group-95X"
-                                        src={require("~/assets/images/mask-group-FHF.png")}
-                                    />
-                                    <img
-                                        className="mask-group-6Ff"
-                                        src={require("~/assets/images/mask-group-KcZ.png")}
-                                    />
-                                </div>
-                                <img
-                                    className="icof-DbB"
-                                    src={require("~/assets/images/icof-3C9.png")}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </AppContainer>
+
+                    <SFooterEndText>© 2023 EasyJoin INC. All rights reserved.</SFooterEndText>
+                </SWrapper>
+
+                <SLogoLink to={"/"}>
+                    <img src={require("~/assets/images/logo-2vR.png")} width={150} height={30} />
+                </SLogoLink>
+            </SInnerFooter>
+        </SFooter>
     )
 }
 
 export default Footer
 
-const AppContainer = styled.div<{ windowWidth: number }>`
+const SFooter = styled.div`
+    // position: fixed; // 위에 고정할 경우 배경색 떄문에 화면에 글자가 안보임. 어떻게 처리할지 유책님과 논의 필요
     display: flex;
-    position: relative;
-    transform: scale(${(props) => props.windowWidth / 3047.62});
-    transform-origin: center center; // 축소의 기준점 설정
-    // height: 3.6rem;
     width: 100%;
+    height: 300px;
     justify-content: center;
-    // align-items: center;
-    // background: red;
+    align-items: center;
+`
+
+const SInnerFooter = styled.div`
+    display: flex;
+    width: 1440px;
+    height: 167px;
+    justify-content: space-between;
+    align-items: space-between;
+`
+
+const SLink = styled(NavLink)<{ activeClassName: string }>`
+    color: var(--gray-900, #0d0d0d);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none; // 기본 상태에서 밑줄 제거
+    border: 0;
+    position: relative; // 밑줄을 위한 위치 설정
+
+    &:hover {
+        font-weight: bold; // 마우스 오버시 글씨 두께 변경
+
+        &:after {
+            font-weight: bold; // 마우스 오버시 글씨 두께 변경
+        }
+    }
+
+    &.active {
+        font-weight: bold; // 마우스 오버시 글씨 두께 변경
+
+        &:after {
+            font-weight: bold; // 마우스 오버시 글씨 두께 변경
+        }
+    }
+`
+
+const SBar = styled.div`
+    background: var(--gray-100, #d9d9d9);
+    width: 1px;
+    height: 16px;
+`
+const SLogoLink = styled(Link)`
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 16px */
+    text-decoration: none; // 기본 상태에서 밑줄 제거
+    border: 0;
+    position: relative; // 밑줄을 위한 위치 설정
+`
+
+const SWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+`
+
+const SFooterInfoWrapper = styled.div`
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    color: var(--gray-600, #595959);
+
+    /* text-sm */
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`
+
+const STitle = styled.div`
+    display: flex;
+    margin: 0 16px 0 40px;
+    opacity: 0.6;
+`
+const SLinkWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 24px;
+`
+
+const SFooterEndText = styled.div`
+    display: flex;
+    flex-direction: column;
+    alignitems: flexstart;
+    backgroundcolor: red;
+    width: 50%;
+    color: var(--gray-900, #0d0d0d);
+
+    /* text-sm */
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 `

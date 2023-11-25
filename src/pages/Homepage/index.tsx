@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 
 // 메인 컴포넌트 함수
-const Consulting = () => {
+const Homepage = () => {
     const ref = useRef(null)
     const ref2 = useRef(null)
     const ref3 = useRef(null)
@@ -53,25 +53,27 @@ const Consulting = () => {
                         <SPage1Front>
                             <SSmallText>이지조인 서비스</SSmallText>
                             <SMainText>
-                                개발 기획부터 준공까지 <br />
-                                맞춤형 부동산 개발 컨설팅{" "}
+                                분양현장에 특화된
+                                <br />
+                                홈페이지 제작{" "}
                             </SMainText>
                             <div>
                                 <SSubText>
-                                    전자계약 솔루션 외에 부동산 개발에 필요한 종합적인 컨설
-                                    <br />팅 서비스를 제공합니다.
+                                    현장상황에 맞추어 간편하고 쉽게 관리하고
+                                    <br />
+                                    맞춤형 마케팅 할 수 있도록 지원합니다.
                                 </SSubText>
                             </div>
                         </SPage1Front>
-                        <SPage1Img src={require("../../assets/Group 546.svg").default} />
                     </SGradient>
 
                     <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
                 </div>
             </SPage1Back>
+
             <SPage2 ref={ref}>
                 <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
-                    부동산 <div style={{ color: "#2779F4" }}>개발 컨설팅</div>
+                    부동산 분양 현장에 <div style={{ color: "#2779F4" }}>특화된 홈페이지 </div>제작
                 </SMainText>
                 <SSubText
                     style={{
@@ -81,39 +83,32 @@ const Consulting = () => {
                         width: "747px",
                     }}
                 >
-                    개발 기획부터 준공 후 임대관리까지 통합 컨설팅을 제공하며
-                    <br />
-                    시행, 시공, 금융, 분양, 홍보까지 효과적이고 세심하게 처리합니다.
+                    스마트폰이나 pc, 태블릿 등 다양한 환경에 맞춰 최적화된 화면을 나타내는 반응형 웹
                 </SSubText>
-                <SPage2Img src={require("../../assets/Group 547.svg").default} />
-
-                <div
-                    style={{
-                        display: "flex",
-                        margin: "100px 0 0 0",
-                        justifyContent: "left",
-                        width: "1200px",
-                    }}
-                >
-                    <SLeftBorderText>투자유치</SLeftBorderText>
-                </div>
-                <SPage2_2Img src={require("../../assets/Group 549.svg").default} />
-                <div
-                    style={{
-                        display: "flex",
-                        margin: "100px 0 0 0",
-                        justifyContent: "left",
-                        width: "1200px",
-                    }}
-                >
-                    <SLeftBorderText>개발사업관리(Project Management) 효과</SLeftBorderText>
-                </div>
-                <SPage2_3Img src={require("../../assets/Group 548.svg").default} />
+                <SPage2Img src={require("../../assets/Group 543.svg").default} />
+                <SPage2_2Img src={require("../../assets/Group 544.svg").default} />
             </SPage2>
+
+            <SPage3 ref={ref3}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    주요 서비스
+                </SMainText>
+                <SSubText
+                    style={{
+                        color: "#000",
+                        fontSize: "22px",
+                        textAlign: "center",
+                        width: "747px",
+                    }}
+                >
+                    서비스 기간 내 무상서비스를 지원합니다.{" "}
+                </SSubText>
+                <SPage3Img src={require("../../assets/Group 545.svg").default} height={936} />
+            </SPage3>
         </SPageWrapper>
     )
 }
-export default Consulting
+export default Homepage
 
 const SPageWrapper = styled.div`
     display: flex;
@@ -156,18 +151,11 @@ const SPage1BackImg = styled.img`
     width: 1920px;
 `
 
-const SPage1Img = styled.img`
-    display: flex;
-    width: 422px;
-    height: 340px;
-    border-radius: 20px;
-`
-
 const SPage1Front = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 780px;
+    width: 1200px;
     height: 368px;
     z-index: 2;
     @keyframes fadeIn {
@@ -229,40 +217,38 @@ const SPage2Img = styled.img`
     display: flex;
     margin: 80px 0 0 0;
     width: 100%;
-    height: 614px;
+    height: 696px;
     border-radius: 20px;
 `
 
 const SPage2_2Img = styled.img`
     display: flex;
-    margin: 32px 0 0 0;
+    margin: 240px 0 0 0;
     width: 100%;
-    height: 118px;
+    height: 589px;
     border-radius: 20px;
 `
 
-const SPage2_3Img = styled.img`
+const SPage3 = styled.div`
     display: flex;
-    margin: 48px 0 0 0;
-    width: 100%;
-    height: 600px;
-    border-radius: 20px;
-`
-const SLeftBorderText = styled.div`
-    display: inline-flex;
-    padding-left: 0px;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: left;
-    text-align: left;
-    gap: 20px;
-    border-left: 3px solid var(--2779F4, #2779f4);
-    color: #000;
-    padding-left: 20px; // 텍스트와 왼쪽 테두리 사이의 간격
+    width: 1200px;
+    padding: 0px 362px 200px 362px;
+    justify-content: center;
+    align-items: center;
 
-    font-family: Pretendard;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 100%; /* 28px */
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
+`
+
+const SPage3Img = styled.img`
+    display: flex;
+    margin: 80px 0 0 0;
+    width: 1200px;
+    height: 936px;
+    border-radius: 20px;
 `

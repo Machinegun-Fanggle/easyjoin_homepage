@@ -1,463 +1,357 @@
 // 리액트 메인 컴포넌트
-import React from "react"
-import "./contract.css"
-import { Helmet } from "react-helmet"
+import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-
-const AppContainer = styled.div<{ windowWidth: number }>`
-    transform: scale(${(props) => props.windowWidth / 3047.62});
-    transform-origin: top left; // 축소의 기준점 설정
-`
 
 // 메인 컴포넌트 함수
 const Contract = () => {
-    return (
-        <>
-            <Helmet>
-                <link rel="icon" href="/favicon.ico" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="theme-color" content="#000000" />
-                <title>서브1-이지조인서비스</title>
-                <link
-                    rel="stylesheet"
-                    href="https://fonts.googleapis.com/css?family=Pretendard%3A400%2C500%2C600%2C700"
-                />
-                <link
-                    rel="stylesheet"
-                    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600%2C700"
-                />
-                <link rel="stylesheet" href="./styles/-LVT.css" />
-            </Helmet>
+    const ref = useRef(null)
+    const ref2 = useRef(null)
+    const ref3 = useRef(null)
+    const ref4 = useRef(null)
+    const ref5 = useRef(null)
 
-            <div className="item-2--S2y">
-                <AppContainer windowWidth={window.innerWidth}>
-                    <div className="auto-group-czuf-gxu">
-                        <div className="auto-group-abjt-WXw">
-                            <div className="auto-group-bket-s7b">
-                                <p className="item--zxu">이지조인</p>
-                                <p className="item-5--vLm">
-                                    5분만에 끝나는
-                                    <br />
-                                    쉽고 간단한 전자계약
-                                </p>
-                                <p className="item--agD">
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate")
+                }
+            },
+            {
+                threshold: 0.3,
+            },
+        )
+
+        if (ref.current) observer.observe(ref.current)
+        if (ref2.current) observer.observe(ref2.current)
+        if (ref3.current) observer.observe(ref3.current)
+        if (ref4.current) observer.observe(ref4.current)
+        if (ref5.current) observer.observe(ref5.current)
+
+        return () => {
+            if (ref.current) observer.unobserve(ref.current)
+            if (ref2.current) observer.unobserve(ref2.current)
+            if (ref3.current) observer.unobserve(ref3.current)
+            if (ref4.current) observer.unobserve(ref4.current)
+            if (ref5.current) observer.unobserve(ref5.current)
+        }
+    }, [])
+
+    return (
+        <SPageWrapper>
+            <SPage1Back>
+                <div
+                    style={{
+                        position: "relative",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <SGradient>
+                        <SPage1Front>
+                            <SSmallText>이지조인 서비스</SSmallText>
+                            <SMainText>
+                                5분만에 끝나는 <br />
+                                쉽고 간단한 전자계약
+                            </SMainText>
+                            <div>
+                                <SSubText>
                                     지루하던 계약서 작성이 이지조인으로
                                     <br />
                                     쉽고 간단하게 완료 됩니다.
-                                </p>
+                                </SSubText>
                             </div>
-                            <div className="auto-group-sf87-cso">
-                                <div className="image-1-Nc5"></div>
-                                <div className="image-2-5WV"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p className="item--wHo">다양한 단체가입 적용 가능</p>
-                    <p className="item--dAd">
-                        비대면 계약, 대면 계약 방식을 모두 지원하며, 효율적인 계약업무를 진행
-                        가능합니다.
-                    </p>
-                    <div className="auto-group-pxbh-rJH">
-                        <div className="auto-group-uv1h-9HP">
-                            <div className="auto-group-qsdq-qAD">
-                                <p className="item--MuF">
-                                    지역주택조합
-                                    <br />
-                                    조합원 가입
-                                </p>
-                            </div>
-                            <div className="auto-group-9z9z-PL9">
-                                <p className="item--82q">
-                                    민간임대 협동조합
-                                    <br />
-                                    조합원 가입
-                                </p>
-                            </div>
-                            <div className="auto-group-qk8j-xXf">
-                                <p className="item--gTf">기타 단체 가입</p>
-                                <p className="item--xvy">
-                                    가로주택,
-                                    <br />
-                                    소규모 재건축 사업,
-                                    <br />
-                                    각종동호회
-                                </p>
-                            </div>
-                        </div>
-                        <p className="item--bDF">
-                            각종조합원가입,단체가입 형태의 계약서와 계약체결에 모두 적용 가능해요!
-                            <br />
-                            동의서가 필요할 경우 단체의 동의서를 일괄적으로 전송하고 서명을 받을 수
-                            있어요!
-                            <br />
-                            여러 단체에 가입하는 행위가 필요한 모든 형태 총회에서 전자투표로도 진행
-                            가능해요!
-                        </p>
-                        <div className="frame-23-Qpu">
-                            <p className="item--9nV">
-                                <span className="item--9nV-sub-0">법적효력 및 보안</span>
-                                <span className="item--9nV-sub-1">까지 확실한 보장</span>
-                            </p>
-                            <p className="item--EBf">
-                                전자계약은 종이문서와 같은 법적효력을 가집니다
-                            </p>
-                        </div>
-                        <div className="auto-group-vpep-4wP">
-                            <div className="auto-group-ybtf-kpD">
-                                <div className="frame-17-gxm">
-                                    <p className="item-33-1-Sh3">전자서명법 제 33조 1항</p>
-                                    <p className="item--A7F">
-                                        전자서명은 전자적 형태라는 이유만으로 서명,
-                                        <br />
-                                        서명날인 또는 기명날인으로서의 효력이 부인되지 아니한다.
-                                    </p>
-                                </div>
-                                <div className="frame-19-9js">
-                                    <p className="item-33-2-i2H">전자서명법 제 33조 2항</p>
-                                    <p className="item--oZX">
-                                        전자서명은 전자적 형태라는 이유만으로 서명, 서명,
-                                        <br />
-                                        날인 또는 기명날인으로서의 효력이 부인되지 아니한다.
-                                    </p>
-                                </div>
-                                <div className="frame-18-ycR">
-                                    <p className="item-44-1-gmj">
-                                        전자문서 및 전자거래 기본법 제44조 1항
-                                    </p>
-                                    <p className="item--BiV">
-                                        법령의규정또는당사자간의약정에따라서명,
-                                        <br />
-                                        서명날인 또는 기명날인의 방식으로 전자서명을 선택한 경우
-                                        <br />그 전자서명은 서명, 서명날인 또는 기명날인으로서의
-                                        효력을 가진다.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="frame-21-W8V">
-                                <div className="frame-20-EaH">
-                                    <p className="item-44-2-ynm">
-                                        전자문서 및 전자거래 기본법 제44조 2항
-                                    </p>
-                                    <p className="item--p2h">
-                                        전자문서가다음각호의요건을모두갖춘경우에는
-                                        <br />그 전자문서를 서면으로 본다.
-                                    </p>
-                                </div>
-                                <p className="item--rk5">
-                                    다만, 다른 법령에 특별한 규정이 있거나 성질상 전자적 형태가
-                                    <br />
-                                    허용되지 아니하는 경우에는 서면으로 보지 아니한다.
-                                </p>
-                                <p className="item--qM7">
-                                    전자문서의내용을열람할수있을것
-                                    <br />
-                                    전자문서가 작성ᆞ변환되거나 송신ᆞ수신 또는
-                                    <br />
-                                    저장된 때의 형태 또는그와같이재현될수있는형태로보존되어 있을것
-                                </p>
-                                <img
-                                    className="privacy-law-2-yLq"
-                                    src={require("~/assets/images/privacy-law-2-tJH.png")}
-                                />
-                            </div>
-                        </div>
-                        <div className="frame-22-gFF">
-                            <p className="item--1oK">
-                                신탁사와 업무협약을 체결하여 전자계약 문서로 신탁업무가 가능합니다
-                                <br />
-                                신탁사 계정 배정을 통해 계약서 열람 기능을 제공하여 계약서 원본 또는
-                                스캔자료를 송부하는 번거로움을 줄여 효율성을 높여드립니다.
-                            </p>
-                        </div>
-                        <p className="item--p8V">신탁사 업무 연계</p>
-                    </div>
-                    <div className="auto-group-t2xv-rqs">
-                        <p className="item--zBP">계약과정</p>
-                        <div className="auto-group-t58p-hbb">
-                            <div className="auto-group-xih9-EbX">
-                                <img
-                                    className="contract-type-1-m5f"
-                                    src={require("~/assets/images/contract-type-1-rbo.png")}
-                                />
-                                <p className="item--HZo">계약서 작성</p>
-                            </div>
-                            <div className="auto-group-zsd9-PMw">
-                                <img
-                                    className="contract-type-1-WhT"
-                                    src={require("~/assets/images/contract-type-1-1yo.png")}
-                                />
-                                <p className="item--SLD">서명요청</p>
-                            </div>
-                            <div className="auto-group-ykdq-8Tw">
-                                <img
-                                    className="contract-type-1-4Mb"
-                                    src={require("~/assets/images/contract-type-1-ugZ.png")}
-                                />
-                                <p className="item--YGm">서명입력</p>
-                            </div>
-                            <div className="auto-group-q4ex-1RF">
-                                <img
-                                    className="contract-type-1-7DP"
-                                    src={require("~/assets/images/contract-type-1-SC5.png")}
-                                />
-                                <p className="item--dxR">계약완료</p>
-                            </div>
-                        </div>
-                        <div className="auto-group-vczz-M7j">
-                            <p className="item--Ui9">이지조인 템플릿 사용</p>
-                            <p className="item--Aqs">휴대폰으로 서명요청 전송</p>
-                            <p className="item--Ubf">휴대폰인증 후 전자서명</p>
-                        </div>
-                    </div>
-                    <div className="auto-group-6mi3-vCm">
-                        <div className="frame-24-1zu">
-                            <p className="item--Yzq">도입효과</p>
-                            <p className="item--cjo">
-                                전자계약은 종이문서와 같은 법적효력을 가집니다
-                            </p>
-                        </div>
-                        <div className="frame-25-EFP">
-                            <p className="item--Y1B">기능안내</p>
-                            <p className="item--ztm">이지조인은 다양한 기능을 제공합니다.</p>
-                        </div>
-                        <div className="item--eiR">
-                            <div className="auto-group-uzpd-K3s">
-                                <img
-                                    className="icon-function-cYm"
-                                    src={require("~/assets/images/icon-function-qc9.png")}
-                                />
-                            </div>
-                            <p className="item--WPF">팀 관리</p>
-                        </div>
-                        <div className="item--RFK">
-                            <img
-                                className="auto-group-yjfd-JK7"
-                                src={require("~/assets/images/auto-group-yjfd.png")}
-                            />
-                            <div className="frame-26-SRK">
-                                <p className="item--zhj">간편한 인증</p>
-                                <p className="item--5jB">
-                                    휴대폰 본인인증만으로
-                                    <br />
-                                    간편하게 본인 확인
-                                </p>
-                            </div>
-                        </div>
-                        <div className="auto-group-rk3v-j33">
-                            <div className="item--SCM">
-                                <img
-                                    className="auto-group-dkvu-xwP"
-                                    src={require("~/assets/images/auto-group-dkvu.png")}
-                                />
-                                <div className="frame-26-6Xo">
-                                    <p className="item--3T3">업무력 향상</p>
-                                    <p className="item--ZgH">
-                                        디지털화로 인하여
-                                        <br />
-                                        업무의 생산성과 효율성 증대
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="item--DF3">
-                                <img
-                                    className="auto-group-dc3u-HVo"
-                                    src={require("~/assets/images/auto-group-dc3u.png")}
-                                />
-                                <div className="frame-26-DeM">
-                                    <p className="item--B5P">보안 용이</p>
-                                    <p className="item--eDs">
-                                        데이터 암호화를 제공하여 전송 중
-                                        <br />
-                                        데이터를 안전하게 보호
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="auto-group-budd-uvV">
-                            <div className="item--bYR">
-                                <img
-                                    className="auto-group-wjm9-7mf"
-                                    src={require("~/assets/images/auto-group-wjm9.png")}
-                                />
-                                <div className="frame-26-yYy">
-                                    <p className="item--WYu">폴더관리</p>
-                                    <p className="item--onu">
-                                        폴더별로 정리가 가능하여
-                                        <br />
-                                        문서정리와 보관의 편의성 제공
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="item--gLu">
-                                <img
-                                    className="auto-group-zc5q-z6h"
-                                    src={require("~/assets/images/auto-group-zc5q.png")}
-                                />
-                                <div className="frame-26-Kuf">
-                                    <p className="item--HLh">비용절감</p>
-                                    <p className="item--1Gh">
-                                        전자 계약을 통해
-                                        <br />
-                                        종이 서류시 계약에 드는 비용 절감
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="auto-group-16s7-f6M">
-                            <div className="item--zeR">
-                                <img
-                                    className="auto-group-8vj9-hYq"
-                                    src={require("~/assets/images/auto-group-8vj9.png")}
-                                />
-                                <div className="frame-26-q9F">
-                                    <p className="item--naH">환경보호</p>
-                                    <p className="item--WmB">
-                                        종이 낭비가 없는 친환경적인
-                                        <br />
-                                        페이퍼리스 계약으로 환경보호 기여
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="item--nTo">
-                                <img
-                                    className="auto-group-zy8x-Gtm"
-                                    src={require("~/assets/images/auto-group-zy8x.png")}
-                                />
-                                <div className="frame-26-bw3">
-                                    <p className="item--ADT">888888</p>
-                                    <p className="item--VFj">
-                                        휴대폰 본인인증만으로
-                                        <br />
-                                        간편하게 본인 확인
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item--KVf">
-                            <img
-                                className="auto-group-cznb-29B"
-                                src={require("~/assets/images/auto-group-cznb.png")}
-                            />
-                            <div className="frame-26-VYZ">
-                                <p className="item--FGq">시간절약</p>
-                                <p className="item--BAV">
-                                    계약서 작성 시간 단 5분!
-                                    <br />
-                                    계약서 검토 과정 최소화
-                                </p>
-                            </div>
-                        </div>
-                        <div className="auto-group-buzu-rXX">
-                            <div className="item--nRB">
-                                <div className="auto-group-oxuo-7CZ">
-                                    <img
-                                        className="icon-function-quF"
-                                        src={require("~/assets/images/icon-function-7L9.png")}
-                                    />
-                                </div>
-                                <p className="item--AwX">사인.도장 관리</p>
-                            </div>
-                            <div className="item--f7b">
-                                <div className="auto-group-xjc3-yty">
-                                    <img
-                                        className="icon-function-iLm"
-                                        src={require("~/assets/images/icon-function-mVP.png")}
-                                    />
-                                </div>
-                                <p className="item--Tp9">템플릿 관리</p>
-                            </div>
-                            <div className="item--gwo">
-                                <div className="auto-group-i22f-1jB">
-                                    <img
-                                        className="icon-function-xPX"
-                                        src={require("~/assets/images/icon-function-rFo.png")}
-                                    />
-                                </div>
-                                <p className="item--i7o">휴지통</p>
-                            </div>
-                        </div>
-                        <div className="auto-group-m4jd-ciy">
-                            <div className="item--8BX">
-                                <div className="auto-group-jnz9-FX3">
-                                    <img
-                                        className="icon-function-o2m"
-                                        src={require("~/assets/images/icon-function-BVf.png")}
-                                    />
-                                </div>
-                                <p className="item--Ym3">대량 전송</p>
-                            </div>
-                            <div className="item--4Db">
-                                <div className="auto-group-3u7y-BJD">
-                                    <img
-                                        className="icon-function-h1f"
-                                        src={require("~/assets/images/icon-function-YpD.png")}
-                                    />
-                                </div>
-                                <p className="item--cuK">잠금 설정</p>
-                            </div>
-                            <div className="item--6Zb">
-                                <div className="auto-group-v4t3-dJd">
-                                    <img
-                                        className="icon-function-YAh"
-                                        src={require("~/assets/images/icon-function-HsT.png")}
-                                    />
-                                </div>
-                                <p className="item--6CD">맞춤 브랜딩</p>
-                            </div>
-                        </div>
-                        <div className="auto-group-6dum-n53">
-                            <div className="item--hxh">
-                                <div className="auto-group-nkh1-2k5">
-                                    <img
-                                        className="icon-function-NJ9"
-                                        src={require("~/assets/images/icon-function-4Rs.png")}
-                                    />
-                                </div>
-                                <p className="item--7Wd">서면 결의</p>
-                            </div>
-                            <div className="item--zqK">
-                                <div className="auto-group-mtx7-vDB">
-                                    <img
-                                        className="icon-function-fRf"
-                                        src={require("~/assets/images/icon-function-UJR.png")}
-                                    />
-                                </div>
-                                <p className="item--nmB">실시간 알림</p>
-                            </div>
-                            <div className="item--VvV">
-                                <div className="auto-group-jqa3-E7P">
-                                    <img
-                                        className="icon-function-Mxh"
-                                        src={require("~/assets/images/icon-function-ow3.png")}
-                                    />
-                                </div>
-                                <p className="item--Wah">감사 추적 인증서</p>
-                            </div>
-                        </div>
-                        <div className="auto-group-v4fm-RSm">
-                            <div className="item--xSh">
-                                <div className="auto-group-gnzy-Ufw">
-                                    <img
-                                        className="icon-function-2SZ"
-                                        src={require("~/assets/images/icon-function-bd7.png")}
-                                    />
-                                </div>
-                                <p className="item--yMo">PDF 저장</p>
-                            </div>
-                            <div className="item--SWH">
-                                <div className="auto-group-ctxo-mYZ">
-                                    <img
-                                        className="icon-function-hx1"
-                                        src={require("~/assets/images/icon-function-qrd.png")}
-                                    />
-                                </div>
-                                <p className="item--TRP">문서함 관리</p>
-                            </div>
-                        </div>
-                    </div>
-                </AppContainer>
-            </div>
-        </>
+                        </SPage1Front>
+                    </SGradient>
+
+                    <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
+                </div>
+            </SPage1Back>
+            <SPage2 ref={ref}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    계약과정
+                </SMainText>
+                <SPage2Img src={require("../../assets/Group 538.svg").default} />
+            </SPage2>
+
+            <SPage3 ref={ref3}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    <div style={{ color: "#2779F4" }}>법적효력 및 보안</div>까지 확실한 보장
+                </SMainText>
+                <SSubText
+                    style={{
+                        color: "#000",
+                        fontSize: "22px",
+                        textAlign: "center",
+                        width: "747px",
+                    }}
+                >
+                    전자계약은 종이문서와 같은 법적효력을 가집니다
+                </SSubText>
+                <SPage3Img src={require("../../assets/Group 539.svg").default} />
+
+                <div
+                    style={{
+                        display: "flex",
+                        margin: "100px 0 0 0",
+                        justifyContent: "left",
+                        width: "1200px",
+                    }}
+                >
+                    <SLeftBorderText>신탁사 업무 연계</SLeftBorderText>
+                </div>
+                <SPage3_2Img src={require("../../assets/Group 540.svg").default} />
+            </SPage3>
+
+            <SPage4 ref={ref4}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    기능안내
+                </SMainText>
+                <SSubText
+                    style={{
+                        color: "#000",
+                        fontSize: "22px",
+                        textAlign: "center",
+                        width: "747px",
+                    }}
+                >
+                    이지조인은 다양한 기능을 제공합니다.
+                </SSubText>
+                <SPage4Img src={require("../../assets/Group 541.svg").default} />
+            </SPage4>
+
+            <SPage5 ref={ref5}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    맞춤서식 제공
+                </SMainText>
+                <SSubText
+                    style={{
+                        color: "#000",
+                        fontSize: "22px",
+                        textAlign: "center",
+                        width: "747px",
+                    }}
+                >
+                    분양 현장에서 쓰는 회원가입계약서 및 각종 동의서 등의 관련 문서를 전자 계약
+                    <br />
+                    체결에 최적화된 디자인으로 현장별 맞춤 서식을 제공합니다
+                </SSubText>
+                <SPage5Img src={require("../../assets/Group 542.svg").default} />
+            </SPage5>
+        </SPageWrapper>
     )
 }
 export default Contract
+
+const SPageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // background: blue;
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: center;
+`
+
+const SPage1Back = styled.div`
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 920px;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+`
+const SGradient = styled.div`
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 920px;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+
+    background: #15191e; /* 초기 배경 설정 */
+`
+
+const SPage1BackImg = styled.img`
+    position: relative;
+    display: flex;
+    flexdirection: column;
+    overflowx: hidden;
+    overflowy: hidden;
+    height: 920px;
+    width: 1920px;
+`
+
+const SPage1Front = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: 368px;
+    z-index: 2;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    animation: fadeIn 1s ease-in-out;
+`
+
+const SSmallText = styled.div`
+    color: var(--grbk-500, #697077);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 20px */
+`
+const SMainText = styled.div`
+    display: flex;
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 67.2px */
+    margin: 16px 0 0 0;
+`
+
+const SSubText = styled.div`
+    margin: 24px 0 0 0;
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 32px */
+`
+
+const SPage2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 220px 360px;
+    justify-content: center;
+    align-items: center;
+    background: var(--grbk-50, #f2f4f8);
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
+`
+
+const SPage2Img = styled.img`
+    display: flex;
+    margin: 63px 0 0 0;
+    width: 100%;
+    height: 274px;
+    border-radius: 20px;
+`
+
+const SPage3 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 220px 362px 0 362px;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
+`
+
+const SPage3Img = styled.img`
+    display: flex;
+    margin: 63px 0 0 0;
+    width: 1200px;
+    height: 560px;
+    border-radius: 20px;
+`
+
+const SPage3_2Img = styled.img`
+    display: flex;
+    margin: 32px 0 0 0;
+    width: 1200px;
+    height: 238px;
+    border-radius: 20px;
+`
+
+const SLeftBorderText = styled.div`
+    display: inline-flex;
+    padding-left: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    text-align: left;
+    gap: 20px;
+    border-left: 3px solid var(--2779F4, #2779f4);
+    color: #000;
+    padding-left: 20px; // 텍스트와 왼쪽 테두리 사이의 간격
+
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%; /* 28px */
+`
+
+const SPage4 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 220px 362px 0 362px;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
+`
+
+const SPage4Img = styled.img`
+    display: flex;
+    margin: 63px 0 0 0;
+    width: 1200px;
+    height: 960px;
+    border-radius: 20px;
+`
+
+const SPage5 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 220px 362px 220px 362px;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
+`
+
+const SPage5Img = styled.img`
+    display: flex;
+    margin: 63px 0 0 0;
+    width: 1200px;
+    height: 429px;
+    border-radius: 20px;
+`

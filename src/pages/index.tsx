@@ -3,7 +3,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Main from "./Main"
 import Service from "./Service"
 import Contract from "./Contract"
-import MakeHomepage from "./MakeHomepage"
+import Homepage from "./Homepage"
 import Consulting from "./Consulting"
 import ApplyService from "./ApplyService"
 import Application from "./Application"
@@ -44,7 +44,7 @@ export default function RootRouter() {
                     <Route path={"/"} element={<Main />} />
                     <Route path={"/service"} element={<Service />} />
                     <Route path={"/contract"} element={<Contract />} />
-                    <Route path={"/homepage"} element={<MakeHomepage />} />
+                    <Route path={"/homepage"} element={<Homepage />} />
                     <Route path={"/consulting"} element={<Consulting />} />
                     <Route path={"/apply-service"} element={<ApplyService />} />
                     <Route path={"/application"} element={<Application />} />
