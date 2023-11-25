@@ -1,0 +1,53 @@
+import React, { Suspense, useEffect, useState } from "react"
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
+import Main from "./Main"
+import Service from "./Service"
+import Contract from "./Contract"
+import MakeHomepage from "./MakeHomepage"
+import Consulting from "./Consulting"
+import ApplyService from "./ApplyService"
+import Application from "./Application"
+import Announcement from "./Announcement"
+import QnA from "./QnA"
+import Press from "./Press"
+// const Main = React.lazy(() => import("./main/index"))
+
+export default function RootRouter() {
+    const [windowDefine, setWindowDefine] = useState({
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+    })
+    const navigate = useNavigate()
+    const current = useLocation().pathname
+
+    useEffect(() => {
+        window.addEventListener("resize", () =>
+            setWindowDefine({
+                ...windowDefine,
+                innerWidth: window.innerWidth,
+                innerHeight: window.innerHeight,
+            }),
+        )
+
+        return () => {
+            window.removeEventListener("resize", () => {})
+        }
+    }, [])
+
+    return (
+        <>
+            <Routes>
+                <Route path={"/"} element={<Main />} />
+                <Route path={"/service"} element={<Service />} />
+                <Route path={"/contract"} element={<Contract />} />
+                <Route path={"/homepage"} element={<MakeHomepage />} />
+                <Route path={"/consulting"} element={<Consulting />} />
+                <Route path={"/apply-service"} element={<ApplyService />} />
+                <Route path={"/application"} element={<Application />} />
+                <Route path={"/announcement"} element={<Announcement />} />
+                <Route path={"/qna"} element={<QnA />} />
+                <Route path={"/press"} element={<Press />} />
+            </Routes>
+        </>
+    )
+}
