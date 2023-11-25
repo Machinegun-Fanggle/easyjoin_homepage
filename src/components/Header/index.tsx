@@ -35,6 +35,7 @@ const AppContainer = styled.div<{ windowWidth: number }>`
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 999999;
     // align-items: center;
     // background: red;
 `

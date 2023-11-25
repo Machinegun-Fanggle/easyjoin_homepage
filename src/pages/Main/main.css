@@ -102,7 +102,7 @@
     /* top: 92rem; */
     align-items: center;
     flex-direction: column;
-    background: purple;
+    /* background: purple; */
 }
 .auto-group-zjj1-XjB .frame-903-1uF {
     margin: 0rem 42.5rem 6.2rem 41.9rem;
@@ -340,9 +340,9 @@
 }
 
 .auto-group-iwo9-vVb {
-    position: relative;
+    /* position: relative; */
     display: flex;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     /* padding: 8.8rem 64.4rem 8.7rem 64.4rem; */
     width: 100%;
     height: 40rem;

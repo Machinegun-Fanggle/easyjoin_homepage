@@ -116,7 +116,7 @@ const AppContainer = styled.div<{ windowWidth: number }>`
     position: relative;
     transform: scale(${(props) => props.windowWidth / 3047.62});
     transform-origin: center center; // 축소의 기준점 설정
-    height: 3.6rem;
+    // height: 3.6rem;
     width: 100%;
     justify-content: center;
     // align-items: center;

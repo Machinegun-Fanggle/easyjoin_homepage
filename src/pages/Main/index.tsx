@@ -1,152 +1,395 @@
 // 리액트 메인 컴포넌트
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import "./main.css"
 import styled from "styled-components"
 
 // 메인 컴포넌트 함수
 const Main = () => {
-    return (
-        <div
-            style={{
-                position: "relative",
-                display: "flex",
-                justifyContent: "center",
-                background: "blue",
-                overflowX: "hidden",
-            }}
-        >
-            <AppContainer windowWidth={window.innerWidth} windowHeight={window.innerHeight}>
-                <STemp windowWidth={window.innerWidth} windowHeight={window.innerHeight}>
-                    <img
-                        src={require("../../assets/images/rectangle-7-bg-3cR.png")}
-                        height={(window.innerHeight / 62) * 100}
-                        width={(window.innerWidth / 62) * 100}
-                        style={{
-                            position: "relative",
-                            display: "flex",
-                            flexDirection: "column",
-                            overflowX: "hidden",
-                            overflowY: "hidden",
-                        }}
-                    />
+    const ref = useRef(null)
 
-                    <div className="auto-group-cs8k-y6m">
-                        <p className="item--epV">
-                            부동산 개발사업의
-                            <br />
-                            성공분양을 위한
-                            <br />
-                            분양계약 전용
-                            <br />
-                            전자계약 솔루션
-                        </p>
-                        <p className="item--epV">
-                            <p className="item--Tmw">
-                                <span className="item--Tmw-sub-0">
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate")
+                }
+            },
+            {
+                threshold: 0.3,
+            },
+        )
+
+        if (ref.current) {
+            observer.observe(ref.current)
+        }
+
+        return () => {
+            if (ref.current) {
+                observer.unobserve(ref.current)
+            }
+        }
+    }, [])
+
+    return (
+        <SPageWrapper>
+            <SPage1Back>
+                <div
+                    style={{
+                        position: "relative",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <SGradient>
+                        <SPage1Front>
+                            <SMainText>
+                                성공분양을 위한
+                                <br />
+                                분양계약 전용 전자계약 솔루션
+                            </SMainText>
+                            <div>
+                                <SSubText>
                                     부동산 개발 주체 및 각 단체가 회원을 더 쉽게 모집하고
                                     <br />
                                     다양한 단체의 가입 계약을 전자계약으로 체결하고 관리하는
                                     <br />
-                                </span>
-                                <span className="item--Tmw-sub-1">부동산 통합 전자계약 솔루션</span>
-                                <div className="frame-4-tGu">도입문의</div>
-                            </p>
-                        </p>
-                    </div>
-                </STemp>
-                <div className="auto-group-zjj1-XjB">
-                    <div className="frame-903-1uF">
-                        <p className="item--9Vf">
-                            부동산 개발 컨설팅
-                            <br />
-                            이지조인에서 해결해드립니다!
-                        </p>
-                        <p className="item--yzV">
-                            이지조인은 부동산 사업장별 맞춤 서비스로
-                            <br />
-                            사업의 성공율을 높여주는 통합 서비스입니다.
-                        </p>
-                    </div>
-                    <div className="rectangle-8-mvM">
-                        <div className="rectangle-8-mvM-bg"></div>
-                    </div>
+                                </SSubText>
+                                <SSubText style={{ color: "#2779F4", margin: "0" }}>
+                                    부동산 통합 전자계약 솔루션
+                                </SSubText>
+                                {/* <SButton>도입문의</SButton> */}
+                            </div>
+                        </SPage1Front>
+                    </SGradient>
 
-                    <div className="auto-group-m3qw-xV3">
-                        <img
-                            className="contract-3-1-p1T"
-                            src={require("~/assets/images/contract-3-1-wPB.png")}
-                        />
-                        <div className="frame-899-x7f">
-                            <p className="item--4wP">부동산 개발 컨설팅 어렵게 느껴지시나요?</p>
-                            <p className="item--kZK">이지조인에서 쉽게 진행하세요!</p>
-                        </div>
-                        <div className="frame-601-qKs">
-                            <p className="item--AN9">이지조인에 의뢰하기</p>
-                            <img
-                                className="arrow-right-rEy"
-                                src={require("~/assets/images/arrow-right-cwP.png")}
-                            />
-                        </div>
-                    </div>
-
-                    <p className="item--WqK">다양한 단체가입 적용 가능</p>
-                    <div className="auto-group-wdtw-opR">
-                        <div className="line-9-Mb3"></div>
-                        <div className="rectangle-19-eKF"></div>
-                        <div className="rectangle-18-gmj"></div>
-                        <div className="rectangle-20-DWm"></div>
-                    </div>
-                    <div className="auto-group-m61q-wBs">
-                        <p className="item--2UD">
-                            지역주택조합
-                            <br />
-                            조합원 가입
-                        </p>
-                        <p className="item--KTK">
-                            민간임대 협동조합
-                            <br />
-                            조합원 가입
-                        </p>
-                        <p className="item--NAh">기타 단체 가입</p>
-                    </div>
+                    <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
                 </div>
+            </SPage1Back>
+            <SButton>도입문의</SButton>
+            <SPage2 ref={ref}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    부동산 개발 컨설팅
+                    <br />
+                    이지조인에서 해결해드립니다!
+                </SMainText>
+                <SSubText style={{ color: "#000", fontSize: "22px", textAlign: "center" }}>
+                    이지조인은 부동산 사업장별 맞춤 서비스로
+                    <br />
+                    사업의 성공율을 높여주는 통합 서비스입니다.
+                </SSubText>
 
-                <div className="auto-group-iwo9-vVb">
-                    <p className="item--dQ1">
-                        <span className="item--dQ1-sub-0">
-                            가장 쉽고 빠른
-                            <br />
-                            부동산 전자계약 솔루션
-                        </span>
-                        <span className="item--dQ1-sub-1">이지조인</span>
-                    </p>
-                    <div className="frame-632-xUD">
-                        <div className="frame-6-VDF">서비스 신청하기</div>
-                        <div className="frame-5-NXw">도입문의</div>
+                <SPage2Img src={require("../../assets/images/rectangle-8-bg-gJH.png")} />
+
+                <SPage2Border>
+                    <SBorderLeft>
+                        <SBorderImg src={require("../../assets/images/contract-3-1-wPB.png")} />
+                        <STextWarpper>
+                            <SBorderMainText>
+                                부동산 개발 컨설팅 어렵게 느껴지시나요?
+                            </SBorderMainText>
+                            <SBorderSubText>이지조인에서 쉽게 진행하세요!</SBorderSubText>
+                        </STextWarpper>
+                    </SBorderLeft>
+
+                    <SBorderBtn>
+                        이지조인에 의뢰하기
+                        <SArrowRight src={require("~/assets/images/arrow-right-cwP.png")} />
+                    </SBorderBtn>
+                </SPage2Border>
+            </SPage2>
+
+            <SPage3>
+                <SPage3Text>
+                    가장 쉽고 빠른
+                    <br />
+                    <div style={{ display: "flex" }}>
+                        부동산 전자계약 솔루션{" "}
+                        <div style={{ color: "#2779F4", margin: "0 0 0 10px" }}>이지조인</div>
                     </div>
-                </div>
-            </AppContainer>
-        </div>
+                </SPage3Text>
+                <SBtnWrapper>
+                    <SPage3Btn>서비스 신청하기</SPage3Btn>
+                    <SPage3Btn style={{ background: "#fff", color: "#000" }}>도입문의</SPage3Btn>
+                </SBtnWrapper>
+            </SPage3>
+        </SPageWrapper>
     )
 }
 export default Main
 
-const AppContainer = styled.div<{ windowWidth: number; windowHeight: number }>`
-    display: flex;
-    flex-direction: column;
-    // width: 100%;
-    height: auto;
-    transform: scale(${(props) => props.windowWidth / 3047.62});
-    transform-origin: center top;
-    background-color: #ffffff;
-    background-color: red;
-    // overflow-x: hidden;
-`
-
-const STemp = styled.div<{ windowWidth: number; windowHeight: number }>`
-    position: relative;
+const SPageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    // background-color: red;
+    // background: blue;
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: center;
+`
+
+const SPage1Back = styled.div`
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 920px;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+`
+const SGradient = styled.div`
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 920px;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        90deg,
+        #15191e 14.58%,
+        rgba(21, 25, 30, 0) 100%
+    ); /* 초기 배경 설정 */
+`
+
+const SPage1BackImg = styled.img`
+    position: relative;
+    display: flex;
+    flexdirection: column;
+    overflowx: hidden;
+    overflowy: hidden;
+    height: 920px;
+    width: 1920px;
+`
+
+const SPage1Front = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    height: 368px;
+    z-index: 2;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    animation: fadeIn 2s ease-in-out;
+`
+
+const SMainText = styled.div`
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 67.2px */
+`
+
+const SSubText = styled.div`
+    margin: 36px 0 0 0;
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 32px */
+`
+
+const SButton = styled.div`
+    position: absolute;
+    top: 550px;
+    left: 360px;
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 38.4px */
+    margin: 52px 0 0 0;
+    display: flex;
+    width: 280px;
+    height: 60px;
+    padding: 0px 4px 4px 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 3;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    animation: fadeIn 2s ease-in-out;
+`
+
+const SPage2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 200px 364px;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
+`
+
+const SPage2Img = styled.img`
+    display: flex;
+    margin: 63px 0 0 0;
+    width: 100%;
+    height: 443px;
+    border-radius: 20px;
+`
+
+const SPage2Border = styled.div`
+    display: flex;
+    margin: 60px 0 0 0;
+    width: 100%;
+    height: 160px;
+    border-radius: 12px;
+    background: var(--grbk-50, #f2f4f8);
+    justify-content: space-between;
+    align-items: center;
+    color: var(--FFFFFF, #fff);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`
+
+const SBorderLeft = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 44px 96px 44px 62px;
+    justify-content: left;
+    align-items: center;
+`
+
+const SBorderImg = styled.img`
+    display: flex;
+    width: 63px;
+    height: 72px;
+`
+
+const STextWarpper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 12px;
+`
+
+const SBorderMainText = styled.div`
+    color: var(--0858F7, #0858f7);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.6;
+`
+
+const SBorderSubText = styled.div`
+    color: var(--0858F7, #0858f7);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 8px 0 0 0;
+`
+
+const SBorderBtn = styled.div`
+    display: inline-flex;
+    width: 330px;
+    padding: 20px 32px;
+    margin: 0 96px 0 0;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
+    cursor: pointer;
+`
+
+const SArrowRight = styled.img`
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+
+    border-left: 8px solid #fff;
+`
+
+const SPage3 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    background: var(--grbk-900, #15191e);
+`
+
+const SPage3Text = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: var(--whfff, #fff);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 56px */
+    align-items: center;
+`
+
+const SBtnWrapper = styled.div`
+    display: flex;
+    margin: 60px 0 0 0;
+    color: var(--2779F4, #2779f4);
+    font-family: Pretendard;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    gap: 24px;
+`
+
+const SPage3Btn = styled.div`
+    display: flex;
+    width: 304px;
+    height: 63px;
+    padding: 0px 4px 4px 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--whfff, #fff);
+    cursor: pointer;
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 38.4px */
 `
