@@ -49,9 +49,9 @@ export default function RootRouter() {
                     <Route path={"/consulting"} element={<Consulting />} />
                     <Route path={"/apply-service"} element={<ApplyService />} />
                     <Route path={"/register"} element={<Register />} />
-                    <Route path={"/service/announcement"} element={<Announcement />} />
-                    <Route path={"/service/qna"} element={<QnA />} />
-                    <Route path={"/service/press"} element={<Press />} />
+                    <Route path={"/announcement"} element={<Announcement />} />
+                    <Route path={"/qna"} element={<QnA />} />
+                    <Route path={"/press"} element={<Press />} />
                     <Route path={"/inquiry"} element={<Inquiry />} />
                 </Routes>
                 <Footer />

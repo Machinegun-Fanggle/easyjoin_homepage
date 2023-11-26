@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { TextareaHTMLAttributes } from "react" // TextareaHTMLAttributes를 import
 
 interface IInquiryInfo {
     name: string
@@ -30,9 +31,10 @@ const Inquiry = () => {
         detailInfo: "",
     })
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setInquiryInfo({
             ...inquiryInfo,
+            [e.target.name]: e.target.value,
         })
     }
 
@@ -51,7 +53,7 @@ const Inquiry = () => {
         event.preventDefault() // 폼 제출 시 페이지 새로고침 방지
 
         // 데이터를 이메일로 받을건지, 백오피스를 만들어야하는지??
-        postinquiryInfo(inquiryInfo)
+        // postinquiryInfo(inquiryInfo)
         // 추가 로직...
     }
 
@@ -106,7 +108,7 @@ const Inquiry = () => {
                         </STextWarpper>
                     </SBorderLeft>
 
-                    <SBorderBtn>
+                    <SBorderBtn to="/register">
                         이지조인 서비스 신청하기
                         <SArrowRight src={require("~/assets/images/arrow-right-cwP.png")} />
                     </SBorderBtn>
@@ -140,7 +142,7 @@ const Inquiry = () => {
                             <SInputWrapper>
                                 <SInputLabel>연락처</SInputLabel>
                                 <SInput
-                                    type="number"
+                                    type="text"
                                     value={inquiryInfo.phone}
                                     onChange={handleInputChange}
                                     placeholder="'-'빼고 숫자만 입력"
@@ -160,10 +162,14 @@ const Inquiry = () => {
                             <SInputWrapper>
                                 <SInputLabel>상세정보</SInputLabel>
                                 <SInput
-                                    type="text"
+                                    as="textarea"
+                                    name="detailInfo"
                                     onChange={handleInputChange}
                                     value={inquiryInfo.detailInfo}
                                     placeholder="500자 이내 입력"
+                                    maxLength={500}
+                                    // className="as-textarea" // 추가된 클래스명
+                                    style={{ height: "150px", resize: "none", overflow: "auto" }}
                                 />
                             </SInputWrapper>
 
@@ -316,7 +322,7 @@ const SBorderSubText = styled.div`
     margin: 8px 0 0 0;
 `
 
-const SBorderBtn = styled.div`
+const SBorderBtn = styled(Link)`
     display: inline-flex;
     width: 400px;
     padding: 20px 32px;
@@ -327,6 +333,9 @@ const SBorderBtn = styled.div`
     border-radius: 4px;
     background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
     cursor: pointer;
+
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 기본 글자색 상속 */
 `
 
 const SArrowRight = styled.img`
@@ -377,10 +386,22 @@ const SInputWrapper = styled.div`
 
 const SInput = styled.input`
     width: 440px;
+    max-width: 440px;
     margin-top: 8px;
     border-radius: 4px;
     border: 1px solid var(--grbk-100, #dde1e6);
     padding: 21px 0 17px 20px;
+
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 18px */
+
+    &:focus {
+        border-color: #2779f4;
+        outline: none;
+    }
 `
 
 const SForm = styled.form`

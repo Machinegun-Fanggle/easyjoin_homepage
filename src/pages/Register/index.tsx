@@ -471,6 +471,7 @@ const Register = () => {
                                 onChange={handleInputChange}
                                 placeholder="500자 이내 입력"
                                 maxLength={500}
+                                // className="as-textarea" // 추가된 클래스명
                                 style={{ height: "250px", resize: "none", overflow: "auto" }}
                             />
                         </SInputWrapper>
