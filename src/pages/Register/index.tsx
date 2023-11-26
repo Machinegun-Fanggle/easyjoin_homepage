@@ -103,7 +103,7 @@ const Register = () => {
         event.preventDefault() // 폼 제출 시 페이지 새로고침 방지
 
         // 데이터를 이메일로 받을건지, 백오피스를 만들어야하는지??
-        postRegisterInfo(registerInfo)
+        // postRegisterInfo(registerInfo)
         // 추가 로직...
     }
 
@@ -111,22 +111,15 @@ const Register = () => {
         // postAuthPhone(phone)
     }
 
-    // 체크박스 변경 핸들러
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, checked } = e.target
+    const handleCheckboxChange = (e: any) => {
+        const { name } = e.target
+        const isCurrentlyChecked = selectedCheckbox === name
+        setSelectedCheckbox(isCurrentlyChecked ? "" : name)
         setRegisterInfo((prevState) => ({
             ...prevState,
-            [name]: checked,
+            plannedContractTrustee: !isCurrentlyChecked,
         }))
-        setSelectedCheckbox(checked ? name : "")
     }
-
-    const Checkbox = ({ className, checked, ...props }: any) => (
-        <CheckboxContainer className={className}>
-            <HiddenCheckbox checked={checked} {...props} />
-            <StyledCheckbox checked={checked} />
-        </CheckboxContainer>
-    )
 
     // Function to handle file selection
     const handleFileChange = (e: any) => {
@@ -139,7 +132,8 @@ const Register = () => {
         }
     }
 
-    const triggerFileInput = () => {
+    const triggerFileInput = (e: any) => {
+        e.preventDefault()
         if (fileInputRef.current) {
             fileInputRef.current.click()
         }
@@ -337,24 +331,24 @@ const Register = () => {
                                 ].map((option) => (
                                     <label
                                         key={option}
-                                        style={{ display: "flex", alignItems: "center" }}
+                                        style={{
+                                            display: "flex",
+                                            width: "33%",
+                                            alignItems: "center",
+                                        }}
                                     >
-                                        <Checkbox
+                                        <input
+                                            type="checkbox"
                                             name={option}
-                                            checked={
-                                                registerInfo[
-                                                    option as keyof IRegisterInfo
-                                                ] as boolean
-                                            }
+                                            checked={selectedCheckbox === option}
                                             onChange={handleCheckboxChange}
+                                            style={{ marginRight: "10px" }}
                                         />
-                                        <span style={{ marginLeft: "10px" }}>
-                                            {option === "isRegionalHousingAssociation" &&
-                                                "지역주택조합"}
-                                            {option === "isPrivateRentalCooperative" &&
-                                                "민간임대협동조합"}
-                                            {option === "isOther" && "기타"}
-                                        </span>
+                                        {option === "isRegionalHousingAssociation" &&
+                                            "지역주택조합"}
+                                        {option === "isPrivateRentalCooperative" &&
+                                            "민간임대협동조합"}
+                                        {option === "isOther" && "기타"}
                                     </label>
                                 ))}
                             </div>
@@ -502,7 +496,7 @@ const Register = () => {
                                     readOnly
                                 />
                                 {/* 파일 선택 버튼 */}
-                                <SButton onClick={triggerFileInput}>파일선택</SButton>
+                                <SButton onClick={(e) => triggerFileInput(e)}>파일선택</SButton>
                             </div>
                         </SInputWrapper>
                     </SFormWrapper>
@@ -677,56 +671,4 @@ const SBorder = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 100%; /* 18px */
-`
-
-// 체크박스 커스텀 스타일
-const CheckboxContainer = styled.div`
-    display: inline-block;
-    vertical-align: middle;
-`
-
-const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
-    border: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-`
-
-const StyledCheckbox = styled.div<{ checked: boolean }>`
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: ${(props) => (props.checked ? "#2779f4" : "white")};
-    border-radius: 50%;
-    transition: all 150ms;
-    border: 1px solid grey;
-    position: relative; // 상대적 위치 지정
-
-    // 체크 표시를 위한 ::after 의사 요소
-    ::after {
-        content: "";
-        position: absolute;
-        width: 5px;
-        height: 9px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        top: 2px;
-        left: 4px;
-        transform: rotate(45deg); // 회전
-        display: ${(props) => (props.checked ? "block" : "none")};
-    }
-
-    ${HiddenCheckbox}:focus + & {
-        box-shadow: 0 0 0 3px pink;
-    }
-
-    ${HiddenCheckbox}:checked + & {
-        background: #2779f4;
-    }
 `
