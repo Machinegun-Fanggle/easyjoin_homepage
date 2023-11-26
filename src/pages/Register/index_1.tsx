@@ -1,72 +1,10 @@
 // 리액트 메인 컴포넌트
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import axios from "axios"
-
-interface IRegisterInfo {
-    phone: string
-    email: string
-    company: string
-    companyAddress: string
-    department: string
-    position: string
-    startDate: string
-    groupName: string
-    groupLeader: string
-    siteName: string
-    employeeCount: number
-    householdCount: number
-    detailInfo: string
-    attachedFile: string
-}
 
 // 메인 컴포넌트 함수
 const Register = () => {
-    const ref1 = useRef(null)
-    const ref2 = useRef(null)
-    const ref3 = useRef(null)
-
-    const [registerInfo, setRegisterInfo] = useState<IRegisterInfo>({
-        phone: "",
-        email: "",
-        company: "",
-        companyAddress: "",
-        department: "",
-        position: "",
-        startDate: "",
-        groupName: "",
-        groupLeader: "",
-        siteName: "",
-        employeeCount: 0,
-        householdCount: 0,
-        detailInfo: "",
-        attachedFile: "",
-    })
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setRegisterInfo({
-            ...registerInfo,
-        })
-    }
-
-    // post 요청
-    const postRegisterInfo = async (registerInfo: IRegisterInfo) => {
-        const response = await axios.post("http://localhost:8000/register", registerInfo)
-        console.log(response)
-        if (response.status === 200) {
-            console.log("성공")
-        } else {
-            console.log("실패")
-        }
-    }
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault() // 폼 제출 시 페이지 새로고침 방지
-
-        // 데이터를 이메일로 받을건지, 백오피스를 만들어야하는지??
-        postRegisterInfo(registerInfo)
-        // 추가 로직...
-    }
+    const ref = useRef(null)
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -80,14 +18,10 @@ const Register = () => {
             },
         )
 
-        if (ref1.current) observer.observe(ref1.current)
-        if (ref2.current) observer.observe(ref2.current)
-        if (ref3.current) observer.observe(ref3.current)
+        if (ref.current) observer.observe(ref.current)
 
         return () => {
-            if (ref1.current) observer.unobserve(ref1.current)
-            if (ref2.current) observer.unobserve(ref2.current)
-            if (ref3.current) observer.unobserve(ref3.current)
+            if (ref.current) observer.unobserve(ref.current)
         }
     }, [])
 
@@ -107,168 +41,34 @@ const Register = () => {
                     </SMainText>
                     <SSubText>상담 문의를 남겨주시면 확인후 빠르게 연락드리겠습니다.</SSubText>
                 </div>
+                <SPage1Img src={require("../../assets/Group 550.svg").default} height={936} />
+
+                <div
+                    style={{
+                        display: "flex",
+                        marginTop: 130,
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        width: "1200px",
+                    }}
+                >
+                    <SMainText style={{ color: "#000", fontSize: "32px", textAlign: "center" }}>
+                        이지조인 서비스 도입 절차
+                    </SMainText>
+                    <SPage2Img src={require("../../assets/Frame 920.svg").default} />
+                </div>
             </SPage1>
 
-            <div style={{ width: "1200px", borderBottom: "1px solid #DDE1E6" }} />
-
-            <SForm onSubmit={handleSubmit}>
-                <div style={{ display: "flex", gap: "75px" }}>
-                    <SFormWrapper>
-                        <SInputWrapper>
-                            <SInputLabel>이름</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                placeholder="이름 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>휴대폰</SInputLabel>
-                            <SInput
-                                type="number"
-                                value={registerInfo.phone}
-                                onChange={handleInputChange}
-                                placeholder="'-'빼고 숫자만 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>이메일</SInputLabel>
-                            <SInput
-                                type="text"
-                                value={registerInfo.email}
-                                onChange={handleInputChange}
-                                placeholder="이메일 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>회사명</SInputLabel>
-                            <SInput
-                                type="text"
-                                value={registerInfo.company}
-                                onChange={handleInputChange}
-                                placeholder="회사명 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>회사주소</SInputLabel>
-                            <SInput
-                                type="text"
-                                value={registerInfo.companyAddress}
-                                onChange={handleInputChange}
-                                placeholder="회사주소 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>부서명</SInputLabel>
-                            <SInput
-                                type="text"
-                                value={registerInfo.department}
-                                onChange={handleInputChange}
-                                placeholder="부서명 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>직함</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                value={registerInfo.position}
-                                placeholder="직함 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>회원(조합원) 모집 개시일</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                value={registerInfo.startDate}
-                                placeholder="이름 입력"
-                            />
-                        </SInputWrapper>
-                    </SFormWrapper>
-
-                    <SFormWrapper>
-                        <SInputWrapper>
-                            <SInputLabel>단체명</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                value={registerInfo.groupName}
-                                placeholder="단체명 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>단체 대표자명</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                value={registerInfo.groupLeader}
-                                placeholder="단체 대표자명 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>현장명</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                value={registerInfo.siteName}
-                                placeholder="현장명 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>직원수</SInputLabel>
-                            <SInput
-                                type="number"
-                                onChange={handleInputChange}
-                                value={registerInfo.employeeCount}
-                                placeholder="직원수 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>세대수</SInputLabel>
-                            <SInput
-                                type="number"
-                                onChange={handleInputChange}
-                                value={registerInfo.householdCount}
-                                placeholder="세대수 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>상세정보</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                value={registerInfo.detailInfo}
-                                placeholder="500자 이내 입력"
-                            />
-                        </SInputWrapper>
-
-                        <SInputWrapper>
-                            <SInputLabel>첨부파일</SInputLabel>
-                            <SInput
-                                type="text"
-                                onChange={handleInputChange}
-                                value={registerInfo.attachedFile}
-                                placeholder="단체(조합) 직인 첨부"
-                            />
-                        </SInputWrapper>
-                    </SFormWrapper>
-                </div>
-
-                <SSubmitBtn type="submit">서비스 신청하기</SSubmitBtn>
-            </SForm>
+            <Container>
+                <Span>가장 쉽고 빠른</Span>
+                <Span style={{ marginTop: 20 }}>
+                    부동산 전자계약 솔루션 <Span2>이지조인</Span2>
+                </Span>
+                <SButtonGroup style={{ justifyContent: "space-between" }}>
+                    <SButton1>서비스 이용 관련</SButton1>
+                    <SButton2>서비스 신청</SButton2>
+                </SButtonGroup>
+            </Container>
         </SPageWrapper>
     )
 }
@@ -297,89 +97,109 @@ const SPageWrapper = styled.div`
         animation: none;
     }
 `
+const SPage1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 100px 364px 32px 364px;
+    justify-content: center;
+    align-items: center;
+`
+
+const SPage1Img = styled.img`
+    display: flex;
+    margin: 44px 0 0 0;
+    width: 1200px;
+    height: 160px;
+    border-radius: 20px;
+`
 
 const SMainText = styled.div`
+    display: flex;
     color: var(--whfff, #fff);
     font-family: Pretendard;
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
     line-height: 140%; /* 67.2px */
+    margin: 16px 0 0 0;
 `
 
 const SSubText = styled.div`
-    margin: 23px 0 0 0;
-    color: var(--whbk-999-sub-txt-01, #999);
+    margin: 12px 0 0 0;
+    color: var(--whfff, #999999);
     font-family: Pretendard;
     font-size: 17px;
     font-style: normal;
     font-weight: 400;
-    line-height: 100%; /* 17px */
+    line-height: 160%; /* 32px */
 `
-
-const SPage1 = styled.div`
+const SPage2Img = styled.img`
+    display: flex;
+    margin: 80px 0 0 0;
+    width: 75%;
+    height: 100%;
+    border-radius: 20px;
+`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 1200px;
-    padding: 200px 364px 32px 364px;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    background: #f2f4f8;
+    width: 100%;
+    height: 400px;
+    margin-top: 192px;
 `
 
-const SInputLabel = styled.label`
-    color: var(--grbk-700, #373b3e);
-    /* Pretendard/M/15 */
+const Span = styled.span`
+    color: var(--_000, #000000);
     font-family: Pretendard;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%; /* 15px */
-`
-
-const SInputWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
-`
-
-const SInput = styled.input`
-    width: 440px;
-    margin-top: 8px;
-    border-radius: 4px;
-    border: 1px solid var(--grbk-100, #dde1e6);
-    padding: 21px 0 17px 20px;
-`
-
-const SForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0 186px 0;
-`
-
-const SSubmitBtn = styled.button`
-    display: flex;
-    width: 1000px;
-    padding: 16px 94px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 6px;
-    background: var(--2779F4, #2779f4);
-    color: var(--whfff, #fff);
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 18px;
+    font-size: 48px;
     font-style: normal;
     font-weight: 700;
-    line-height: 100%; /* 18px */
-    border: none;
-    cursor: pointer;
-    margin-top: 80px;
 `
 
-const SFormWrapper = styled.div`
+const Span2 = styled(Span)`
+    color: var(--_2779-f-4, #2779f4);
+`
+
+const SButtonGroup = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 50px;
+`
+
+const SButton1 = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--_2779-f-4, #2779f4);
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    margin-right: 20px;
+    border-radius: 8px;
+    padding: 20px 70px;
+    border: 2px solid #2779f4;
+    width: 160px;
+`
+
+const SButton2 = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--_000, #ffffff);
+    background: #2779f4;
+    margin-left: 20px;
+    border-radius: 8px;
+    padding: 20px 70px;
+    border: 2px solid #2779f4;
+    width: 160px;
 `
