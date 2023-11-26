@@ -24,9 +24,7 @@ const QnA = () => {
     const [searchResults, setSearchResults] = useState<IQnA[]>([])
     const [isDropdownOpen, setIsDropdownOpen] = useState(false) // 드롭다운 상태를 관리
 
-    const [inputValue, setInputValue] = useState<string>("")
     const [selectedCategory, setSelectedCategory] = useState<string>("")
-    const keywords = ["키워드 1", "키워드 2", "키워드 3", "키워드 4"]
     const category = ["전체", "서비스 이용 관련", "법적효력", "보안", "기타"]
     const [expandedQnA_Ids, setExpandedQnA_Ids] = useState<number[]>([])
     const [qnAs, setQnAs] = useState<IQnA[]>([])
