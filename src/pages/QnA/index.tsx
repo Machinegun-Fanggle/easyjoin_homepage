@@ -86,10 +86,6 @@ const QnA = () => {
         }
     }
 
-    const handleKeywordClick = (keyword: string) => {
-        setInputValue(keyword)
-    }
-
     const toggleQnA = (id: number) => {
         setExpandedQnA_Ids((prevIds) => {
             if (prevIds.includes(id)) {
@@ -111,6 +107,22 @@ const QnA = () => {
         )
         setSearchResults(filteredResults)
     }, [searchText])
+
+    // 문서 전체에 클릭 이벤트 핸들러 추가
+    useEffect(() => {
+        const handleDocumentClick = (e: MouseEvent) => {
+            if (dropdownRef?.current && !dropdownRef.current.contains(e.target as Node)) {
+                setIsDropdownOpen(false) // 드롭다운 외부를 클릭하면 닫기
+            }
+        }
+
+        document.addEventListener("click", handleDocumentClick)
+
+        // 컴포넌트가 언마운트될 때 클릭 이벤트 핸들러 제거
+        return () => {
+            document.removeEventListener("click", handleDocumentClick)
+        }
+    }, [])
 
     useEffect(() => {
         setQnAs(searchData)
