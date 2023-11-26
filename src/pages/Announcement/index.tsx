@@ -70,6 +70,10 @@ const SPageWrapper = styled.div`
         }
     }
     animation: fadeIn 1s ease-in-out;
+
+    @media (max-width: 700px) {
+        animation: none;
+    }
 `
 
 const SMainText = styled.div`

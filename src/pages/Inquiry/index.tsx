@@ -1,10 +1,16 @@
-//도입문의
-// 리액트 메인 컴포넌트
-import React, { useEffect, useRef } from "react"
+import axios from "axios"
+import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-// 메인 컴포넌트 함수
+interface IInquiryInfo {
+    name: string
+    phone: string
+    email: string
+    detailInfo: string
+}
+
+//도입문의
 const Inquiry = () => {
     const ref = useRef(null)
     const ref2 = useRef(null)
@@ -15,6 +21,38 @@ const Inquiry = () => {
             top: 0,
             behavior: "smooth", // 부드러운 스크롤 효과
         })
+    }
+
+    const [inquiryInfo, setInquiryInfo] = useState<IInquiryInfo>({
+        name: "",
+        phone: "",
+        email: "",
+        detailInfo: "",
+    })
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInquiryInfo({
+            ...inquiryInfo,
+        })
+    }
+
+    // post 요청
+    const postinquiryInfo = async (inquiryInfo: IInquiryInfo) => {
+        const response = await axios.post("http://localhost:8000/register", inquiryInfo)
+        console.log(response)
+        if (response.status === 200) {
+            console.log("성공")
+        } else {
+            console.log("실패")
+        }
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault() // 폼 제출 시 페이지 새로고침 방지
+
+        // 데이터를 이메일로 받을건지, 백오피스를 만들어야하는지??
+        postinquiryInfo(inquiryInfo)
+        // 추가 로직...
     }
 
     useEffect(() => {
@@ -69,39 +107,71 @@ const Inquiry = () => {
                     </SBorderLeft>
 
                     <SBorderBtn>
-                        이지조인에 의뢰하기
+                        이지조인 서비스 신청하기
                         <SArrowRight src={require("~/assets/images/arrow-right-cwP.png")} />
                     </SBorderBtn>
                 </SPage1Border>
             </SPage1>
 
             <SPage2>
-                <SPage2Text>이지조인 서비스 도입 절차</SPage2Text>
-                <SPage1Img src={require("../../assets/Frame 920.svg").default} />
-            </SPage2>
+                <SPage2Text>서비스 도입 문의</SPage2Text>
+                <div
+                    style={{
+                        width: "1200px",
+                        borderBottom: "1px solid #DDE1E6",
+                        margin: "48px 0 44px 0",
+                    }}
+                />
 
-            <SPage3>
-                <SPage3Text>
-                    가장 쉽고 빠른
-                    <br />
-                    <div style={{ display: "flex" }}>
-                        부동산 전자계약 솔루션{" "}
-                        <div style={{ color: "#2779F4", margin: "0 0 0 10px" }}>이지조인</div>
+                <SForm onSubmit={handleSubmit}>
+                    <div style={{ display: "flex", gap: "75px" }}>
+                        <SImg src={require("~/assets/Rectangle 2339.svg").default} />
+
+                        <SFormWrapper>
+                            <SInputWrapper>
+                                <SInputLabel>이름</SInputLabel>
+                                <SInput
+                                    type="text"
+                                    onChange={handleInputChange}
+                                    placeholder="이름 입력"
+                                />
+                            </SInputWrapper>
+
+                            <SInputWrapper>
+                                <SInputLabel>연락처</SInputLabel>
+                                <SInput
+                                    type="number"
+                                    value={inquiryInfo.phone}
+                                    onChange={handleInputChange}
+                                    placeholder="'-'빼고 숫자만 입력"
+                                />
+                            </SInputWrapper>
+
+                            <SInputWrapper>
+                                <SInputLabel>이메일</SInputLabel>
+                                <SInput
+                                    type="text"
+                                    value={inquiryInfo.email}
+                                    onChange={handleInputChange}
+                                    placeholder="이메일 입력"
+                                />
+                            </SInputWrapper>
+
+                            <SInputWrapper>
+                                <SInputLabel>상세정보</SInputLabel>
+                                <SInput
+                                    type="text"
+                                    onChange={handleInputChange}
+                                    value={inquiryInfo.detailInfo}
+                                    placeholder="500자 이내 입력"
+                                />
+                            </SInputWrapper>
+
+                            <SSubmitBtn type="submit">서비스 신청하기</SSubmitBtn>
+                        </SFormWrapper>
                     </div>
-                </SPage3Text>
-                <SBtnWrapper>
-                    <SPage3Btn onClick={scrollToTop} to={"/register"}>
-                        서비스 이용관련
-                    </SPage3Btn>
-                    <SPage3Btn
-                        onClick={scrollToTop}
-                        to={"/register"}
-                        style={{ background: "#2779F4", color: "#fff" }}
-                    >
-                        서비스 신청
-                    </SPage3Btn>
-                </SBtnWrapper>
-            </SPage3>
+                </SForm>
+            </SPage2>
         </SPageWrapper>
     )
 }
@@ -181,11 +251,11 @@ const SPage1 = styled.div`
     align-items: center;
 `
 
-const SPage1Img = styled.img`
+const SImg = styled.img`
     display: flex;
     margin: 63px 0 0 0;
-    width: 935px;
-    height: 1568px;
+    width: 660px;
+    height: 720px;
     border-radius: 20px;
 `
 
@@ -248,7 +318,7 @@ const SBorderSubText = styled.div`
 
 const SBorderBtn = styled.div`
     display: inline-flex;
-    width: 330px;
+    width: 400px;
     padding: 20px 32px;
     margin: 0 96px 0 0;
     justify-content: center;
@@ -289,59 +359,61 @@ const SPage2Text = styled.div`
     text-align: left;
 `
 
-const SPage3 = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 400px;
-    justify-content: center;
-    align-items: center;
-    background: var(--grbk-900, #f2f4f8);
-    margin: 198px 0 0 0;
+const SInputLabel = styled.label`
+    color: var(--grbk-700, #373b3e);
+    /* Pretendard/M/15 */
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 15px */
 `
 
-const SPage3Text = styled.div`
+const SInputWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
+`
+
+const SInput = styled.input`
+    width: 440px;
+    margin-top: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--grbk-100, #dde1e6);
+    padding: 21px 0 17px 20px;
+`
+
+const SForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 186px 0;
+`
+
+const SSubmitBtn = styled.button`
+    display: flex;
     width: 100%;
-    color: var(--whfff, #000);
+    padding: 16px 94px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: var(--2779F4, #2779f4);
+    color: var(--whfff, #fff);
     text-align: center;
     font-family: Pretendard;
-    font-size: 40px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: 140%; /* 56px */
-    align-items: center;
-`
-
-const SBtnWrapper = styled.div`
-    display: flex;
-    margin: 60px 0 0 0;
-    color: var(--2779F4, #2779f4);
-    font-family: Pretendard;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    gap: 24px;
-`
-
-const SPage3Btn = styled(Link)`
-    display: flex;
-    width: 304px;
-    height: 63px;
-    padding: 0px 4px 4px 4px;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    border-radius: 8px;
-    border: 1px solid var(--whfff, #2779f4);
+    line-height: 100%; /* 18px */
+    border: none;
     cursor: pointer;
-    color: var(--whfff, #2779f4);
-    font-family: Pretendard;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 160%; /* 38.4px */
-    text-decoration: none; // 기본 상태에서 밑줄 제거
+    margin-top: 80px;
+`
+
+const SFormWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
 `

@@ -64,6 +64,7 @@ const Contract = () => {
                                 </SSubText>
                             </div>
                         </SPage1Front>
+                        <SPage1Img src={require("../../assets/images/image2.png")} />
                     </SGradient>
 
                     <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
@@ -186,11 +187,19 @@ const SPage1BackImg = styled.img`
     width: 1920px;
 `
 
+const SPage1Img = styled.img`
+    display: flex;
+    width: 666x;
+    height: 439px;
+    border-radius: 20px;
+`
+
 const SPage1Front = styled.div`
     position: relative;
     display: flex;
+    margin-left: 120px;
     flex-direction: column;
-    width: 1200px;
+    width: 650px;
     height: 368px;
     z-index: 2;
     @keyframes fadeIn {
@@ -202,6 +211,10 @@ const SPage1Front = styled.div`
         }
     }
     animation: fadeIn 1s ease-in-out;
+
+    @media (max-width: 700px) {
+        animation: none;
+    }
 `
 
 const SSmallText = styled.div`
@@ -247,6 +260,12 @@ const SPage2 = styled.div`
     &.animate {
         opacity: 1;
     }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
+    }
 `
 
 const SPage2Img = styled.img`
@@ -270,6 +289,12 @@ const SPage3 = styled.div`
 
     &.animate {
         opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
     }
 `
 
@@ -322,6 +347,12 @@ const SPage4 = styled.div`
     &.animate {
         opacity: 1;
     }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
+    }
 `
 
 const SPage4Img = styled.img`
@@ -345,6 +376,12 @@ const SPage5 = styled.div`
 
     &.animate {
         opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
     }
 `
 

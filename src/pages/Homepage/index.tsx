@@ -67,7 +67,7 @@ const Homepage = () => {
                         </SPage1Front>
                     </SGradient>
 
-                    <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
+                    <SPage1BackImg src={require("../../assets/images/rectangle-22-bg.png")} />
                 </div>
             </SPage1Back>
 
@@ -138,7 +138,11 @@ const SGradient = styled.div`
     align-items: center;
     justify-content: center;
 
-    background: #15191e; /* 초기 배경 설정 */
+    background: linear-gradient(
+        90deg,
+        #15191e 14.58%,
+        rgba(21, 25, 30, 0) 100%
+    ); /* 초기 배경 설정 */
 `
 
 const SPage1BackImg = styled.img`
@@ -167,6 +171,10 @@ const SPage1Front = styled.div`
         }
     }
     animation: fadeIn 1s ease-in-out;
+
+    @media (max-width: 700px) {
+        animation: none;
+    }
 `
 
 const SSmallText = styled.div`
@@ -211,6 +219,12 @@ const SPage2 = styled.div`
     &.animate {
         opacity: 1;
     }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
+    }
 `
 
 const SPage2Img = styled.img`
@@ -242,6 +256,12 @@ const SPage3 = styled.div`
 
     &.animate {
         opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
     }
 `
 

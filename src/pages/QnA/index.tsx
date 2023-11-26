@@ -1,270 +1,373 @@
 // 리액트 메인 컴포넌트
-import React from "react"
-import "./qna.css"
-import { Helmet } from "react-helmet"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 
-const AppContainer = styled.div<{ windowWidth: number }>`
-    transform: scale(${(props) => props.windowWidth / 3047.62});
-    transform-origin: top left; // 축소의 기준점 설정
-`
+export interface IQnA {
+    title: string
+    content: string
+    category: string
+    createAt: string
+    writer: string
+}
 
 // 메인 컴포넌트 함수
 const QnA = () => {
-    return (
-        <>
-            <Helmet>
-                <link rel="icon" href="/favicon.ico" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="theme-color" content="#000000" />
-                <title>서브6-고객지원-자주하는질문</title>
-                <link
-                    rel="stylesheet"
-                    href="https://fonts.googleapis.com/css?family=Pretendard%3A400%2C500%2C600%2C700"
-                />
-                <link
-                    rel="stylesheet"
-                    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600%2C700"
-                />
-            </Helmet>
+    const ref = useRef(null)
 
-            <div className="item-6--E9j">
-                <AppContainer windowWidth={window.innerWidth}>
-                    {" "}
-                    <div className="auto-group-7k23-hp1">
-                        <p className="item--RV7">자주하는 질문</p>
-                        <div className="auto-group-wiy3-gR3">
-                            <div className="faq-tabmenu-C8V">전체</div>
-                            <div className="faq-tabmenu-4Rb">서비스 이용 관련</div>
-                            <div className="frame-619-9xq">법적효력</div>
-                            <div className="frame-620-TCq">보안</div>
-                            <div className="frame-621-95f">기타</div>
-                        </div>
-                        <div className="frame-627-F8h">
-                            <div className="faq-accordion-m73">
-                                <div className="frame-622-TkZ">
-                                    <p className="q-opR"> Q</p>
-                                    <p className="item--LJZ">[서비스 이용관련]</p>
-                                    <p className="item--r21">
-                                        전자계약을 이용한다는 점에 대한 불만은 없었나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-7Cq"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-pN9">
-                                <div className="frame-622-iyK">
-                                    <p className="q-USh"> Q</p>
-                                    <p className="item--QbF">[서비스 이용관련]</p>
-                                    <p className="item--irq">
-                                        계약 상대방도 이지조인에 가입을 해야 하나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-zJZ"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-78H">
-                                <div className="frame-622-DSD">
-                                    <p className="q-mCq"> Q</p>
-                                    <p className="item--WAR">[서비스 이용관련]</p>
-                                    <p className="item--cDT">
-                                        이지조인 회원가입 시 법인명으로 가입하나요? 담당자 이름으로
-                                        가입하나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-up-efw"
-                                    src={require("~/assets/images/chevron-up.png")}
-                                />
-                            </div>
-                            <div className="frame-626-Znu">
-                                <p className="ex--6nq">
-                                    향후 법적 분쟁 발생 시 당사자 확인을 용이하게 하기 위해 계약
-                                    담당자의 계정을 통해 가입하셔야 합니다.
-                                    <br />
-                                    계정 공유는 금지되며, 이는 같은 회사 내에서도 적용됩니다.
-                                    <br />
-                                    이지조인 가입 회원명과 계약서 체결주체 표시(ex. 법인 명)는
-                                    이지조인 홈페이지 로그인 후 설정 변경을 통하여
-                                    <br />
-                                    서로 다르게 설정하실 수 있으므로, 법인계약 체결 시 계약 체결
-                                    주체 표시를 법인명으로 변경하여 사용하시면 됩니다.
-                                </p>
-                            </div>
-                            <div className="faq-accordion-CjP">
-                                <div className="frame-622-WVB">
-                                    <p className="q-4Wh"> Q</p>
-                                    <p className="item--zv9">[서비스 이용관련]</p>
-                                    <p className="item--vJ1">
-                                        1건의 계약 시 최대 몇 명, 몇 개까지 서명 입력이 가능한가요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-PxH"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-iDs">
-                                <div className="frame-622-2kM">
-                                    <p className="q-yfb"> Q</p>
-                                    <p className="item--it5">[서비스 이용관련]</p>
-                                    <p className="item--e13">서명자의 순서는 지정할 수 있나요?</p>
-                                </div>
-                                <img
-                                    className="chevron-down-Kcy"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-FFj">
-                                <div className="frame-622-mE5">
-                                    <p className="q-Jzh"> Q</p>
-                                    <p className="item--qjj">[법적효력]</p>
-                                    <p className="item--AX7">
-                                        이지조인에서 법인 인감을 등록해서 활용하는 것이 실물 법인
-                                        인감 날인과 동일한가요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-eBP"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-Mbb">
-                                <div className="frame-622-fsB">
-                                    <p className="q-2Sq"> Q</p>
-                                    <p className="item--xbP">[법적효력]</p>
-                                    <p className="item--FqP">
-                                        이지조인 전자계약과 전자서명은 법적 효력이 있나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-Y3o"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-f8R">
-                                <div className="frame-622-ZzV">
-                                    <p className="q-XRX"> Q</p>
-                                    <p className="item--U5s">[법적효력]</p>
-                                    <p className="item--zK7">
-                                        이지조인에서 상대방이 계약 권한을 가졌는지 등 위임 사실을
-                                        확인해주나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-UEH"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-Pc9">
-                                <div className="frame-622-6mT">
-                                    <p className="q-eny"> Q</p>
-                                    <p className="item--biD">[법적효력]</p>
-                                    <p className="item--KPK">간인이나 계인을 하지 않아도 되나요?</p>
-                                </div>
-                                <img
-                                    className="chevron-down-CT7"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-ve1">
-                                <div className="frame-622-SMT">
-                                    <p className="q-Bpq"> Q</p>
-                                    <p className="item--7yP">[보안]</p>
-                                    <p className="item--dgq">
-                                        이지조인에서 문서를 열람할 수 있나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-76D"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-dKT">
-                                <div className="frame-622-YBX">
-                                    <p className="q-VMf"> Q</p>
-                                    <p className="item--SGu">[보안]</p>
-                                    <p className="item--ZMX">감사 추적 인증서란 무엇인가요?</p>
-                                </div>
-                                <img
-                                    className="chevron-down-SgD"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-B81">
-                                <div className="frame-622-Hwj">
-                                    <p className="q-qyF"> Q</p>
-                                    <p className="item--nNh">[기타]</p>
-                                    <p className="item--WJh">
-                                        실제로 전자계약을 사용하는 현장이 있나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-Nbo"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-ta9">
-                                <div className="frame-622-oBK">
-                                    <p className="q-kMT"> Q</p>
-                                    <p className="item--6RK">[기타]</p>
-                                    <p className="item--1oB">
-                                        전자계약으로 가입을 진행하였을 때, 현장 반응은 어떠했나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-hR7"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-q1X">
-                                <div className="frame-622-92D">
-                                    <p className="q-gnq"> Q</p>
-                                    <p className="item--Dnm">[기타]</p>
-                                    <p className="item--LcV">신탁사 등의 업무처리가 가능한가요?</p>
-                                </div>
-                                <img
-                                    className="chevron-down-RP3"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                            <div className="faq-accordion-LW1">
-                                <div className="frame-622-eWh">
-                                    <p className="q-zqT"> Q</p>
-                                    <p className="item--wEu">[기타]</p>
-                                    <p className="item--4KX">
-                                        계약기간이 끝나면 제공받은 태블릿은 반납을 해야 하나요?
-                                    </p>
-                                </div>
-                                <img
-                                    className="chevron-down-jwT"
-                                    src={require("~/assets/images/chevron-down-black.png")}
-                                />
-                            </div>
-                        </div>
-                        <div className="frame-636-s25">
-                            <p className="item--BYZ">키워드표시</p>
-                            <p className="item--VZF">키워드표시</p>
-                            <p className="item--CTf">키워드표시</p>
-                            <p className="item--veZ">키워드표시</p>
-                        </div>
-                        <div className="group-1-rYD">
-                            <div className="frame-645-NFf">
-                                <img
-                                    className="search-md-5vm"
-                                    src={require("~/assets/images/search-md.png")}
-                                />
-                                <p className="item--k1K">궁금한 점이 있다면 검색해보세요!</p>
-                            </div>
-                        </div>
+    useEffect(() => {
+        setQnAs(exampleQnAs)
+        setSelectedCategory("전체")
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate")
+                }
+            },
+            {
+                threshold: 0.3,
+            },
+        )
+
+        if (ref.current) observer.observe(ref.current)
+
+        return () => {
+            if (ref.current) observer.unobserve(ref.current)
+        }
+    }, [])
+
+    const handleCategory = (category: string) => {
+        if (category === "전체") {
+            // 선택된 카테고리가 없으면 전체 리스트를 표시
+            setQnAs(exampleQnAs)
+        } else {
+            // 선택된 카테고리와 일치하는 항목만 필터링
+            const filteredQnAs = exampleQnAs.filter((qna) => qna.category === category)
+            setQnAs(filteredQnAs)
+        }
+    }
+
+    const [inputValue, setInputValue] = useState<string>("")
+    const [selectedCategory, setSelectedCategory] = useState<string>("")
+    const keywords = ["키워드 1", "키워드 2", "키워드 3", "키워드 4"]
+    const category = ["전체", "서비스 이용 관련", "법적효력", "보안", "기타"]
+    const [expandedQnA_Ids, setExpandedQnA_Ids] = useState<number[]>([])
+    const [qnAs, setQnAs] = useState<IQnA[]>([])
+
+    const exampleQnAs = [
+        {
+            title: "서비스 가입 절차가 궁금합니다",
+            content: "새로운 서비스에 가입하고 싶은데, 어떻게 해야 하나요?",
+            category: "서비스 이용 관련",
+            createAt: "2023-11-27",
+            writer: "NewUser",
+        },
+        {
+            title: "개인정보 보호 정책에 대한 질문",
+            content: "개인정보 보호 정책이 어떻게 적용되는지 자세히 알고 싶습니다.",
+            category: "법적효력",
+            createAt: "2023-11-26",
+            writer: "PrivacySeeker",
+        },
+        {
+            title: "계정 보안 강화 방법",
+            content: "제 계정의 보안을 강화하고 싶습니다. 어떤 조치를 취할 수 있나요?",
+            category: "보안",
+            createAt: "2023-11-25",
+            writer: "SecureUser",
+        },
+        {
+            title: "모바일 앱 오류 보고",
+            content: "모바일 앱에서 오류를 발견했어요. 어디에 보고해야 하나요?",
+            category: "기타",
+            createAt: "2023-11-24",
+            writer: "AppTester",
+        },
+    ]
+
+    const handleKeywordClick = (keyword: string) => {
+        setInputValue(keyword)
+    }
+
+    const toggleQnA = (id: number) => {
+        setExpandedQnA_Ids((prevIds) => {
+            if (prevIds.includes(id)) {
+                return prevIds.filter((prevId) => prevId !== id)
+            } else {
+                return [...prevIds, id]
+            }
+        })
+    }
+
+    return (
+        <SPageWrapper>
+            <SPage1>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        width: "1200px",
+                    }}
+                >
+                    <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                        자주하는질문
+                    </SMainText>
+
+                    <SerachBox
+                        placeholder="궁금한 점이 있다면 검색해보세요!"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                    />
+                    <KeywordContainer>
+                        {keywords.map((keyword, index) => (
+                            <KeywordButton key={index} onClick={() => handleKeywordClick(keyword)}>
+                                {keyword}
+                            </KeywordButton>
+                        ))}
+                    </KeywordContainer>
+                </div>
+
+                <div
+                    style={{
+                        display: "flex",
+                        marginTop: 100,
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        width: "1200px",
+                    }}
+                >
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            width: "100%",
+                        }}
+                    >
+                        {category.map((category) => (
+                            <SButton
+                                key={category}
+                                style={{
+                                    flexGrow: 1,
+                                    width: 100,
+                                    marginLeft: "10px",
+                                    marginRight: "10px",
+                                    marginBottom: "30px",
+                                }}
+                                isSelected={selectedCategory === category}
+                                onClick={() => {
+                                    setSelectedCategory(category)
+                                    handleCategory(category)
+                                }}
+                            >
+                                {category}
+                            </SButton>
+                        ))}
                     </div>
-                </AppContainer>
-            </div>
-        </>
+
+                    <>
+                        {qnAs.map((QnA, idx) => (
+                            <React.Fragment key={idx}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        height: "70px",
+                                        width: "100%",
+                                        borderTop: "1px solid #A2A9B0",
+                                        borderBottom: "1px solid #A2A9B0",
+                                        padding: "20px",
+                                        alignItems: "flex-start",
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                    }}
+                                >
+                                    <div
+                                        onClick={() => toggleQnA(idx)}
+                                        style={{
+                                            display: "flex",
+                                            width: "100%",
+                                        }}
+                                    >
+                                        <Wrapper style={{ width: "100%", padding: "0" }}>
+                                            <SubTitle>
+                                                <p style={{ fontWeight: 600, marginRight: "10px" }}>
+                                                    [{QnA.category}]
+                                                </p>
+                                                {QnA.title}
+                                            </SubTitle>
+                                        </Wrapper>
+                                        <div
+                                            style={{
+                                                width: "5%",
+                                                color: "#A2A9B0",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            {expandedQnA_Ids.includes(idx) ? "▲" : "▼"}
+                                        </div>
+                                    </div>
+                                </div>
+                                {expandedQnA_Ids.includes(idx) && (
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            width: "100%",
+                                            background: "#f2f4f8",
+                                            borderBottom: "1px solid #A2A9B0",
+                                            padding: "20px",
+                                            alignItems: "flex-start",
+                                            flexDirection: "column",
+                                            justifyContent: "center",
+                                        }}
+                                    >
+                                        <SubTitle style={{ fontSize: "13px" }}>
+                                            <p
+                                                dangerouslySetInnerHTML={{
+                                                    __html: QnA.content.replace(/\n/g, "<br />"),
+                                                }}
+                                            />
+                                        </SubTitle>
+                                    </div>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </>
+
+                    {/* <SPageImg src={require("../../assets/images/Frame627.png")} height={1300} /> */}
+                </div>
+            </SPage1>
+        </SPageWrapper>
     )
 }
 export default QnA
+
+const SPageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // background: blue;
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: center;
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    animation: fadeIn 1s ease-in-out;
+
+    @media (max-width: 700px) {
+        animation: none;
+    }
+`
+const SPage1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 100px 364px 32px 364px;
+    justify-content: center;
+    align-items: center;
+`
+
+const SMainText = styled.div`
+    display: flex;
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 67.2px */
+    margin: 16px 0 0 0;
+`
+
+const SerachBox = styled.input`
+    display: flex;
+    margin: 35px 0 0 0;
+    border-radius: 5px;
+    border: 3px solid #2779f4;
+    font-size: 20px;
+    text-align: left;
+    height: 55px;
+    padding-left: 15px;
+    width: 100%;
+    height: 55px;
+    background: #fff;
+`
+
+const KeywordButton = styled.button`
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f0f0f0;
+    }
+`
+
+const KeywordContainer = styled.div`
+    margin-top: 15px;
+`
+
+const SButton = styled.button<{ isSelected: boolean }>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    color: var(--_000, #ffffff);
+    background: #fafafa;
+    margin-left: 20px;
+    border-radius: 8px;
+    padding: 10px 0px;
+    border: 1px solid #fafafa;
+    width: 160px;
+
+    /* 선택된 버튼에 대한 스타일 */
+    background-color: ${(props) => (props.isSelected ? "#2779f4" : "transparent")};
+    color: ${(props) => (props.isSelected ? "white" : "black")};
+    font-weight: ${(props) => (props.isSelected ? 600 : 0)};
+`
+
+const SPageImg = styled.img`
+    display: flex;
+    margin: 80px 0 0 0;
+    width: 1200px;
+    border-radius: 20px;
+`
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100%;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    font-size: 14px;
+    color: #5157e0;
+    font-family: Poppins;
+`
+const SubTitle = styled.p`
+    display: flex;
+
+    font-size: clamp(0.1rem, 4vw, 1.3rem);
+    color: #21242b;
+
+    @media screen and (max-width: 768px) {
+        justify-content: left;
+        align-items: flex-start;
+    }
+`
