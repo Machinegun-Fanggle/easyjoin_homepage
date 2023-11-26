@@ -13,11 +13,17 @@ const Header = () => {
     const handleMouseLeave = () => setShowDropdown(null)
 
     const dropdownContents = {
-        service: (
+        support: (
             <SDropdown>
                 <SDropdownLink to="/announcement">공지사항</SDropdownLink>
                 <SDropdownLink to="/qna">자주묻는 질문</SDropdownLink>
                 <SDropdownLink to="/press">언론보도</SDropdownLink>
+            </SDropdown>
+        ),
+        service: (
+            <SDropdown>
+                <SDropdownLink to="/service">서비스 신청</SDropdownLink>
+                <SDropdownLink to="/inquiry">도입문의</SDropdownLink>
             </SDropdown>
         ),
     }
@@ -59,11 +65,22 @@ const Header = () => {
                         <SLink isBgWhite={isBgWhite} to={"consulting"} activeClassName="active">
                             부동산 개발 컨설팅
                         </SLink>
-                        <SLink isBgWhite={isBgWhite} to={"register"} activeClassName="active">
+                        {/* <SLink isBgWhite={isBgWhite} to={"register"} activeClassName="active">
                             서비스 신청
-                        </SLink>
+                        </SLink> */}
+
                         <SLinkContainer
                             onMouseEnter={() => handleMouseEnter("service")}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <SLink isBgWhite={isBgWhite} to={"service"} activeClassName="active">
+                                서비스
+                            </SLink>
+                            {showDropdown === "service" && dropdownContents.service}
+                        </SLinkContainer>
+
+                        <SLinkContainer
+                            onMouseEnter={() => handleMouseEnter("support")}
                             onMouseLeave={handleMouseLeave}
                         >
                             <SLink
@@ -73,7 +90,7 @@ const Header = () => {
                             >
                                 고객 지원
                             </SLink>
-                            {showDropdown === "service" && dropdownContents.service}
+                            {showDropdown === "support" && dropdownContents.support}
                         </SLinkContainer>
                     </SLinkWrapper>
                     <SBtnWrapper>
