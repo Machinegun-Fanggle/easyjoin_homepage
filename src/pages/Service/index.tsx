@@ -299,6 +299,7 @@ const SPage3 = styled.div`
     }
 
     @media (max-width: 700px) {
+        opacity: 1;
         animation: none;
         transition: none;
     }

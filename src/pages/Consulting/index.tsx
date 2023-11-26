@@ -179,6 +179,10 @@ const SPage1Front = styled.div`
         }
     }
     animation: fadeIn 1s ease-in-out;
+
+    @media (max-width: 700px) {
+        animation: none;
+    }
 `
 
 const SSmallText = styled.div`
@@ -222,6 +226,12 @@ const SPage2 = styled.div`
 
     &.animate {
         opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
     }
 `
 
