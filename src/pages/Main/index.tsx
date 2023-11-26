@@ -76,7 +76,9 @@ const Main = () => {
                     <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
                 </div>
             </SPage1Back>
-            <SButton>도입문의</SButton>
+            <SButton to={"/inquiry"} onClick={scrollToTop}>
+                도입문의
+            </SButton>
             <SPage2 ref={ref1}>
                 <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
                     부동산 개발 컨설팅
@@ -89,7 +91,7 @@ const Main = () => {
                     사업의 성공율을 높여주는 통합 서비스입니다.
                 </SSubText>
 
-                <SPage2Img src={require("../../assets/images/rectangle-8-bg-gJH.png")} />
+                <SPage2Img src={require("../../assets/Rectangle 8.svg").default} />
 
                 <SPage2Border>
                     <SBorderLeft>
@@ -102,9 +104,9 @@ const Main = () => {
                         </STextWarpper>
                     </SBorderLeft>
 
-                    <SBorderBtn>
+                    <SBorderBtn to={"/inquiry"} onClick={scrollToTop}>
                         이지조인에 의뢰하기
-                        <SArrowRight src={require("~/assets/images/arrow-right-cwP.png")} />
+                        <SArrowRight src={require("~/assets/arrow-right.svg").default} />
                     </SBorderBtn>
                 </SPage2Border>
             </SPage2>
@@ -222,7 +224,7 @@ const SSubText = styled.div`
     line-height: 160%; /* 32px */
 `
 
-const SButton = styled.div`
+const SButton = styled(Link)`
     position: absolute;
     top: 550px;
     left: 360px;
@@ -259,6 +261,7 @@ const SButton = styled.div`
     @media (max-width: 700px) {
         animation: none;
     }
+    text-decoration: none; // 기본 상태에서 밑줄 제거
 `
 
 const SPage2 = styled.div`
@@ -347,7 +350,8 @@ const SBorderSubText = styled.div`
     margin: 8px 0 0 0;
 `
 
-const SBorderBtn = styled.div`
+const SBorderBtn = styled(Link)`
+    color: var(--whfff, #fff);
     display: inline-flex;
     width: 330px;
     padding: 20px 32px;
@@ -358,6 +362,7 @@ const SBorderBtn = styled.div`
     border-radius: 4px;
     background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
     cursor: pointer;
+    text-decoration: none; // 기본 상태에서 밑줄 제거
 `
 
 const SArrowRight = styled.img`

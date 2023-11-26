@@ -138,11 +138,7 @@ const SGradient = styled.div`
     align-items: center;
     justify-content: center;
 
-    background: linear-gradient(
-        90deg,
-        #15191e 14.58%,
-        rgba(21, 25, 30, 0) 100%
-    ); /* 초기 배경 설정 */
+    background: linear-gradient(90deg, #15191e 58%, rgba(21, 25, 30, 0) 100%); /* 초기 배경 설정 */
 `
 
 const SPage1BackImg = styled.img`

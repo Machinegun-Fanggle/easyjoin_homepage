@@ -75,7 +75,7 @@ const Footer = () => {
                     <SFooterEndText>© 2023 EasyJoin INC. All rights reserved.</SFooterEndText>
                 </SWrapper>
 
-                <SLogoLink to={"/"}>
+                <SLogoLink to={"/"} onClick={scrollToTop}>
                     <img src={require("~/assets/images/logo-2vR.png")} width={150} height={30} />
                 </SLogoLink>
             </SInnerFooter>
@@ -109,10 +109,9 @@ const SLink = styled(NavLink)<{ activeClassName: string }>`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    // text-decoration: none; // 기본 상태에서 밑줄 제거
     border: 0;
     position: relative; // 밑줄을 위한 위치 설정
-
+    text-decoration: none; // 기본 상태에서 밑줄 제거
     &:hover {
         font-weight: bold; // 마우스 오버시 글씨 두께 변경
 

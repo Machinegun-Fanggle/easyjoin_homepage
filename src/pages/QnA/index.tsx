@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import SearchIcon from "../../assets/search-md.svg"
+import ChevronDown from "../../assets/chevron-down.svg"
+import ChevronUp from "../../assets/chevron-up.svg"
+import QLogo from "../../assets/Q.svg"
 
 export interface IQnA {
     title: string
@@ -206,7 +209,7 @@ const QnA = () => {
                                     width: 100,
                                     marginLeft: "10px",
                                     marginRight: "10px",
-                                    marginBottom: "30px",
+                                    marginBottom: "34px",
                                 }}
                                 isSelected={selectedCategory === category}
                                 onClick={() => {
@@ -219,75 +222,84 @@ const QnA = () => {
                         ))}
                     </div>
 
-                    <>
-                        {qnAs.map((QnA, idx) => (
-                            <React.Fragment key={idx}>
+                    {qnAs.map((QnA, idx) => (
+                        <React.Fragment key={idx}>
+                            <div
+                                onClick={() => toggleQnA(idx)}
+                                style={{
+                                    display: "flex",
+                                    height: "80px",
+                                    width: "100%",
+                                    borderTop: "1px solid #DDE1E6",
+                                    padding: "20px",
+                                    alignItems: "flex-start",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                }}
+                            >
                                 <div
                                     style={{
                                         display: "flex",
-                                        height: "70px",
                                         width: "100%",
-                                        borderTop: "1px solid #A2A9B0",
-                                        borderBottom: "1px solid #A2A9B0",
+                                    }}
+                                >
+                                    <Wrapper style={{ width: "100%", padding: "0" }}>
+                                        <SubTitle>
+                                            <img src={QLogo} width={18} height={18} />
+                                            <p style={{ fontWeight: 600, margin: "0 0 0 10px" }}>
+                                                [{QnA.category}]
+                                            </p>
+                                            {QnA.title}
+                                        </SubTitle>
+                                    </Wrapper>
+                                    <div
+                                        style={{
+                                            width: "5%",
+                                            color: "#A2A9B0",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                        }}
+                                    >
+                                        {expandedQnA_Ids.includes(idx) ? (
+                                            <img src={ChevronUp} width={20} height={20} />
+                                        ) : (
+                                            <img src={ChevronDown} width={20} height={20} />
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            {expandedQnA_Ids.includes(idx) && (
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        width: "100%",
+                                        background: "#f2f4f8",
                                         padding: "20px",
                                         alignItems: "flex-start",
                                         flexDirection: "column",
                                         justifyContent: "center",
                                     }}
                                 >
-                                    <div
-                                        onClick={() => toggleQnA(idx)}
-                                        style={{
-                                            display: "flex",
-                                            width: "100%",
-                                        }}
-                                    >
-                                        <Wrapper style={{ width: "100%", padding: "0" }}>
-                                            <SubTitle>
-                                                <p style={{ fontWeight: 600, marginRight: "10px" }}>
-                                                    [{QnA.category}]
-                                                </p>
-                                                {QnA.title}
-                                            </SubTitle>
-                                        </Wrapper>
-                                        <div
-                                            style={{
-                                                width: "5%",
-                                                color: "#A2A9B0",
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
+                                    <SubTitle style={{ fontSize: "15px" }}>
+                                        <p
+                                            dangerouslySetInnerHTML={{
+                                                __html: QnA.content.replace(/\n/g, "<br />"),
                                             }}
-                                        >
-                                            {expandedQnA_Ids.includes(idx) ? "▲" : "▼"}
-                                        </div>
-                                    </div>
+                                        />
+                                    </SubTitle>
                                 </div>
-                                {expandedQnA_Ids.includes(idx) && (
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            width: "100%",
-                                            background: "#f2f4f8",
-                                            borderBottom: "1px solid #A2A9B0",
-                                            padding: "20px",
-                                            alignItems: "flex-start",
-                                            flexDirection: "column",
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        <SubTitle style={{ fontSize: "13px" }}>
-                                            <p
-                                                dangerouslySetInnerHTML={{
-                                                    __html: QnA.content.replace(/\n/g, "<br />"),
-                                                }}
-                                            />
-                                        </SubTitle>
-                                    </div>
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </>
+                            )}
+                        </React.Fragment>
+                    ))}
+
+                    <div
+                        style={{
+                            width: "1200px",
+                            borderBottom: "1px solid #DDE1E6",
+                            margin: "0px 0 0 0",
+                        }}
+                    />
 
                     {/* <SPageImg src={require("../../assets/images/Frame627.png")} height={1300} /> */}
                 </div>
@@ -341,37 +353,6 @@ const SMainText = styled.div`
     margin: 16px 0 0 0;
 `
 
-const SerachBox = styled.input`
-    display: flex;
-    margin: 35px 0 0 0;
-    border-radius: 5px;
-    border: 3px solid #2779f4;
-    font-size: 20px;
-    text-align: left;
-    height: 55px;
-    padding-left: 15px;
-    width: 100%;
-    height: 55px;
-    background: #fff;
-`
-
-const KeywordButton = styled.button`
-    margin-right: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    background-color: white;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #f0f0f0;
-    }
-`
-
-const KeywordContainer = styled.div`
-    margin-top: 15px;
-`
-
 const SButton = styled.button<{ isSelected: boolean }>`
     display: flex;
     align-items: center;
@@ -386,18 +367,12 @@ const SButton = styled.button<{ isSelected: boolean }>`
     padding: 10px 0px;
     border: 1px solid #fafafa;
     width: 160px;
+    height: 50px;
 
     /* 선택된 버튼에 대한 스타일 */
     background-color: ${(props) => (props.isSelected ? "#2779f4" : "transparent")};
     color: ${(props) => (props.isSelected ? "white" : "black")};
     font-weight: ${(props) => (props.isSelected ? 600 : 0)};
-`
-
-const SPageImg = styled.img`
-    display: flex;
-    margin: 80px 0 0 0;
-    width: 1200px;
-    border-radius: 20px;
 `
 
 const Wrapper = styled.div`
@@ -418,7 +393,14 @@ const Wrapper = styled.div`
 const SubTitle = styled.p`
     display: flex;
 
-    font-size: clamp(0.1rem, 4vw, 1.3rem);
+    color: #000;
+
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 24px */
+
+    font-size: 16px;
     color: #21242b;
 
     @media screen and (max-width: 768px) {
