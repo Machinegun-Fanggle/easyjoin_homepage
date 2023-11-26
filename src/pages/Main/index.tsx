@@ -5,7 +5,7 @@ import styled from "styled-components"
 
 // 메인 컴포넌트 함수
 const Main = () => {
-    const ref = useRef(null)
+    const ref1 = useRef(null)
     const ref2 = useRef(null)
     const ref3 = useRef(null)
 
@@ -28,12 +28,12 @@ const Main = () => {
             },
         )
 
-        if (ref.current) observer.observe(ref.current)
+        if (ref1.current) observer.observe(ref1.current)
         if (ref2.current) observer.observe(ref2.current)
         if (ref3.current) observer.observe(ref3.current)
 
         return () => {
-            if (ref.current) observer.unobserve(ref.current)
+            if (ref1.current) observer.unobserve(ref1.current)
             if (ref2.current) observer.unobserve(ref2.current)
             if (ref3.current) observer.unobserve(ref3.current)
         }
@@ -77,7 +77,7 @@ const Main = () => {
                 </div>
             </SPage1Back>
             <SButton>도입문의</SButton>
-            <SPage2 ref={ref}>
+            <SPage2 ref={ref1}>
                 <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
                     부동산 개발 컨설팅
                     <br />
@@ -270,7 +270,7 @@ const SPage2 = styled.div`
     align-items: center;
 
     opacity: 0;
-    transition: opacity 1s;
+    // transition: opacity 1s;
 
     &.animate {
         opacity: 1;
@@ -416,7 +416,7 @@ const SBtnWrapper = styled.div`
     line-height: 140%;
     gap: 24px;
     opacity: 0;
-    transition: opacity 1s;
+    // transition: opacity 1s;
 
     &.animate {
         opacity: 1;

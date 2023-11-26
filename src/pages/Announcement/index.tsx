@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import SearchIcon from "../../assets/search-md.svg" // SVG 파일 경로를 적절하게 수정하세요.
+import SearchIcon from "../../assets/search-md.svg"
 
 // 공지사항
 const Announcement = () => {
@@ -81,7 +81,7 @@ const Announcement = () => {
 
                 <div style={{ position: "relative", display: "flex", width: "100%" }}>
                     <SSearchWrapper ref={dropdownRef}>
-                        <SSearchIcon src={SearchIcon} /> {/* SVG 아이콘 추가 */}
+                        <SSearchIcon src={SearchIcon} />
                         <SSearchInput
                             type="text"
                             placeholder="궁금한 점이 있다면 검색해보세요!"
