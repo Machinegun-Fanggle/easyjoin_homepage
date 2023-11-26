@@ -1,19 +1,10 @@
-// 리액트 메인 컴포넌트
 import React, { useEffect, useRef } from "react"
 import "./press.css"
-import { Helmet } from "react-helmet"
 import styled from "styled-components"
 
-const AppContainer = styled.div<{ windowWidth: number }>`
-    transform: scale(${(props) => props.windowWidth / 3047.62});
-    transform-origin: top left; // 축소의 기준점 설정
-`
-
-// 메인 컴포넌트 함수
+// 언론보도
 const Press = () => {
     const ref = useRef(null)
-    const ref2 = useRef(null)
-    const ref3 = useRef(null)
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -28,13 +19,9 @@ const Press = () => {
         )
 
         if (ref.current) observer.observe(ref.current)
-        if (ref2.current) observer.observe(ref2.current)
-        if (ref3.current) observer.observe(ref3.current)
 
         return () => {
             if (ref.current) observer.unobserve(ref.current)
-            if (ref2.current) observer.unobserve(ref2.current)
-            if (ref3.current) observer.unobserve(ref3.current)
         }
     }, [])
 
@@ -86,16 +73,6 @@ const SMainText = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: 140%; /* 67.2px */
-`
-
-const SSubText = styled.div`
-    margin: 23px 0 0 0;
-    color: var(--whbk-999-sub-txt-01, #999);
-    font-family: Pretendard;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%; /* 17px */
 `
 
 const SPage1 = styled.div`
