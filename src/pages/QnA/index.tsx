@@ -1,6 +1,7 @@
 // 리액트 메인 컴포넌트
 import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
+import SearchIcon from "../../assets/search-md.svg"
 
 export interface IQnA {
     title: string
@@ -13,39 +14,12 @@ export interface IQnA {
 // 메인 컴포넌트 함수
 const QnA = () => {
     const ref = useRef(null)
+    const dropdownRef = useRef<HTMLDivElement | null>(null)
 
-    useEffect(() => {
-        setQnAs(exampleQnAs)
-        setSelectedCategory("전체")
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("animate")
-                }
-            },
-            {
-                threshold: 0.3,
-            },
-        )
-
-        if (ref.current) observer.observe(ref.current)
-
-        return () => {
-            if (ref.current) observer.unobserve(ref.current)
-        }
-    }, [])
-
-    const handleCategory = (category: string) => {
-        if (category === "전체") {
-            // 선택된 카테고리가 없으면 전체 리스트를 표시
-            setQnAs(exampleQnAs)
-        } else {
-            // 선택된 카테고리와 일치하는 항목만 필터링
-            const filteredQnAs = exampleQnAs.filter((qna) => qna.category === category)
-            setQnAs(filteredQnAs)
-        }
-    }
+    // 검색어와 검색 결과 상태 관리
+    const [searchText, setSearchText] = useState("")
+    const [searchResults, setSearchResults] = useState<IQnA[]>([])
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false) // 드롭다운 상태를 관리
 
     const [inputValue, setInputValue] = useState<string>("")
     const [selectedCategory, setSelectedCategory] = useState<string>("")
@@ -54,7 +28,7 @@ const QnA = () => {
     const [expandedQnA_Ids, setExpandedQnA_Ids] = useState<number[]>([])
     const [qnAs, setQnAs] = useState<IQnA[]>([])
 
-    const exampleQnAs = [
+    const searchData = [
         {
             title: "서비스 가입 절차가 궁금합니다",
             content: "새로운 서비스에 가입하고 싶은데, 어떻게 해야 하나요?",
@@ -85,6 +59,33 @@ const QnA = () => {
         },
     ]
 
+    // 검색어 입력 핸들러
+    const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const searchText = e.target.value.toLowerCase() // 입력된 검색어를 소문자로 변환
+
+        // 검색어와 일치하는 title 또는 content를 가진 항목만 필터링
+        const filteredResults = searchData.filter(
+            (result) =>
+                result.title.toLowerCase().includes(searchText) ||
+                result.content.toLowerCase().includes(searchText),
+        )
+
+        setSearchText(searchText)
+        setSearchResults(filteredResults)
+        setIsDropdownOpen(true) // 입력할 때 드롭다운 열기
+    }
+
+    const handleCategory = (category: string) => {
+        if (category === "전체") {
+            // 선택된 카테고리가 없으면 전체 리스트를 표시
+            setQnAs(searchData)
+        } else {
+            // 선택된 카테고리와 일치하는 항목만 필터링
+            const filteredQnAs = searchData.filter((qna) => qna.category === category)
+            setQnAs(filteredQnAs)
+        }
+    }
+
     const handleKeywordClick = (keyword: string) => {
         setInputValue(keyword)
     }
@@ -98,6 +99,40 @@ const QnA = () => {
             }
         })
     }
+
+    // 검색어 입력 시 검색 결과 업데이트
+    useEffect(() => {
+        const searchTextLower = searchText.toLowerCase()
+        // 검색어와 일치하는 title 또는 content를 가진 항목만 필터링
+        const filteredResults = searchData.filter(
+            (result) =>
+                result.title.toLowerCase().includes(searchTextLower) ||
+                result.content.toLowerCase().includes(searchTextLower),
+        )
+        setSearchResults(filteredResults)
+    }, [searchText])
+
+    useEffect(() => {
+        setQnAs(searchData)
+        setSelectedCategory("전체")
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate")
+                }
+            },
+            {
+                threshold: 0.3,
+            },
+        )
+
+        if (ref.current) observer.observe(ref.current)
+
+        return () => {
+            if (ref.current) observer.unobserve(ref.current)
+        }
+    }, [])
 
     return (
         <SPageWrapper>
@@ -113,19 +148,26 @@ const QnA = () => {
                     <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
                         자주하는질문
                     </SMainText>
+                </div>
 
-                    <SerachBox
-                        placeholder="궁금한 점이 있다면 검색해보세요!"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                    />
-                    <KeywordContainer>
-                        {keywords.map((keyword, index) => (
-                            <KeywordButton key={index} onClick={() => handleKeywordClick(keyword)}>
-                                {keyword}
-                            </KeywordButton>
-                        ))}
-                    </KeywordContainer>
+                <div style={{ position: "relative", display: "flex", width: "100%" }}>
+                    <SSearchWrapper ref={dropdownRef}>
+                        <SSearchIcon src={SearchIcon} />
+                        <SSearchInput
+                            type="text"
+                            placeholder="궁금한 점이 있다면 검색해보세요!"
+                            value={searchText}
+                            onChange={handleSearchInputChange}
+                        />
+                    </SSearchWrapper>
+
+                    {isDropdownOpen && searchResults.length > 0 && (
+                        <SDropdown>
+                            {searchResults.map((result, index) => (
+                                <SDropdownItem key={index}>{result.title}</SDropdownItem>
+                            ))}
+                        </SDropdown>
+                    )}
                 </div>
 
                 <div
@@ -266,11 +308,12 @@ const SPageWrapper = styled.div`
         animation: none;
     }
 `
+
 const SPage1 = styled.div`
     display: flex;
     flex-direction: column;
     width: 1200px;
-    padding: 100px 364px 32px 364px;
+    padding: 200px 364px;
     justify-content: center;
     align-items: center;
 `
@@ -369,5 +412,61 @@ const SubTitle = styled.p`
     @media screen and (max-width: 768px) {
         justify-content: left;
         align-items: flex-start;
+    }
+`
+
+const SSearchWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    border: 3px solid var(--2779F4, #2779f4);
+    border-radius: 6px;
+    margin: 48px 0 0 0;
+`
+
+const SSearchIcon = styled.img`
+    width: 28px; // SVG 아이콘 크기에 맞게 조절
+    margin-left: 24px; // 아이콘과 입력란 사이의 간격 조절
+`
+
+const SSearchInput = styled.input`
+    width: 90%;
+    display: flex;
+    max-width: 1200px;
+    height: 72px;
+    flex-shrink: 0;
+    border: none;
+    outline: none;
+    font-size: 18px; // 입력란 텍스트 크기 조절
+    padding-left: 12px; // 텍스트와 왼쪽 여백 조절
+
+    color: var(--whbk-999-sub-txt-01, #000);
+    font-family: Pretendard;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 17px */
+`
+
+const SDropdown = styled.div`
+    position: absolute;
+    width: 1200px;
+    background-color: #fafafa;
+    border-radius: 6px;
+    z-index: 1;
+    top: calc(72px + 59px);
+`
+
+const SDropdownItem = styled.div`
+    padding: 8px 16px;
+    cursor: pointer;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--2779F4, #2779f4);
+        color: #fff;
     }
 `

@@ -15,17 +15,17 @@ const Announcement = () => {
     // 임의의 검색 데이터 배열
     const searchData = ["전자결제 서비스 이용 계약 시 '개인정보 처리 위탁 계약' 추가"]
 
-    // 검색어 입력 시 검색 결과 업데이트
-    useEffect(() => {
-        const filteredResults = searchData.filter((result) => result.includes(searchText))
-        setSearchResults(filteredResults)
-    }, [searchText])
-
     // 검색어 입력 핸들러
     const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value)
         setIsDropdownOpen(true) // 입력할 때 드롭다운 열기
     }
+
+    // 검색어 입력 시 검색 결과 업데이트
+    useEffect(() => {
+        const filteredResults = searchData.filter((result) => result.includes(searchText))
+        setSearchResults(filteredResults)
+    }, [searchText])
 
     useEffect(() => {
         const observer = new IntersectionObserver(
