@@ -64,6 +64,7 @@ const Contract = () => {
                                 </SSubText>
                             </div>
                         </SPage1Front>
+                        <SPage1Img src={require("../../assets/images/image2.png")} />
                     </SGradient>
 
                     <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
@@ -186,11 +187,19 @@ const SPage1BackImg = styled.img`
     width: 1920px;
 `
 
+const SPage1Img = styled.img`
+    display: flex;
+    width: 666x;
+    height: 439px;
+    border-radius: 20px;
+`
+
 const SPage1Front = styled.div`
     position: relative;
     display: flex;
+    margin-left: 120px;
     flex-direction: column;
-    width: 1200px;
+    width: 650px;
     height: 368px;
     z-index: 2;
     @keyframes fadeIn {

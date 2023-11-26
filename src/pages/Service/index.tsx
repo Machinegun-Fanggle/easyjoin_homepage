@@ -68,7 +68,7 @@ const Service = () => {
                         </SPage1Front>
                     </SGradient>
 
-                    <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
+                    <SPage1BackImg src={require("../../assets/images/rectangle-8-bg-gJH.png")} />
                 </div>
             </SPage1Back>
             <SPage2 ref={ref2}>

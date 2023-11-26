@@ -67,7 +67,7 @@ const Homepage = () => {
                         </SPage1Front>
                     </SGradient>
 
-                    <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
+                    <SPage1BackImg src={require("../../assets/images/rectangle-22-bg.png")} />
                 </div>
             </SPage1Back>
 
@@ -138,7 +138,11 @@ const SGradient = styled.div`
     align-items: center;
     justify-content: center;
 
-    background: #15191e; /* 초기 배경 설정 */
+    background: linear-gradient(
+        90deg,
+        #15191e 14.58%,
+        rgba(21, 25, 30, 0) 100%
+    ); /* 초기 배경 설정 */
 `
 
 const SPage1BackImg = styled.img`
