@@ -15,9 +15,9 @@ const Header = () => {
     const dropdownContents = {
         service: (
             <SDropdown>
-                <SDropdownLink to="/announcement">공지사항</SDropdownLink>
-                <SDropdownLink to="/qna">자주묻는 질문</SDropdownLink>
-                <SDropdownLink to="/press">언론보도</SDropdownLink>
+                <SDropdownLink to="/service/announcement">공지사항</SDropdownLink>
+                <SDropdownLink to="/service/qna">자주묻는 질문</SDropdownLink>
+                <SDropdownLink to="/service/press">언론보도</SDropdownLink>
             </SDropdown>
         ),
     }
@@ -25,14 +25,14 @@ const Header = () => {
     useEffect(() => {
         if (
             location.pathname === "/apply-service" ||
-            location.pathname === "/announcement" ||
+            location.pathname === "/service/announcement" ||
             location.pathname === "/inquiry" ||
             location.pathname === "/customer-service" ||
             location.pathname === "/terms-of-use" ||
             location.pathname === "/privacy-policy" ||
-            location.pathname === "/qna" ||
+            location.pathname === "/service/qna" ||
             location.pathname === "/register" ||
-            location.pathname === "/press"
+            location.pathname === "/service/press"
         )
             setIsBgWhite(true)
         else setIsBgWhite(false)
@@ -68,7 +68,7 @@ const Header = () => {
                         >
                             <SLink
                                 isBgWhite={isBgWhite}
-                                to={"announcement"}
+                                to={"/service/announcement"}
                                 activeClassName="active"
                             >
                                 고객 지원
