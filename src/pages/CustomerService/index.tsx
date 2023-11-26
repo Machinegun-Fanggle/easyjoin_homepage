@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import SearchIcon from "../../assets/search-md.svg"
 
-// 이용약관
-const TermsOfUse = () => {
+// 고객센터
+const CustomerService = () => {
     const ref = useRef(null)
     const dropdownRef = useRef<HTMLDivElement | null>(null)
 
@@ -75,14 +75,14 @@ const TermsOfUse = () => {
                     }}
                 >
                     <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
-                        이용약관
+                        고객센터
                     </SMainText>
                 </div>
             </SPage1>
         </SPageWrapper>
     )
 }
-export default TermsOfUse
+export default CustomerService
 
 const SPageWrapper = styled.div`
     display: flex;

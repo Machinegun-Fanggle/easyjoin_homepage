@@ -14,6 +14,9 @@ import { styled } from "styled-components"
 import Header from "~/components/Header"
 import Footer from "~/components/Footer"
 import Inquiry from "./Inquiry"
+import PrivacyPolicy from "./PrivacyPolicy"
+import TermsOfUse from "./TermsOfUse"
+import CustomerService from "./CustomerService"
 // const Main = React.lazy(() => import("./main/index"))
 
 export default function RootRouter() {
@@ -53,6 +56,9 @@ export default function RootRouter() {
                     <Route path={"/qna"} element={<QnA />} />
                     <Route path={"/press"} element={<Press />} />
                     <Route path={"/inquiry"} element={<Inquiry />} />
+                    <Route path={"/privacy-policy"} element={<PrivacyPolicy />} />
+                    <Route path={"/terms-of-use"} element={<TermsOfUse />} />
+                    <Route path={"/customer-service"} element={<CustomerService />} />
                 </Routes>
                 <Footer />
             </SMainWrapper>

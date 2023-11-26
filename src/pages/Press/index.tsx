@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react"
-import "./press.css"
 import styled from "styled-components"
 import SearchIcon from "../../assets/Rectangle 1073.svg"
 

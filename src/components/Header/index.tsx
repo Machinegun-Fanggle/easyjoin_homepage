@@ -73,7 +73,11 @@ const Header = () => {
                             onMouseEnter={() => handleMouseEnter("service")}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <SLink isBgWhite={isBgWhite} to={"register"} activeClassName="active">
+                            <SLink
+                                isBgWhite={isBgWhite}
+                                to={"apply-service"}
+                                activeClassName="active"
+                            >
                                 서비스
                             </SLink>
                             {showDropdown === "service" && dropdownContents.service}
