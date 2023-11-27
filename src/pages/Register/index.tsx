@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
+import DaumPostcode from "react-daum-postcode"
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
+
 import axios from "axios"
 
 interface IRegisterInfo {
@@ -162,6 +165,24 @@ const Register = () => {
         }
     }, [])
 
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
+    const handleAddress = (data: any) => {
+        console.log(data)
+        setRegisterInfo((prevState) => ({
+            ...prevState,
+            companyAddress: data.address,
+        }))
+        handleClose()
+    }
+
     return (
         <SPageWrapper>
             <SPage1>
@@ -201,7 +222,7 @@ const Register = () => {
                             <div style={{ display: "flex", gap: "12px" }}>
                                 <SInput
                                     style={{ width: "100%" }}
-                                    type="text"
+                                    type="number"
                                     name="phone"
                                     value={registerInfo.phone}
                                     onChange={handleInputChange}
@@ -212,7 +233,7 @@ const Register = () => {
                                 </SButton>
                             </div>
                             <SInput
-                                type="text"
+                                type="number"
                                 name="authNumber"
                                 value={registerInfo.groupName}
                                 onChange={handleInputChange}
@@ -278,9 +299,20 @@ const Register = () => {
                                     onChange={handleInputChange}
                                     placeholder="회사주소 입력"
                                 />
-                                <SButton onClick={() => handleGetAuthNumber(registerInfo.phone)}>
-                                    주소 선택
-                                </SButton>
+                                {/* <SButton onClick={() => handleGetAuthNumber(registerInfo.phone)}> */}
+                                <SButton onClick={handleOpen}>주소 선택</SButton>
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    PaperProps={{
+                                        style: {
+                                            width: "70%", // 너비 설정
+                                            height: "80%", // 높이 설정
+                                        },
+                                    }}
+                                >
+                                    <DaumPostcode onComplete={handleAddress} />
+                                </Dialog>
                             </div>
                             <SInput
                                 type="text"
