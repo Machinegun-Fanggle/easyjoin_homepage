@@ -405,6 +405,7 @@ const SPage3Text = styled.div`
     }
 
     @media (max-width: 700px) {
+        opacity: 1;
         animation: none;
         transition: none;
     }
@@ -428,9 +429,9 @@ const SBtnWrapper = styled.div`
     }
 
     @media (max-width: 700px) {
+        opacity: 0;
         animation: none;
-        @media (max-width: 700px) {
-        animation: none;    
+        transition: none;
     }
 `
 
