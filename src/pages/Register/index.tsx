@@ -220,7 +220,7 @@ const Register = () => {
                         <SInputWrapper>
                             <SInputLabel>휴대폰</SInputLabel>
                             <div style={{ display: "flex", gap: "12px" }}>
-                                <SInput
+                                <SNumberInput
                                     style={{ width: "100%" }}
                                     type="number"
                                     name="phone"
@@ -232,7 +232,7 @@ const Register = () => {
                                     인증번호 받기
                                 </SButton>
                             </div>
-                            <SInput
+                            <SNumberInput
                                 type="number"
                                 name="authNumber"
                                 value={registerInfo.groupName}
@@ -307,7 +307,7 @@ const Register = () => {
                                     PaperProps={{
                                         style: {
                                             width: "70%", // 너비 설정
-                                            height: "80%", // 높이 설정
+                                            height: "50%", // 높이 설정
                                         },
                                     }}
                                 >
@@ -475,7 +475,7 @@ const Register = () => {
                         <SInputWrapper>
                             <SInputLabel>직원수</SInputLabel>
                             <SInput
-                                type="text"
+                                type="number"
                                 name="employeeCount"
                                 onChange={handleInputChange}
                                 value={registerInfo.employeeCount}
@@ -613,6 +613,30 @@ const SInputWrapper = styled.div`
 const SInput = styled.input`
     width: 440px;
     max-width: 440px;
+    margin-top: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--grbk-100, #dde1e6);
+    padding: 21px 0 17px 20px;
+
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 18px */
+
+    &:focus {
+        border-color: #2779f4;
+        outline: none;
+    }
+`
+const SNumberInput = styled.input`
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    width: 100%; /* 기존에 고정된 크기 대신 100%로 조정 */
     margin-top: 8px;
     border-radius: 4px;
     border: 1px solid var(--grbk-100, #dde1e6);

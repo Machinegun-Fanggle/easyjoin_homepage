@@ -44,7 +44,7 @@ const Footer = () => {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "flex-start",
-                            width: "90%",
+                            width: "100%",
                             marginTop: "60px 0 0 0",
                         }}
                     >
@@ -56,7 +56,7 @@ const Footer = () => {
                             }}
                         >
                             <STitle style={{ margin: "0 16px 0 0" }}>대표</STitle>이병훈
-                            <STitle>주소</STitle>울산광역시 북구 매곡 1로 15-1, 413호 A37
+                            <STitle>주소</STitle>울산광역시 남구 법대로15 법대로빌딩 4층 401호
                             <STitle>사업자등록번호</STitle>415-86-02577
                         </SFooterInfoWrapper>
                         <SFooterInfoWrapper
@@ -68,7 +68,6 @@ const Footer = () => {
                         >
                             <STitle style={{ margin: "0 16px 0 0" }}>고객센터 대표번호</STitle>
                             1670-2251
-                            <STitle>상담시간</STitle>평일 10 ~ 17시 (점심시간 11:30 ~ 12:30)
                         </SFooterInfoWrapper>
                     </div>
 
