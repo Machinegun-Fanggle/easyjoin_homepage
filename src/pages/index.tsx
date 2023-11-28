@@ -17,6 +17,7 @@ import Inquiry from "./Inquiry"
 import PrivacyPolicy from "./PrivacyPolicy"
 import TermsOfUse from "./TermsOfUse"
 import CustomerService from "./CustomerService"
+import Admin from "./Admin"
 // const Main = React.lazy(() => import("./main/index"))
 
 export default function RootRouter() {
@@ -59,6 +60,7 @@ export default function RootRouter() {
                     <Route path={"/privacy-policy"} element={<PrivacyPolicy />} />
                     <Route path={"/terms-of-use"} element={<TermsOfUse />} />
                     <Route path={"/customer-service"} element={<CustomerService />} />
+                    <Route path={"/admin"} element={<Admin />} />
                 </Routes>
                 <Footer />
             </SMainWrapper>
