@@ -25,9 +25,8 @@ export default function RootRouter() {
         innerWidth: window.innerWidth,
         innerHeight: window.innerHeight,
     })
-    const navigate = useNavigate()
     const current = useLocation().pathname
-
+    const isMainPage = current.includes("/admin")
     useEffect(() => {
         window.addEventListener("resize", () =>
             setWindowDefine({
@@ -62,9 +61,9 @@ export default function RootRouter() {
                     <Route path={"/customer-service"} element={<CustomerService />} />
                     <Route path={"/admin"} element={<Admin />} />
                 </Routes>
-                <Footer />
+                {!isMainPage && <Footer />}
             </SMainWrapper>
-            <Header />
+            {!isMainPage && <Header />}
         </SWrapper>
     )
 }

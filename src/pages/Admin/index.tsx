@@ -6,28 +6,35 @@ import { Link } from "react-router-dom"
 
 // 고객센터
 const Admin = () => {
+    const [isLoginChecked, setIsLoginChecked] = useState(false)
+    const [isIdSaved, setIsIdSaved] = useState(false)
+
     const ref = useRef(null)
-    const dropdownRef = useRef<HTMLDivElement | null>(null)
 
-    // 검색어와 검색 결과 상태 관리
-    const [searchText, setSearchText] = useState("")
-    const [searchResults, setSearchResults] = useState<string[]>([]) // 검색 결과를 담는 배열
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false) // 드롭다운 상태를 관리
-
-    // 임의의 검색 데이터 배열
-    const searchData = ["전자결제 서비스 이용 계약 시 '개인정보 처리 위탁 계약' 추가"]
-
-    // 검색어 입력 핸들러
-    const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchText(e.target.value)
-        setIsDropdownOpen(true) // 입력할 때 드롭다운 열기
+    const handleCheckboxChange = (e: any) => {
+        const { name, checked } = e.target
+        if (name === "로그인유지") {
+            setIsLoginChecked(checked)
+        } else if (name === "아이디저장") {
+            setIsIdSaved(checked)
+        }
     }
 
-    // 검색어 입력 시 검색 결과 업데이트
-    useEffect(() => {
-        const filteredResults = searchData.filter((result) => result.includes(searchText))
-        setSearchResults(filteredResults)
-    }, [searchText])
+    // 비밀번호 가시성 상태 관리
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const [userId, setUserId] = useState("")
+
+    // 비밀번호 가시성 토글 함수
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible)
+    }
+
+    const handleLogin = () => {
+        if (isIdSaved) {
+            localStorage.setItem("userId", userId)
+        }
+        // 로그인 로직 (서버에 요청 등) 추가...
+    }
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -49,36 +56,34 @@ const Admin = () => {
         }
     }, [])
 
-    // 문서 전체에 클릭 이벤트 핸들러 추가
-    useEffect(() => {
-        const handleDocumentClick = (e: MouseEvent) => {
-            if (dropdownRef?.current && !dropdownRef.current.contains(e.target as Node)) {
-                setIsDropdownOpen(false) // 드롭다운 외부를 클릭하면 닫기
-            }
-        }
-
-        document.addEventListener("click", handleDocumentClick)
-
-        // 컴포넌트가 언마운트될 때 클릭 이벤트 핸들러 제거
-        return () => {
-            document.removeEventListener("click", handleDocumentClick)
-        }
-    }, [])
-
     return (
         <SPageWrapper ref={ref}>
             <SPage1>
-                <div style={{ display: "flex" }}>
-                    <div style={{ display: "flex", width: "1200px", background: "red" }}>dd</div>
+                <div style={{ display: "flex", width: "100vw" }}>
+                    <img
+                        src={require("../../assets/Rectangle 2338.svg").default}
+                        style={{ width: "auto", height: "100vh", objectFit: "contain" }}
+                    />
+
                     <div
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: "calc(100vw - 1200px)",
+                            width: "100%",
                             height: "100vh",
                         }}
                     >
-                        <SLogo>ddd</SLogo>
+                        <SLogo>
+                            <img
+                                src={require("../../assets/Easy Join.svg").default}
+                                style={{
+                                    width: "auto",
+                                    height: "30px",
+                                    objectFit: "contain",
+                                    marginRight: "40px",
+                                }}
+                            />
+                        </SLogo>
                         <div
                             style={{
                                 display: "flex",
@@ -90,12 +95,72 @@ const Admin = () => {
                         >
                             <STitle>이지조인 관리자</STitle>
                             <SBorder>
-                                <SInput></SInput>
-                                <SInput></SInput>
-                                <div></div>
-                                <SButton to={"/"}>로그인</SButton>
+                                <SInput
+                                    value={userId}
+                                    onChange={(e) => setUserId(e.target.value)}
+                                    placeholder="아이디 입력"
+                                />
+                                <SPasswordInputWrapper>
+                                    <SInput type={isPasswordVisible ? "text" : "password"} />
+                                    <SIconButton onClick={togglePasswordVisibility}>
+                                        <img
+                                            src={
+                                                isPasswordVisible
+                                                    ? require("../../assets/eye blue.svg").default
+                                                    : require("../../assets/eye.svg").default
+                                            }
+                                            alt="비밀번호 보기"
+                                            height={20}
+                                        />
+                                    </SIconButton>
+                                </SPasswordInputWrapper>{" "}
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        padding: "21px 0 17px 0px",
+                                        width: "440px",
+                                    }}
+                                >
+                                    <label
+                                        key={"로그인유지"}
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            marginRight: "24px",
+                                        }}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            name={"로그인유지"}
+                                            checked={isLoginChecked}
+                                            onChange={handleCheckboxChange}
+                                            style={{ marginRight: "10px" }}
+                                        />
+                                        로그인 유지
+                                    </label>
+                                    <label
+                                        key={"아이디저장"}
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                        }}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            name={"아이디저장"}
+                                            checked={isIdSaved}
+                                            onChange={handleCheckboxChange}
+                                            style={{ marginRight: "10px" }}
+                                        />
+                                        아이디 저장
+                                    </label>
+                                </div>
+                                <SButton to={"/"} onClick={handleLogin}>
+                                    로그인
+                                </SButton>
                             </SBorder>
-                            <SLink to="/admin/main">웹사이트 바로가기</SLink>
+                            <SLink to="/">웹사이트 바로가기</SLink>
                         </div>
                     </div>
                 </div>
@@ -151,15 +216,16 @@ const SBorder = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 540px;
-    height: 416px;
     flex-shrink: 0;
     border-radius: 16px;
     border: 1px solid #eee;
+    margin: 60px 0 0 0;
 `
 
 const SInput = styled.input`
     display: flex;
     width: 440px;
+    margin: 50px 0 0 0;
     padding: 21px 0px;
     align-items: center;
     gap: 4px;
@@ -169,12 +235,14 @@ const SInput = styled.input`
     box-shadow: none; // 기본 박스 그림자 제거
     -webkit-appearance: none; // 크롬, 사파리 등 웹킷 기반 브라우저의 기본 스타일 제거
     -moz-appearance: none; // 파이어폭스의 기본 스타일 제거
+    background: #fff;
 `
 
 const SButton = styled(Link)`
     display: flex;
     width: 440px;
     padding: 27px 0px;
+    margin: 40px 0 50px 0;
     justify-content: center;
     align-items: center;
     gap: 4px;
@@ -182,16 +250,51 @@ const SButton = styled(Link)`
     border-radius: 4px;
     border: 1px solid var(--grbk-200, #c1c7cd);
     background: var(--grbk-100, #dde1e6);
+    text-decoration: none; // 기본 상태에서 밑줄 제거
+    color: var(--grbk-400, #878d96);
+    /* Pretendard/R/18 */
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 18px */
+    background: #fff;
 `
 
 const SLogo = styled.div`
     display: flex;
     height: 75px;
     width: 100%;
-    background: blue;
+    justify-content: right;
+    align-items: center;
 `
 
 const SLink = styled(Link)`
     display: flex;
     margin-top: 80px;
+    color: var(--000, #000);
+
+    /* Pretendard/R/15 */
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 15px */
+    text-decoration: none; // 기본 상태에서 밑줄 제거
+`
+const SPasswordInputWrapper = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 440px;
+`
+
+// 비밀번호 보기 버튼
+const SIconButton = styled.button`
+    position: absolute;
+    border: none;
+    right: 0;
+    bottom: 20px;
+    background: none;
+    cursor: pointer;
 `
