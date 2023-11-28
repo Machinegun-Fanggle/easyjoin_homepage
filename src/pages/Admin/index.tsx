@@ -95,7 +95,7 @@ const Admin = () => {
                                 <div></div>
                                 <SButton to={"/"}>로그인</SButton>
                             </SBorder>
-                            <div>웹사이트 바로가기</div>
+                            <SLink to="/admin/main">웹사이트 바로가기</SLink>
                         </div>
                     </div>
                 </div>
@@ -189,4 +189,9 @@ const SLogo = styled.div`
     height: 75px;
     width: 100%;
     background: blue;
+`
+
+const SLink = styled(Link)`
+    display: flex;
+    margin-top: 80px;
 `
