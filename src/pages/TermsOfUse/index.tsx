@@ -103,6 +103,7 @@ const TermsOfUse = () => {
                             개인정보처리방침
                         </Tab>
                     </TabsContainer>
+                    <SImage src={require("~/assets/images/이용약관.png")} />
                 </div>
             </SPage1>
         </SPageWrapper>
@@ -191,4 +192,10 @@ const H2 = styled.p`
     white-space: pre-wrap; // 줄바꿈은 유지하되, 필요한 경우 자동으로 줄바꿈을 추가합니다.
     word-wrap: break-word; // 긴 단어가 있을 경우 자동으로 단어를 줄바꿈합니다.
     overflow-wrap: break-word; // 내용이 너무 길 경우 컨테이너 밖으로 넘어가지 않도록 줄바꿈합니다.
+`
+
+const SImage = styled.img`
+    margin: 100px 0 0 0;
+    width: 100%;
+    height: 100%;
 `
