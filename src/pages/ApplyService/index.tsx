@@ -247,7 +247,7 @@ const SBorderSubText = styled.div`
 
 const SBorderBtn = styled(Link)`
     display: inline-flex;
-    width: 400px;
+    width: 500px;
     padding: 20px 32px;
     margin: 0 96px 0 0;
     justify-content: center;
