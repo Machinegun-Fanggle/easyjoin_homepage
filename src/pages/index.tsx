@@ -17,6 +17,7 @@ import Inquiry from "./Inquiry"
 import PrivacyPolicy from "./PrivacyPolicy"
 import TermsOfUse from "./TermsOfUse"
 import CustomerService from "./CustomerService"
+import Admin from "./Admin"
 // const Main = React.lazy(() => import("./main/index"))
 
 export default function RootRouter() {
@@ -24,9 +25,8 @@ export default function RootRouter() {
         innerWidth: window.innerWidth,
         innerHeight: window.innerHeight,
     })
-    const navigate = useNavigate()
     const current = useLocation().pathname
-
+    const isMainPage = current.includes("/admin")
     useEffect(() => {
         window.addEventListener("resize", () =>
             setWindowDefine({
@@ -59,10 +59,11 @@ export default function RootRouter() {
                     <Route path={"/privacy-policy"} element={<PrivacyPolicy />} />
                     <Route path={"/terms-of-use"} element={<TermsOfUse />} />
                     <Route path={"/customer-service"} element={<CustomerService />} />
+                    <Route path={"/admin"} element={<Admin />} />
                 </Routes>
-                <Footer />
+                {!isMainPage && <Footer />}
             </SMainWrapper>
-            <Header />
+            {!isMainPage && <Header />}
         </SWrapper>
     )
 }
