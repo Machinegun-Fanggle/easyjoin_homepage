@@ -1,5 +1,6 @@
 // 리액트 메인 컴포넌트
 import React, { useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 // 메인 컴포넌트 함수
@@ -51,19 +52,16 @@ const Homepage = () => {
                 >
                     <SGradient>
                         <SPage1Front>
-                            <SSmallText>이지조인 서비스</SSmallText>
-                            <SMainText>
-                                분양현장에 특화된
-                                <br />
-                                홈페이지 제작{" "}
-                            </SMainText>
+                            <SSmallText>이지조인</SSmallText>
+                            <SMainText>홈페이지 제작 서비스</SMainText>
                             <div>
                                 <SSubText>
-                                    현장상황에 맞추어 간편하고 쉽게 관리하고
-                                    <br />
-                                    맞춤형 마케팅 할 수 있도록 지원합니다.
+                                    접속 통계자료의 자동수집, 분석을 통한 체계적인 마케팅 관리가
+                                    <br /> 가능한 분양 현장에 특화된 맞춤형 홈페이지를
+                                    제작해드립니다.
                                 </SSubText>
                             </div>
+                            <SPage1Btn to="/">홈페이지 제작 신청</SPage1Btn>
                         </SPage1Front>
                     </SGradient>
 
@@ -267,4 +265,32 @@ const SPage3Img = styled.img`
     width: 1200px;
     height: 936px;
     border-radius: 20px;
+`
+
+const SPage1Btn = styled(Link)`
+    display: inline-flex;
+    width: 306px;
+    height: 60px;
+    padding: 0px 20px 4px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+
+    border-radius: 8px;
+    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
+
+    /* s1 */
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 38.4px */
+
+    margin: 60px 0 0 0;
+    color: var(--whfff, #fff);
+    text-decoration: none;
 `

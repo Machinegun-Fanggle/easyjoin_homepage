@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import SearchIcon from "../../assets/search-md.svg"
-import { SEditButton } from "../../styles/common"
 import { Link } from "react-router-dom"
 
 // 고객센터
@@ -156,7 +154,7 @@ const Admin = () => {
                                         아이디 저장
                                     </label>
                                 </div>
-                                <SButton to={"/"} onClick={handleLogin}>
+                                <SButton to={"/admin/dashboard"} onClick={handleLogin}>
                                     로그인
                                 </SButton>
                             </SBorder>
@@ -259,6 +257,11 @@ const SButton = styled(Link)`
     font-weight: 400;
     line-height: 100%; /* 18px */
     background: #fff;
+
+    &:hover {
+        background: #2779f4; // 호버 상태에서의 색상
+        color: #fff;
+    }
 `
 
 const SLogo = styled.div`

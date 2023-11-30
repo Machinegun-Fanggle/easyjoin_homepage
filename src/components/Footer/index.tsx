@@ -68,8 +68,17 @@ const Footer = () => {
                         >
                             <STitle style={{ margin: "0 16px 0 0" }}>고객센터 대표번호</STitle>
                             1670-2251
+                            <Link
+                                to="/admin"
+                                style={{
+                                    margin: "0 0 0 20px",
+                                    color: "#595959",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                [관리자 로그인]
+                            </Link>
                         </SFooterInfoWrapper>
-                        <Link to="/admin">관리자</Link>
                     </div>
 
                     <SFooterEndText>© 2023 EasyJoin INC. All rights reserved.</SFooterEndText>

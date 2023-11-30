@@ -1,8 +1,8 @@
-// 리액트 메인 컴포넌트
 import React, { useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-// 메인 컴포넌트 함수
+// 전자계약
 const Contract = () => {
     const ref = useRef(null)
     const ref2 = useRef(null)
@@ -51,7 +51,7 @@ const Contract = () => {
                 >
                     <SGradient>
                         <SPage1Front>
-                            <SSmallText>이지조인 서비스</SSmallText>
+                            <SSmallText>이지조인</SSmallText>
                             <SMainText>
                                 5분만에 끝나는 <br />
                                 쉽고 간단한 전자계약
@@ -63,6 +63,7 @@ const Contract = () => {
                                     쉽고 간단하게 완료 됩니다.
                                 </SSubText>
                             </div>
+                            <SPage1Btn to="/">전자계약 솔루션 서비스 신청</SPage1Btn>
                         </SPage1Front>
                         <SPage1Img src={require("../../assets/images/image2.png")} />
                     </SGradient>
@@ -72,10 +73,47 @@ const Contract = () => {
             </SPage1Back>
             <SPage2 ref={ref}>
                 <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
-                    계약과정
+                    이지조인 전자계약 솔루션
                 </SMainText>
-                <SPage2Img src={require("../../assets/Group 538.svg").default} />
+                <SSubText
+                    style={{
+                        color: "#000",
+                        fontSize: "22px",
+                    }}
+                >
+                    복잡한 분양계약절차를 간소화하여 분양계약 성공률을 높여드립니다.
+                </SSubText>
+                <SPage2Img src={require("../../assets/Group 555.svg").default} />
+                <SPage2Img
+                    src={require("../../assets/Group 556.svg").default}
+                    style={{ margin: "30px 0 0 0" }}
+                />
             </SPage2>
+
+            <SPage3_ ref={ref3}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    쉽고 빠른 이지조인 전자계약
+                </SMainText>
+
+                <SPage3Img src={require("../../assets/Group 557.svg").default} />
+            </SPage3_>
+
+            <SPage3 ref={ref3}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    도입효과
+                </SMainText>
+                <SSubText
+                    style={{
+                        color: "#000",
+                        fontSize: "22px",
+                        textAlign: "center",
+                        width: "747px",
+                    }}
+                >
+                    전자계약은 종이문서와 같은 법적효력을 가집니다
+                </SSubText>
+                <SPage3Img src={require("../../assets/Frame 966.svg").default} width={1200} />
+            </SPage3>
 
             <SPage3 ref={ref3}>
                 <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
@@ -103,7 +141,7 @@ const Contract = () => {
                 >
                     <SLeftBorderText>신탁사 업무 연계</SLeftBorderText>
                 </div>
-                <SPage3_2Img src={require("../../assets/Group 540.svg").default} />
+                <SPage3_2Img src={require("../../assets/Group 559.svg").default} />
             </SPage3>
 
             <SPage4 ref={ref4}>
@@ -125,7 +163,7 @@ const Contract = () => {
 
             <SPage5 ref={ref5}>
                 <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
-                    맞춤서식 제공
+                    다양한 단체가입 적용 가능{" "}
                 </SMainText>
                 <SSubText
                     style={{
@@ -135,11 +173,10 @@ const Contract = () => {
                         width: "747px",
                     }}
                 >
-                    분양 현장에서 쓰는 회원가입계약서 및 각종 동의서 등의 관련 문서를 전자 계약
-                    <br />
-                    체결에 최적화된 디자인으로 현장별 맞춤 서식을 제공합니다
+                    이지조인은 부동산 관련 계약에 특화되어 있으며 <br />
+                    회원의 가입계약이 필요한 곳이라면 모두 사용 가능합니다.
                 </SSubText>
-                <SPage5Img src={require("../../assets/Group 542.svg").default} />
+                <SPage5Img src={require("../../assets/Group 558.svg").default} />
             </SPage5>
         </SPageWrapper>
     )
@@ -251,9 +288,9 @@ const SPage2 = styled.div`
     flex-direction: column;
     width: 1200px;
     padding: 220px 360px;
-    justify-content: center;
-    align-items: center;
-    background: var(--grbk-50, #f2f4f8);
+    // justify-content: center;
+    // align-items: center;
+    // background: var(--grbk-50, #f2f4f8);
     opacity: 0;
     transition: opacity 1s;
 
@@ -276,6 +313,29 @@ const SPage2Img = styled.img`
     border-radius: 20px;
 `
 
+const SPage3_ = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    padding: 220px 362px 220px 362px;
+    justify-content: center;
+    align-items: center;
+    background: var(--grbk-50, #f2f4f8);
+
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.animate {
+        opacity: 1;
+    }
+
+    @media (max-width: 700px) {
+        opacity: 1;
+        animation: none;
+        transition: none;
+    }
+`
+
 const SPage3 = styled.div`
     display: flex;
     flex-direction: column;
@@ -283,6 +343,7 @@ const SPage3 = styled.div`
     padding: 220px 362px 0 362px;
     justify-content: center;
     align-items: center;
+    // background: var(--grbk-50, #f2f4f8);
 
     opacity: 0;
     transition: opacity 1s;
@@ -302,7 +363,6 @@ const SPage3Img = styled.img`
     display: flex;
     margin: 63px 0 0 0;
     width: 1200px;
-    height: 560px;
     border-radius: 20px;
 `
 
@@ -391,4 +451,32 @@ const SPage5Img = styled.img`
     width: 1200px;
     height: 429px;
     border-radius: 20px;
+`
+
+const SPage1Btn = styled(Link)`
+    display: inline-flex;
+    width: 306px;
+    height: 60px;
+    padding: 0px 20px 4px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+
+    border-radius: 8px;
+    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
+
+    /* s1 */
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 38.4px */
+
+    margin: 60px 0 0 0;
+    color: var(--whfff, #fff);
+    text-decoration: none;
 `

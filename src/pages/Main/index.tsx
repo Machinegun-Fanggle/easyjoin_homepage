@@ -1,6 +1,6 @@
 // 리액트 메인 컴포넌트
 import React, { useEffect, useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 // 메인 컴포넌트 함수
@@ -9,11 +9,19 @@ const Main = () => {
     const ref2 = useRef(null)
     const ref3 = useRef(null)
 
+    const navigate = useNavigate()
+
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
             behavior: "smooth", // 부드러운 스크롤 효과
         })
+    }
+
+    // 서비스에 따른 등록 페이지로 이동하는 함수
+    const handleRegister = (serviceType: string) => {
+        scrollToTop()
+        navigate(`/register?service=${serviceType}`)
     }
 
     useEffect(() => {
@@ -53,21 +61,16 @@ const Main = () => {
                 >
                     <SGradient>
                         <SPage1Front>
-                            <SMainText>
-                                성공분양을 위한
-                                <br />
-                                분양계약 전용 전자계약 솔루션
-                            </SMainText>
+                            <SMainText>이지조인 서비스</SMainText>
                             <div>
                                 <SSubText>
-                                    부동산 개발 주체 및 각 단체가 회원을 더 쉽게 모집하고
+                                    이지조인은 성공적인 부동산 개발 사업을 위해
                                     <br />
-                                    다양한 단체의 가입 계약을 전자계약으로 체결하고 관리하는
+                                    전자계약솔루션 / 부동산개발컨설팅 / 홈페이지 제작 등
                                     <br />
+                                    종합 서비스를 제공하고 있습니다.
                                 </SSubText>
-                                <SSubText style={{ color: "#2779F4", margin: "0" }}>
-                                    부동산 통합 전자계약 솔루션
-                                </SSubText>
+
                                 {/* <SButton>도입문의</SButton> */}
                             </div>
                         </SPage1Front>
@@ -92,46 +95,130 @@ const Main = () => {
                 </SSubText>
 
                 <SPage2Img src={require("../../assets/Rectangle 8.svg").default} />
-
-                <SPage2Border>
-                    <SBorderLeft>
-                        <SBorderImg src={require("../../assets/images/contract-3-1-wPB.png")} />
-                        <STextWarpper>
-                            <SBorderMainText>
-                                부동산 개발 컨설팅 어렵게 느껴지시나요?
-                            </SBorderMainText>
-                            <SBorderSubText>이지조인에서 쉽게 진행하세요!</SBorderSubText>
-                        </STextWarpper>
-                    </SBorderLeft>
-
-                    <SBorderBtn to={"/inquiry"} onClick={scrollToTop}>
-                        이지조인에 의뢰하기
-                        <SArrowRight src={require("~/assets/arrow-right.svg").default} />
-                    </SBorderBtn>
-                </SPage2Border>
             </SPage2>
 
-            <SPage3>
-                <SPage3Text ref={ref2}>
-                    가장 쉽고 빠른
-                    <br />
+            <SPage3 ref={ref2}>
+                <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
+                    이지조인 서비스
+                </SMainText>
+
+                <div style={{ display: "flex", margin: "80px 0 0 0" }}>
                     <div style={{ display: "flex" }}>
-                        부동산 전자계약 솔루션{" "}
-                        <div style={{ color: "#2779F4", margin: "0 0 0 10px" }}>이지조인</div>
+                        <img
+                            src={require("../../assets/Rectangle 5.svg").default}
+                            width={560}
+                            height={300}
+                        />
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                margin: "39px 0px 38px 68px",
+                            }}
+                        >
+                            <SPage3Title>이지조인 전자계약 솔루션</SPage3Title>
+                            <SPage3Text>
+                                분양현장에서 복잡하고 번거로운 분양계약을
+                                <br />
+                                스마트폰 본인인증으로 간편하게 전자계약으로 체결하고
+                                <br />
+                                관리하는 전자계약 솔루션
+                            </SPage3Text>
+                            <div style={{ display: "flex", gap: "10px", margin: "32px 0 0 0" }}>
+                                <SBlueBtn
+                                    onClick={() => {
+                                        scrollToTop()
+                                        navigate("/contract")
+                                    }}
+                                >
+                                    전자계약 솔루션 서비스 안내
+                                </SBlueBtn>
+                                <SWhiteBtn onClick={() => handleRegister("전자계약 솔루션")}>
+                                    전자계약 솔루션 서비스 신청
+                                </SWhiteBtn>
+                            </div>
+                        </div>
                     </div>
-                </SPage3Text>
-                <SBtnWrapper ref={ref3}>
-                    <SPage3Btn onClick={scrollToTop} to={"/register"}>
-                        서비스 신청하기
-                    </SPage3Btn>
-                    <SPage3Btn
-                        onClick={scrollToTop}
-                        to={"/inquiry"}
-                        style={{ background: "#fff", color: "#000" }}
-                    >
-                        도입문의
-                    </SPage3Btn>
-                </SBtnWrapper>
+                </div>
+
+                <div style={{ display: "flex", margin: "80px 0 0 0" }}>
+                    <div style={{ display: "flex" }}>
+                        <img
+                            src={require("../../assets/Rectangle 7.svg").default}
+                            width={560}
+                            height={300}
+                        />
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                margin: "39px 0px 38px 68px",
+                            }}
+                        >
+                            <SPage3Title>부동산 개발 컨설팅</SPage3Title>
+                            <SBoldText>성공적인 사업을 위한 부동산개발 종합컨설팅</SBoldText>
+                            <SPage3Text>
+                                이지조인은 사업기획, 투자유치, 금융컨설팅, 준공 후 관리업무까지
+                                <br />
+                                종합컨설팅서비스를 제공합니다.
+                            </SPage3Text>
+                            <div style={{ display: "flex", gap: "10px", margin: "32px 0 0 0" }}>
+                                <SBlueBtn
+                                    onClick={() => {
+                                        scrollToTop()
+                                        navigate("/consulting")
+                                    }}
+                                >
+                                    부동산개발 컨설팅 서비스 안내
+                                </SBlueBtn>
+                                <SWhiteBtn onClick={() => handleRegister("부동산 개발 컨설팅")}>
+                                    부동산개발 컨설팅 서비스 신청
+                                </SWhiteBtn>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ display: "flex", margin: "80px 0 0 0" }}>
+                    <div style={{ display: "flex" }}>
+                        <img
+                            src={require("../../assets/Rectangle 6.svg").default}
+                            width={560}
+                            height={300}
+                        />
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                margin: "39px 0px 38px 68px",
+                            }}
+                        >
+                            <SPage3Title>홈페이지 제작</SPage3Title>
+                            <SPage3Text>
+                                분양 현장에 특화된 홈페이지를 반응형 웹 환경으로 제작
+                            </SPage3Text>
+                            <SPage3Text style={{ margin: 0 }}>
+                                분양 현장에 필요한 기능들을 탑재한 홈페이지 제작
+                            </SPage3Text>
+                            <SPage3Text style={{ margin: 0 }}>
+                                서비스 기간동안 홈페이지 디자인 수정 및 도메인 무상 제공
+                            </SPage3Text>
+                            <div style={{ display: "flex", gap: "10px", margin: "32px 0 0 0" }}>
+                                <SBlueBtn
+                                    onClick={() => {
+                                        scrollToTop()
+                                        navigate("/homepage")
+                                    }}
+                                >
+                                    홈페이지 제작 서비스 안내
+                                </SBlueBtn>
+                                <SWhiteBtn onClick={() => handleRegister("홈페이지 제작")}>
+                                    홈페이지 제작 서비스 신청
+                                </SWhiteBtn>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </SPage3>
         </SPageWrapper>
     )
@@ -146,6 +233,7 @@ const SPageWrapper = styled.div`
     overflow-x: hidden;
     align-items: center;
     justify-content: center;
+    margin: 0 0 200px 0;
 `
 
 const SPage1Back = styled.div`
@@ -293,134 +381,13 @@ const SPage2Img = styled.img`
     border-radius: 20px;
 `
 
-const SPage2Border = styled.div`
-    display: flex;
-    margin: 60px 0 0 0;
-    width: 100%;
-    height: 160px;
-    border-radius: 12px;
-    background: var(--grbk-50, #f2f4f8);
-    justify-content: space-between;
-    align-items: center;
-    color: var(--FFFFFF, #fff);
-    font-family: Pretendard;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-`
-
-const SBorderLeft = styled.div`
-    display: flex;
-    width: 100%;
-    padding: 44px 96px 44px 62px;
-    justify-content: left;
-    align-items: center;
-`
-
-const SBorderImg = styled.img`
-    display: flex;
-    width: 63px;
-    height: 72px;
-`
-
-const STextWarpper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 0 12px;
-`
-
-const SBorderMainText = styled.div`
-    color: var(--0858F7, #0858f7);
-    font-family: Pretendard;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    opacity: 0.6;
-`
-
-const SBorderSubText = styled.div`
-    color: var(--0858F7, #0858f7);
-    font-family: Pretendard;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 8px 0 0 0;
-`
-
-const SBorderBtn = styled(Link)`
-    color: var(--whfff, #fff);
-    display: inline-flex;
-    width: 500px;
-    padding: 20px 32px;
-    margin: 0 96px 0 0;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 4px;
-    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
-    cursor: pointer;
-    text-decoration: none; // 기본 상태에서 밑줄 제거
-`
-
-const SArrowRight = styled.img`
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-
-    border-left: 8px solid #fff;
-`
-
 const SPage3 = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 400px;
-    justify-content: center;
-    align-items: center;
-    background: var(--grbk-900, #15191e);
-`
+    width: 1200px;
+    // justify-content: center;
+    // align-items: center;
 
-const SPage3Text = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    color: var(--whfff, #fff);
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%; /* 56px */
-    align-items: center;
-
-    opacity: 0;
-    transition: opacity 1s;
-
-    &.animate {
-        opacity: 1;
-    }
-
-    @media (max-width: 700px) {
-        opacity: 1;
-        animation: none;
-        transition: none;
-    }
-`
-
-const SBtnWrapper = styled.div`
-    display: flex;
-    margin: 60px 0 0 0;
-    color: var(--2779F4, #2779f4);
-    font-family: Pretendard;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%;
-    gap: 24px;
     opacity: 0;
     // transition: opacity 1s;
 
@@ -429,28 +396,79 @@ const SBtnWrapper = styled.div`
     }
 
     @media (max-width: 700px) {
-        opacity: 0;
         animation: none;
         transition: none;
     }
 `
 
-const SPage3Btn = styled(Link)`
+const SPage3Title = styled.div`
+    color: #000;
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 44.8px */
+`
+
+const SPage3Text = styled.li`
+    color: #000;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 28.8px */
+
+    margin: 16px 0 0 0;
+`
+const SBlueBtn = styled.div`
     display: flex;
-    width: 304px;
-    height: 63px;
-    padding: 0px 4px 4px 4px;
+    padding: 16px 20px;
     justify-content: center;
     align-items: center;
     gap: 4px;
-    border-radius: 8px;
-    border: 1px solid var(--whfff, #fff);
-    cursor: pointer;
-    color: var(--whfff, #fff);
+
+    border-radius: 4px;
+    background: var(--0858F7, #0858f7);
+
+    color: #fff;
+    leading-trim: both;
+    text-edge: cap;
     font-family: Pretendard;
-    font-size: 24px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 160%; /* 38.4px */
-    text-decoration: none; // 기본 상태에서 밑줄 제거
+    font-weight: 400;
+    line-height: 100%; /* 16px */
+
+    cursor: pointer;
+`
+
+const SWhiteBtn = styled.div`
+    display: flex;
+    padding: 16px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    border-radius: 4px;
+    border: 1px solid var(--0858F7, #0858f7);
+
+    color: var(--0858F7, #0858f7);
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 16px */
+
+    cursor: pointer;
+`
+
+const SBoldText = styled.div`
+    color: #000;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%; /* 28.8px */
 `

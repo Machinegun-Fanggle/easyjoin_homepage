@@ -2,108 +2,34 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link, NavLink, useLocation } from "react-router-dom"
 
-const Header = () => {
-    const [isBgWhite, setIsBgWhite] = useState(false)
+const AdminHeader = () => {
     const location = useLocation()
-
-    const [showDropdown, setShowDropdown] = useState<string | null>(null)
-
-    const handleMouseEnter = (linkName: string) => setShowDropdown(linkName)
-
-    const handleMouseLeave = () => setShowDropdown(null)
-
-    const dropdownContents = {
-        support: (
-            <SDropdown>
-                <SDropdownLink to="/announcement">공지사항</SDropdownLink>
-                <SDropdownLink to="/qna">자주하는 질문</SDropdownLink>
-                <SDropdownLink to="/press">언론보도</SDropdownLink>
-            </SDropdown>
-        ),
-        service: (
-            <SDropdown>
-                <SDropdownLink to="/register">서비스 신청</SDropdownLink>
-                <SDropdownLink to="/inquiry">도입문의</SDropdownLink>
-            </SDropdown>
-        ),
-    }
-
-    useEffect(() => {
-        if (
-            location.pathname === "/service" ||
-            location.pathname === "/announcement" ||
-            location.pathname === "/inquiry" ||
-            location.pathname === "/customer-service" ||
-            location.pathname === "/terms-of-use" ||
-            location.pathname === "/privacy-policy" ||
-            location.pathname === "/qna" ||
-            location.pathname === "/register" ||
-            location.pathname === "/press"
-        )
-            setIsBgWhite(true)
-        else setIsBgWhite(false)
-    }, [location])
 
     return (
         <SHeader>
-            <SInnerHeader>
-                <SLogoLink to={"/"}>
-                    <img src={require("~/assets/images/logo-2vR.png")} width={150} height={30} />
-                </SLogoLink>
-
-                <SNavigation>
-                    <SLinkWrapper>
-                        <SLink isBgWhite={isBgWhite} to={"contract"} activeClassName="active">
-                            전자계약
-                        </SLink>
-                        <SLink isBgWhite={isBgWhite} to={"homepage"} activeClassName="active">
-                            홈페이지 제작
-                        </SLink>
-                        <SLink isBgWhite={isBgWhite} to={"consulting"} activeClassName="active">
-                            부동산 개발 컨설팅
-                        </SLink>
-                        <SLink isBgWhite={isBgWhite} to={"service"} activeClassName="active">
-                            서비스 신청
-                        </SLink>
-
-                        <SLinkContainer
-                            onMouseEnter={() => handleMouseEnter("support")}
-                            onMouseLeave={handleMouseLeave}
-                        >
-                            <SLink
-                                isBgWhite={isBgWhite}
-                                to={"/announcement"}
-                                activeClassName="active"
-                            >
-                                고객 지원
-                            </SLink>
-                            {showDropdown === "support" && dropdownContents.support}
-                        </SLinkContainer>
-                    </SLinkWrapper>
-                    <SBtnWrapper>
-                        {/* <SBtn1>로그인</SBtn1> */}
-                        <SBtn2 to={"/inquiry"}>도입문의</SBtn2>
-                    </SBtnWrapper>
-                </SNavigation>
-            </SInnerHeader>
+            <SLogoLink to={"/"}>
+                <img src={require("~/assets/images/logo-2vR.png")} width={132} />
+            </SLogoLink>
+            <SInnerHeader></SInnerHeader>
         </SHeader>
     )
 }
 
-export default Header
+export default AdminHeader
 
 const SHeader = styled.div`
     // position: fixed; // 위에 고정할 경우 배경색 떄문에 화면에 글자가 안보임. 어떻게 처리할지 유책님과 논의 필요
     display: flex;
-    width: 100%;
+    width: 1920px;
     height: 80px;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 80px 0 29px;
     align-items: center;
+    background: #15191e;
 `
 
 const SInnerHeader = styled.div`
     display: flex;
-    width: 1200px;
     justify-content: space-between;
     align-items: center;
 `

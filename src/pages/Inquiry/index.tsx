@@ -83,40 +83,7 @@ const Inquiry = () => {
     return (
         <SPageWrapper>
             <SPage1>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        width: "1200px",
-                    }}
-                >
-                    <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
-                        도입문의
-                    </SMainText>
-                    <SSubText>상담 문의를 남겨주시면 확인후 빠르게 연락드리겠습니다.</SSubText>
-                </div>
-
-                <SPage1Border>
-                    <SBorderLeft>
-                        <SBorderImg src={require("../../assets/images/contract-3-1-wPB.png")} />
-                        <STextWarpper>
-                            <SBorderMainText>
-                                부동산 개발 컨설팅 어렵게 느껴지시나요?
-                            </SBorderMainText>
-                            <SBorderSubText>이지조인에서 쉽게 진행하세요!</SBorderSubText>
-                        </STextWarpper>
-                    </SBorderLeft>
-
-                    <SBorderBtn to="/register">
-                        이지조인 서비스 신청하기
-                        <SArrowRight src={require("~/assets/images/arrow-right-cwP.png")} />
-                    </SBorderBtn>
-                </SPage1Border>
-            </SPage1>
-
-            <SPage2>
-                <SPage2Text>서비스 도입 문의</SPage2Text>
+                <SPage2Text>문의하기</SPage2Text>
                 <div
                     style={{
                         width: "1200px",
@@ -177,7 +144,7 @@ const Inquiry = () => {
                         </SFormWrapper>
                     </div>
                 </SForm>
-            </SPage2>
+            </SPage1>
         </SPageWrapper>
     )
 }

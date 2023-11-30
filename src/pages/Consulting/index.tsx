@@ -1,5 +1,6 @@
 // 리액트 메인 컴포넌트
 import React, { useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 // 메인 컴포넌트 함수
@@ -51,7 +52,7 @@ const Consulting = () => {
                 >
                     <SGradient>
                         <SPage1Front>
-                            <SSmallText>이지조인 서비스</SSmallText>
+                            <SSmallText>이지조인</SSmallText>
                             <SMainText>
                                 개발 기획부터 준공까지 <br />
                                 맞춤형 부동산 개발 컨설팅{" "}
@@ -62,11 +63,11 @@ const Consulting = () => {
                                     <br />팅 서비스를 제공합니다.
                                 </SSubText>
                             </div>
+                            <SPage1Btn to="/">부동산개발 컨설팅 서비스 신청</SPage1Btn>
                         </SPage1Front>
-                        <SPage1Img src={require("../../assets/Group 546.svg").default} />
                     </SGradient>
 
-                    <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
+                    <SPage1BackImg src={require("../../assets/Rectangle 23382.svg").default} />
                 </div>
             </SPage1Back>
             <SPage2 ref={ref}>
@@ -85,7 +86,8 @@ const Consulting = () => {
                     <br />
                     시행, 시공, 금융, 분양, 홍보까지 효과적이고 세심하게 처리합니다.
                 </SSubText>
-                <SPage2Img src={require("../../assets/Group 547.svg").default} />
+                <SPage2Img src={require("../../assets/Group 560.svg").default} />
+                <SPage2Img src={require("../../assets/Group 561.svg").default} />
 
                 <div
                     style={{
@@ -108,7 +110,7 @@ const Consulting = () => {
                 >
                     <SLeftBorderText>개발사업관리(Project Management) 효과</SLeftBorderText>
                 </div>
-                <SPage2_3Img src={require("../../assets/Group 548.svg").default} />
+                <SPage2_3Img src={require("../../assets/Group 562.svg").default} />
             </SPage2>
         </SPageWrapper>
     )
@@ -129,7 +131,6 @@ const SPage1Back = styled.div`
     position: relative;
     display: flex;
     width: 100%;
-    height: 920px;
     align-items: center;
     justify-content: center;
     z-index: -1;
@@ -137,13 +138,11 @@ const SPage1Back = styled.div`
 const SGradient = styled.div`
     display: flex;
     position: absolute;
-    width: 100%;
+    width: 1200px;
     height: 920px;
     z-index: 1;
     align-items: center;
-    justify-content: center;
-
-    background: #15191e; /* 초기 배경 설정 */
+    justify-content: left;
 `
 
 const SPage1BackImg = styled.img`
@@ -152,8 +151,9 @@ const SPage1BackImg = styled.img`
     flexdirection: column;
     overflowx: hidden;
     overflowy: hidden;
-    height: 920px;
+    height: 800px;
     width: 1920px;
+    top: 0px;
 `
 
 const SPage1Img = styled.img`
@@ -221,8 +221,8 @@ const SPage2 = styled.div`
     padding: 220px 360px;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    transition: opacity 1s;
+    // opacity: 0;
+    // transition: opacity 1s;
 
     &.animate {
         opacity: 1;
@@ -239,7 +239,7 @@ const SPage2Img = styled.img`
     display: flex;
     margin: 80px 0 0 0;
     width: 100%;
-    height: 614px;
+    // height: 614px;
     border-radius: 20px;
 `
 
@@ -275,4 +275,32 @@ const SLeftBorderText = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: 100%; /* 28px */
+`
+
+const SPage1Btn = styled(Link)`
+    display: inline-flex;
+    width: 306px;
+    height: 60px;
+    padding: 0px 20px 4px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+
+    border-radius: 8px;
+    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
+
+    /* s1 */
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+
+    color: var(--whfff, #fff);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 38.4px */
+
+    margin: 60px 0 0 0;
+    color: var(--whfff, #fff);
+    text-decoration: none;
 `

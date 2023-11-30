@@ -5,7 +5,6 @@ import Service from "./Service"
 import Contract from "./Contract"
 import Homepage from "./Homepage"
 import Consulting from "./Consulting"
-import ApplyService from "./ApplyService"
 import Register from "./Register"
 import Announcement from "./Announcement"
 import QnA from "./QnA"
@@ -18,6 +17,7 @@ import PrivacyPolicy from "./PrivacyPolicy"
 import TermsOfUse from "./TermsOfUse"
 import CustomerService from "./CustomerService"
 import Admin from "./Admin"
+import Dashboard from "./Admin/Dashboard"
 // const Main = React.lazy(() => import("./main/index"))
 
 export default function RootRouter() {
@@ -50,7 +50,6 @@ export default function RootRouter() {
                     <Route path={"/contract"} element={<Contract />} />
                     <Route path={"/homepage"} element={<Homepage />} />
                     <Route path={"/consulting"} element={<Consulting />} />
-                    <Route path={"/apply-service"} element={<ApplyService />} />
                     <Route path={"/register"} element={<Register />} />
                     <Route path={"/announcement"} element={<Announcement />} />
                     <Route path={"/qna"} element={<QnA />} />
@@ -59,7 +58,8 @@ export default function RootRouter() {
                     <Route path={"/privacy-policy"} element={<PrivacyPolicy />} />
                     <Route path={"/terms-of-use"} element={<TermsOfUse />} />
                     <Route path={"/customer-service"} element={<CustomerService />} />
-                    <Route path={"/admin"} element={<Admin />} />
+                    <Route path={"/admin/*"} element={<Admin />} />
+                    <Route path={"/admin/dashboard/*"} element={<Dashboard />} />
                 </Routes>
                 {!isMainPage && <Footer />}
             </SMainWrapper>
