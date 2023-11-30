@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Link, NavLink, useLocation } from "react-router-dom"
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"
 
 const Header = () => {
     const [isBgWhite, setIsBgWhite] = useState(false)
     const location = useLocation()
+    const navigate = useNavigate()
 
     const [showDropdown, setShowDropdown] = useState<string | null>(null)
 
@@ -30,6 +31,8 @@ const Header = () => {
 
     useEffect(() => {
         if (
+            location.pathname === "/login" ||
+            location.pathname === "/signnup" ||
             location.pathname === "/service" ||
             location.pathname === "/announcement" ||
             location.pathname === "/inquiry" ||
@@ -81,8 +84,8 @@ const Header = () => {
                         </SLinkContainer>
                     </SLinkWrapper>
                     <SBtnWrapper>
-                        <SBtn1>로그인</SBtn1>
-                        <SBtn2 to={"/inquiry"}>회원가입</SBtn2>
+                        <SBtn1 onClick={() => navigate("/login")}>로그인</SBtn1>
+                        <SBtn2 to={"/signup"}>회원가입</SBtn2>
                     </SBtnWrapper>
                 </SNavigation>
             </SInnerHeader>

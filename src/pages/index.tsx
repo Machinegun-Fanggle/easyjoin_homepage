@@ -18,6 +18,8 @@ import TermsOfUse from "./TermsOfUse"
 import CustomerService from "./CustomerService"
 import Admin from "./Admin"
 import Dashboard from "./Admin/Dashboard"
+import Login from "./Login/index"
+import SignUp from "./SignUp/index"
 // const Main = React.lazy(() => import("./main/index"))
 
 export default function RootRouter() {
@@ -26,7 +28,7 @@ export default function RootRouter() {
         innerHeight: window.innerHeight,
     })
     const current = useLocation().pathname
-    const isMainPage = current.includes("/admin")
+    const isMainPage = current.includes("/admin") || current === "/login" || current === "/signup"
     useEffect(() => {
         window.addEventListener("resize", () =>
             setWindowDefine({
@@ -60,6 +62,8 @@ export default function RootRouter() {
                     <Route path={"/customer-service"} element={<CustomerService />} />
                     <Route path={"/admin/*"} element={<Admin />} />
                     <Route path={"/admin/dashboard/*"} element={<Dashboard />} />
+                    <Route path={"/login"} element={<Login />} />
+                    <Route path={"/signup"} element={<SignUp />} />
                 </Routes>
                 {!isMainPage && <Footer />}
             </SMainWrapper>
