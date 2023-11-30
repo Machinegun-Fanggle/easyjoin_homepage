@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import DaumPostcode from "react-daum-postcode"
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
+import { Dialog } from "@mui/material"
 import axios from "axios"
 import { useLocation } from "react-router-dom"
-// import queryString from "query-string"
+import qs from "qs"
 
 interface IRegisterInfo {
     // 사업자 정보
@@ -54,6 +54,7 @@ const Register = () => {
     const ref3 = useRef(null)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const dateInputRef = useRef<HTMLInputElement>(null)
+    const location = useLocation() // 현재 URL 정보 가져오기
 
     const [emailLocal, setEmailLocal] = useState("")
     const [emailDomain, setEmailDomain] = useState("")
@@ -191,19 +192,18 @@ const Register = () => {
         }
     }
 
-    const location = useLocation() // 현재 URL 정보 가져오기
-
     useEffect(() => {
-        // const queryParams = queryString.parse(location.search) // URL에서 쿼리 파라미터 추출
-        // const serviceType = queryParams.service // 'service' 쿼리 파라미터 값 가져오기
-        // // 쿼리 파라미터에 따라 체크박스 상태 설정
-        // if (serviceType === "전자계약 솔루션") {
-        //     setSelectedCheckbox("isSmartContractSolution")
-        // } else if (serviceType === "부동산 개발 컨설팅") {
-        //     setSelectedCheckbox("isRealEstateDevConsulting")
-        // } else if (serviceType === "홈페이지 제작") {
-        //     setSelectedCheckbox("isWebsiteCreation")
-        // }
+        const queryParams = qs.parse(location.search, { ignoreQueryPrefix: true }) // URL에서 쿼리 파라미터 추출
+        const serviceType = queryParams.service // 'service' 쿼리 파라미터 값 가져오기
+
+        // 쿼리 파라미터에 따라 체크박스 상태 설정
+        if (serviceType === "전자계약 솔루션") {
+            setSelectedCheckbox("isSmartContractSolution")
+        } else if (serviceType === "부동산 개발 컨설팅") {
+            setSelectedCheckbox("isRealEstateDevConsulting")
+        } else if (serviceType === "홈페이지 제작") {
+            setSelectedCheckbox("isWebsiteCreation")
+        }
     }, [location])
 
     useEffect(() => {

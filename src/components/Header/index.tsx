@@ -81,8 +81,8 @@ const Header = () => {
                         </SLinkContainer>
                     </SLinkWrapper>
                     <SBtnWrapper>
-                        {/* <SBtn1>로그인</SBtn1> */}
-                        <SBtn2 to={"/inquiry"}>도입문의</SBtn2>
+                        <SBtn1>로그인</SBtn1>
+                        <SBtn2 to={"/inquiry"}>회원가입</SBtn2>
                     </SBtnWrapper>
                 </SNavigation>
             </SInnerHeader>

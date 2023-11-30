@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import qs from "qs"
 
 // 전자계약
 const Contract = () => {
@@ -9,6 +10,14 @@ const Contract = () => {
     const ref3 = useRef(null)
     const ref4 = useRef(null)
     const ref5 = useRef(null)
+    const navigate = useNavigate()
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth", // 부드러운 스크롤 효과
+        })
+    }
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -63,7 +72,6 @@ const Contract = () => {
                                     쉽고 간단하게 완료 됩니다.
                                 </SSubText>
                             </div>
-                            <SPage1Btn to="/">전자계약 솔루션 서비스 신청</SPage1Btn>
                         </SPage1Front>
                         <SPage1Img src={require("../../assets/images/image2.png")} />
                     </SGradient>
@@ -71,6 +79,14 @@ const Contract = () => {
                     <SPage1BackImg src={require("../../assets/images/rectangle-7-bg-3cR.png")} />
                 </div>
             </SPage1Back>
+            <SButton
+                onClick={() => {
+                    scrollToTop()
+                    navigate(`/register?service=${"전자계약 솔루션"}`)
+                }}
+            >
+                전자계약 솔루션 서비스 신청
+            </SButton>
             <SPage2 ref={ref}>
                 <SMainText style={{ color: "#000", fontSize: "42px", textAlign: "center" }}>
                     이지조인 전자계약 솔루션
@@ -453,30 +469,42 @@ const SPage5Img = styled.img`
     border-radius: 20px;
 `
 
-const SPage1Btn = styled(Link)`
-    display: inline-flex;
-    width: 306px;
-    height: 60px;
-    padding: 0px 20px 4px 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-
-    border-radius: 8px;
-    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
-
-    /* s1 */
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
-
+const SButton = styled.div`
+    position: absolute;
+    top: 550px;
+    left: 360px;
     color: var(--whfff, #fff);
     font-family: Pretendard;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 160%; /* 38.4px */
+    margin: 52px 0 0 0;
+    display: flex;
+    width: 306px;
+    height: 60px;
+    padding: 0px 4px 4px 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--mGR-01, linear-gradient(90deg, #2779f4 0%, #4448d4 100%));
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 3;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    animation: fadeIn 1s ease-in-out;
 
-    margin: 60px 0 0 0;
-    color: var(--whfff, #fff);
-    text-decoration: none;
+    @media (max-width: 700px) {
+        animation: none;
+    }
+    text-decoration: none; // 기본 상태에서 밑줄 제거
 `
