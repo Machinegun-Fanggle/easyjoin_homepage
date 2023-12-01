@@ -23,5 +23,6 @@ export interface IPress {
     url: string
     content: string
     image: string
+    date: string
     creater: string
 }

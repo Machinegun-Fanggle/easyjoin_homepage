@@ -8,30 +8,7 @@ import { IQnA } from "../../../../interface"
 const AdminQna = () => {
     const navigate = useNavigate()
     const [allData, setAllData] = useState<IQnA[]>([])
-
-    useEffect(() => {
-        apiInstance
-            .get("/qna/")
-            .then((response) => {
-                if (response.data.ok) {
-                    setAllData(response.data.data)
-                } else {
-                    console.log("조회에 실패했습니다.")
-                }
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error)
-            })
-    }, [])
-
-    // 각 항목의 체크 상태를 저장할 상태 배열
-    // const [checkedItems, setCheckedItems] = useState(new Array(8).fill(false))
-
     const [checkedItems, setCheckedItems] = useState<boolean[]>([])
-
-    useEffect(() => {
-        setCheckedItems(new Array(allData.length).fill(false))
-    }, [allData])
 
     const handleCheckboxChange = (index: number) => {
         const updatedCheckedItems = [...checkedItems]
@@ -72,6 +49,25 @@ const AdminQna = () => {
     const handleAdd = () => {
         navigate("/admin/dashboard/qna/add") // 지정된 경로로 이동
     }
+
+    useEffect(() => {
+        apiInstance
+            .get("/qna/")
+            .then((response) => {
+                if (response.data.ok) {
+                    setAllData(response.data.data)
+                } else {
+                    console.log("조회에 실패했습니다.")
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error)
+            })
+    }, [])
+
+    useEffect(() => {
+        setCheckedItems(new Array(allData.length).fill(false))
+    }, [allData])
 
     return (
         <SPageWrapper>

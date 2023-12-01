@@ -5,7 +5,6 @@ import { IPress } from "~/interface"
 
 // 공지사항 등록
 const ModifyAdminPress = () => {
-    const [selectedFileName, setSelectedFileName] = useState("")
     const [data, setData] = useState<IPress>({
         subject: "",
         url: "",
@@ -15,23 +14,15 @@ const ModifyAdminPress = () => {
     })
 
     const navigate = useNavigate()
-    const fileInputRef = useRef<HTMLInputElement | null>(null)
     const location = useLocation()
     const item = location.state?.item
 
-    // 파일 입력이 변경될 때 실행될 함수
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (!event.target.files) return // 파일이 없으면 리턴
-        const file = event.target.files[0]
-        if (file) {
-            setSelectedFileName(file.name) // 파일 이름 설정
-        }
-    }
-
-    // 파일 추가 버튼 클릭 시 파일 입력을 트리거하는 함수
-    const handleFileButtonClick = (e: any) => {
-        e.preventDefault() // 기본 동작 방지
-        if (fileInputRef.current) fileInputRef.current.click() // 파일 입력 요소 클릭
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }))
     }
 
     // 뒤로가기 버튼 클릭 시 처리할 함수
@@ -82,40 +73,36 @@ const ModifyAdminPress = () => {
                         <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input type="text" />
+                                <Input
+                                    type="text"
+                                    name="subject"
+                                    value={data.subject}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow>
-                            <TableColumn>url</TableColumn>
+                            <TableColumn>URL</TableColumn>
                             <TableContent>
-                                <Input type="text" />
+                                <Input
+                                    type="text"
+                                    name="url"
+                                    value={data.url}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow style={{ height: "320px" }}>
                             <TableColumn>내용</TableColumn>
                             <TableContent>
-                                <TextArea />
-                            </TableContent>
-                        </TableRow>
-                        <TableRow>
-                            <TableColumn>첨부파일 추가</TableColumn>
-                            <TableContent>
-                                {selectedFileName && <SFileName>{selectedFileName}</SFileName>}
-                                <SFileInput
-                                    type="file"
-                                    accept="image/*"
-                                    ref={fileInputRef}
-                                    onChange={handleFileChange}
+                                <TextArea
+                                    name="content"
+                                    value={data.content}
+                                    onChange={handleInputChange}
                                 />
-                                <SFileLabel onClick={(e) => handleFileButtonClick(e)}>
-                                    파일 추가
-                                </SFileLabel>
-                                <SFileInstructions>
-                                    첨부파일은 이미지만 가능하며, 첨부용량은 최대 10MB를 넘을 수
-                                    없습니다.
-                                </SFileInstructions>
                             </TableContent>
                         </TableRow>
+                        {/* ... 첨부파일 관련 JSX 코드 */}
                     </tbody>
                 </Table>
 
