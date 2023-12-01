@@ -1,13 +1,34 @@
+import { title } from "process"
 import React, { useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router"
+import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
+import apiInstance from "~/api"
+import { IPress } from "~/interface"
 
 // 공지사항 등록
 const AddAdminPress = () => {
+    const [selectedFileName, setSelectedFileName] = useState("")
+    const [data, setData] = useState<IPress>({
+        subject: "",
+        url: "",
+        content: "",
+        image: "",
+        date: "",
+        creater: "",
+    })
+
     const navigate = useNavigate()
     const fileInputRef = useRef<HTMLInputElement | null>(null)
-    const [selectedFileName, setSelectedFileName] = useState("")
+    const location = useLocation()
+    const item = location.state?.item
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }))
+    }
     // 파일 입력이 변경될 때 실행될 함수
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files) return // 파일이 없으면 리턴
@@ -32,11 +53,30 @@ const AddAdminPress = () => {
     const handleCancel = () => {
         navigate("/admin/dashboard/press")
     }
-
     // '등록' 버튼 클릭 시 처리할 함수
-    const handleSubmit = () => {
-        alert("등록되었습니다.")
-        navigate("/admin/dashboard/press")
+    const handleSubmit = async () => {
+        const currentDate = new Date().toISOString().split("T")[0]
+
+        const data: IPress = {
+            subject: "",
+            url: "",
+            content: "",
+            image: "",
+            date: currentDate,
+            creater: "admin",
+        }
+
+        try {
+            const response = await apiInstance.post("/press/save", data)
+            if (response.data.ok) {
+                console.log("Response:", response.data)
+                alert("등록되었습니다.")
+                navigate("/admin/dashboard/press")
+            }
+        } catch (error: any) {
+            console.error("Error:", error.response)
+            alert("관리자에게 문의해주십시오.")
+        }
     }
 
     return (
@@ -67,19 +107,33 @@ const AddAdminPress = () => {
                         <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input type="text" />
+                                <Input
+                                    type="text"
+                                    name="subject"
+                                    value={data.subject}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow>
-                            <TableColumn>url</TableColumn>
+                            <TableColumn>URL</TableColumn>
                             <TableContent>
-                                <Input type="text" />
+                                <Input
+                                    type="text"
+                                    name="url"
+                                    value={data.url}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow style={{ height: "320px" }}>
                             <TableColumn>내용</TableColumn>
                             <TableContent>
-                                <TextArea />
+                                <TextArea
+                                    name="content"
+                                    value={data.content}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow>
