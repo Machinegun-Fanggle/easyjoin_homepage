@@ -1,79 +1,52 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
-import apiInstance from "../../../../../api"
-import { IQnA } from "../../../../../interface"
-import { send } from "process"
 
 // 공지사항 등록
-const ModifyAdminQna = () => {
-    const [data, setData] = useState<IQnA>({
-        title: "",
-        content: "",
-        category: "",
-        createAt: "",
-        writer: "admin", // 이 부분은 필요에 따라 조정
-    })
-
-    const location = useLocation()
+const ModifyAdminPress = () => {
     const navigate = useNavigate()
+    const fileInputRef = useRef<HTMLInputElement | null>(null)
+    const [selectedFileName, setSelectedFileName] = useState("")
+    const location = useLocation()
     const item = location.state?.item
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
-        setData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }))
+    // 파일 입력이 변경될 때 실행될 함수
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files) return // 파일이 없으면 리턴
+        const file = event.target.files[0]
+        if (file) {
+            setSelectedFileName(file.name) // 파일 이름 설정
+        }
+    }
+
+    // 파일 추가 버튼 클릭 시 파일 입력을 트리거하는 함수
+    const handleFileButtonClick = (e: any) => {
+        e.preventDefault() // 기본 동작 방지
+        if (fileInputRef.current) fileInputRef.current.click() // 파일 입력 요소 클릭
     }
 
     // 뒤로가기 버튼 클릭 시 처리할 함수
     const handleBack = () => {
-        navigate("/admin/dashboard/qna") // 이전 페이지로 이동
+        navigate("/admin/dashboard/press") // 이전 페이지로 이동
     }
 
     // '취소' 버튼 클릭 시 처리할 함수
     const handleCancel = () => {
-        navigate("/admin/dashboard/qna")
+        navigate("/admin/dashboard/press")
     }
 
     // '등록' 버튼 클릭 시 처리할 함수
-    const handleSubmit = async () => {
-        const currentDate = new Date().toISOString().split("T")[0]
-        const id = item?._id
-
-        const qnaData: IQnA = {
-            category: data.category,
-            title: data.title,
-            content: data.content,
-            createAt: currentDate,
-            writer: "admin",
-        }
-
-        const sendData = {
-            data: {
-                id: id,
-                qnaData: qnaData,
-            },
-        }
-
-        console.log(sendData)
-
-        try {
-            const response = await apiInstance.post("/qna/update", sendData)
-            if (response.data.ok) {
-                console.log("Response:", response.data)
-                alert("수정되었습니다.")
-                // navigate("/admin/dashboard/qna")
-            }
-        } catch (error: any) {
-            console.error("Error:", error.response)
-            alert("관리자에게 문의해주십시오.")
-        }
+    const handleSubmit = () => {
+        alert("등록되었습니다.")
+        navigate("/admin/dashboard/press")
     }
 
     useEffect(() => {
-        if (item) setData(item)
+        if (item) {
+            // setSelectedCategory(item.category)
+            // setTitle(item.title)
+            // setContent(item.content)
+        }
     }, [item])
 
     return (
@@ -95,7 +68,7 @@ const ModifyAdminQna = () => {
                     />
 
                     <SMainText style={{ color: "#000", fontSize: "32px", textAlign: "center" }}>
-                        자주하는질문 수정
+                        언론보도 수정
                     </SMainText>
                 </div>
 
@@ -104,22 +77,38 @@ const ModifyAdminQna = () => {
                         <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input
-                                    type="text"
-                                    name="title"
-                                    value={data.title}
-                                    onChange={handleInputChange}
-                                />
+                                <Input type="text" />
                             </TableContent>
                         </TableRow>
-                        <TableRow style={{ height: "430px" }}>
+                        <TableRow>
+                            <TableColumn>url</TableColumn>
+                            <TableContent>
+                                <Input type="text" />
+                            </TableContent>
+                        </TableRow>
+                        <TableRow style={{ height: "320px" }}>
                             <TableColumn>내용</TableColumn>
-                            <TableContent style={{ height: "430px" }}>
-                                <TextArea
-                                    name="content"
-                                    value={data.content}
-                                    onChange={handleInputChange}
+                            <TableContent>
+                                <TextArea />
+                            </TableContent>
+                        </TableRow>
+                        <TableRow>
+                            <TableColumn>첨부파일 추가</TableColumn>
+                            <TableContent>
+                                {selectedFileName && <SFileName>{selectedFileName}</SFileName>}
+                                <SFileInput
+                                    type="file"
+                                    accept="image/*"
+                                    ref={fileInputRef}
+                                    onChange={handleFileChange}
                                 />
+                                <SFileLabel onClick={(e) => handleFileButtonClick(e)}>
+                                    파일 추가
+                                </SFileLabel>
+                                <SFileInstructions>
+                                    첨부파일은 이미지만 가능하며, 첨부용량은 최대 10MB를 넘을 수
+                                    없습니다.
+                                </SFileInstructions>
                             </TableContent>
                         </TableRow>
                     </tbody>
@@ -131,14 +120,14 @@ const ModifyAdminQna = () => {
                         onClick={handleSubmit}
                         style={{ background: "#0858F7", color: "#fff" }}
                     >
-                        수정
+                        등록
                     </SButton>
                 </div>
             </SPage1>
         </SPageWrapper>
     )
 }
-export default ModifyAdminQna
+export default ModifyAdminPress
 
 const SPageWrapper = styled.div`
     display: flex;
@@ -195,6 +184,7 @@ const Table = styled.table`
 
 const TableRow = styled.tr`
     width: 100%;
+    display: flex; // Flexbox 레이아웃 사용
 `
 
 const TableColumn = styled.td`
@@ -204,11 +194,19 @@ const TableColumn = styled.td`
     background: var(--whf-9-f-9-f-9, #f9f9f9);
     text-align: center;
     vertical-align: middle;
+    display: flex;
+    justify-content: center; // 가로 중앙 정렬
+    align-items: center; // 세로 중앙 정렬
+    min-height: 56px; // 최소 높이 수정
 `
+
 const TableContent = styled.td`
     border: 1px solid #ddd;
     padding: 8px;
-    width: calc(1200px - 150px - 16px));
+    width: calc(1200px - 150px - 16px);
+    display: flex; // Flexbox 레이아웃 사용
+    align-items: center; // 세로 중앙 정렬
+    min-height: 56px; // 최소 높이 수정
 `
 
 const Input = styled.input`
@@ -250,4 +248,34 @@ const SButton = styled.div`
         color: #fff;
         background-color: #dde1e6;
     }
+`
+
+const SFileInput = styled.input`
+    display: none; // 파일 입력을 숨깁니다
+`
+
+const SFileLabel = styled.label`
+    background-color: #0858f7;
+    color: #fff;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    // height: 36px;
+    display: flex;
+    justify-content: center; // 가로 중앙 정렬
+    align-items: center; // 세로 중앙 정렬
+    cursor: pointer;
+`
+
+const SFileInstructions = styled.span`
+    font-size: 14px;
+    color: #697077;
+`
+
+const SFileName = styled.span`
+    margin-right: 10px; // 파일 이름과 버튼 사이의 여백
+    font-size: 14px; // 파일 이름의 폰트 크기
+    color: #000; // 파일 이름의 색상
 `

@@ -1,81 +1,35 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
-import apiInstance from "../../../../../api"
-import { IQnA } from "../../../../../interface"
-import { send } from "process"
 
 // 공지사항 등록
-const ModifyAdminQna = () => {
-    const [data, setData] = useState<IQnA>({
-        title: "",
-        content: "",
-        category: "",
-        createAt: "",
-        writer: "admin", // 이 부분은 필요에 따라 조정
-    })
-
-    const location = useLocation()
+const ModifyAdminAnnouncement = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     const item = location.state?.item
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
-        setData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }))
-    }
-
     // 뒤로가기 버튼 클릭 시 처리할 함수
     const handleBack = () => {
-        navigate("/admin/dashboard/qna") // 이전 페이지로 이동
+        navigate("/admin/dashboard/announcement") // 이전 페이지로 이동
     }
 
     // '취소' 버튼 클릭 시 처리할 함수
     const handleCancel = () => {
-        navigate("/admin/dashboard/qna")
+        navigate("/admin/dashboard/announcement")
     }
 
     // '등록' 버튼 클릭 시 처리할 함수
-    const handleSubmit = async () => {
-        const currentDate = new Date().toISOString().split("T")[0]
-        const id = item?._id
-
-        const qnaData: IQnA = {
-            category: data.category,
-            title: data.title,
-            content: data.content,
-            createAt: currentDate,
-            writer: "admin",
-        }
-
-        const sendData = {
-            data: {
-                id: id,
-                qnaData: qnaData,
-            },
-        }
-
-        console.log(sendData)
-
-        try {
-            const response = await apiInstance.post("/qna/update", sendData)
-            if (response.data.ok) {
-                console.log("Response:", response.data)
-                alert("수정되었습니다.")
-                // navigate("/admin/dashboard/qna")
-            }
-        } catch (error: any) {
-            console.error("Error:", error.response)
-            alert("관리자에게 문의해주십시오.")
-        }
+    const handleSubmit = () => {
+        alert("등록되었습니다.")
+        navigate("/admin/dashboard/announcement")
     }
 
     useEffect(() => {
-        if (item) setData(item)
+        if (item) {
+            // setSelectedCategory(item.category)
+            // setTitle(item.title)
+            // setContent(item.content)
+        }
     }, [item])
-
     return (
         <SPageWrapper>
             <SPage1>
@@ -95,7 +49,7 @@ const ModifyAdminQna = () => {
                     />
 
                     <SMainText style={{ color: "#000", fontSize: "32px", textAlign: "center" }}>
-                        자주하는질문 수정
+                        공지사항 수정
                     </SMainText>
                 </div>
 
@@ -104,22 +58,13 @@ const ModifyAdminQna = () => {
                         <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input
-                                    type="text"
-                                    name="title"
-                                    value={data.title}
-                                    onChange={handleInputChange}
-                                />
+                                <Input type="text" />
                             </TableContent>
                         </TableRow>
-                        <TableRow style={{ height: "430px" }}>
+                        <TableRow style={{ height: "470px" }}>
                             <TableColumn>내용</TableColumn>
-                            <TableContent style={{ height: "430px" }}>
-                                <TextArea
-                                    name="content"
-                                    value={data.content}
-                                    onChange={handleInputChange}
-                                />
+                            <TableContent style={{ height: "470px" }}>
+                                <TextArea />
                             </TableContent>
                         </TableRow>
                     </tbody>
@@ -131,14 +76,14 @@ const ModifyAdminQna = () => {
                         onClick={handleSubmit}
                         style={{ background: "#0858F7", color: "#fff" }}
                     >
-                        수정
+                        등록
                     </SButton>
                 </div>
             </SPage1>
         </SPageWrapper>
     )
 }
-export default ModifyAdminQna
+export default ModifyAdminAnnouncement
 
 const SPageWrapper = styled.div`
     display: flex;

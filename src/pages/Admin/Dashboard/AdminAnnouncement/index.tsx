@@ -35,6 +35,11 @@ const AdminAnnouncement = () => {
         setCheckedItems(updatedCheckedItems)
     }
 
+    const handleItemClick = (item: any) => {
+        console.log(item)
+        navigate("/admin/dashboard/announcement/modify", { state: { item } })
+    }
+
     // '삭제' 버튼 클릭 시 체크된 항목을 삭제하는 함수
     const handleDelete = () => {
         // 사용자에게 삭제 확인 요청
@@ -88,19 +93,16 @@ const AdminAnnouncement = () => {
                 />
 
                 <SList>
-                    {checkedItems.map((isChecked, index) => (
-                        <SListItem key={index}>
+                    {checkedItems.map((item, index) => (
+                        <SListItem key={index} onClick={() => handleItemClick(item)}>
                             <input
                                 type="checkbox"
-                                checked={isChecked}
+                                checked={item.isChecked}
                                 onChange={() => handleCheckboxChange(index)}
                             />
-                            <STitle>공지</STitle>
-                            <SSubject>
-                                [공지] 전자결제 서비스 이용 계약 시 &apos;개인정보 처리 위탁
-                                계약&apos; 추가
-                            </SSubject>
-                            <SDate>2023.09.07</SDate>
+                            <STitle>{item.title}</STitle>
+                            <SSubject>{item.subject}</SSubject>
+                            <SDate>{item.date}</SDate>
                         </SListItem>
                     ))}
                 </SList>
