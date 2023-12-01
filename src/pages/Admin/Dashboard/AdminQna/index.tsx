@@ -35,6 +35,11 @@ const AdminQna = () => {
         setCheckedItems(updatedCheckedItems)
     }
 
+    const handleItemClick = (item: any) => {
+        console.log(item)
+        navigate("/admin/dashboard/qna/modify", { state: { item } })
+    }
+
     // '삭제' 버튼 클릭 시 체크된 항목을 삭제하는 함수
     const handleDelete = () => {
         if (window.confirm("삭제하시겠습니까?")) {
@@ -103,7 +108,7 @@ const AdminQna = () => {
 
                 <SList>
                     {allData.map((item, index) => (
-                        <SListItem key={index}>
+                        <SListItem key={index} onClick={() => handleItemClick(item)}>
                             <input
                                 type="checkbox"
                                 checked={checkedItems[index]}
