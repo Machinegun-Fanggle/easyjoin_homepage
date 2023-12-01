@@ -6,25 +6,24 @@ import { IQnA } from "../../../../../interface"
 
 // 공지사항 등록
 const ModifyAdminQna = () => {
-    const navigate = useNavigate()
-    const [selectedCategory, setSelectedCategory] = useState("")
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
+    const [data, setData] = useState<IQnA>({
+        title: "",
+        content: "",
+        category: "",
+        createAt: "",
+        writer: "admin", // 이 부분은 필요에 따라 조정
+    })
+
     const location = useLocation()
+    const navigate = useNavigate()
     const item = location.state?.item
 
-    // 체크박스 선택을 관리하는 함수
-    const handleCheckboxChange = (event: any) => {
-        setSelectedCategory(event.target.value)
-    }
-
-    const handleTitleChange = (event: any) => {
-        setTitle(event.target.value)
-    }
-
-    // 내용 입력 핸들러
-    const handleContentChange = (event: any) => {
-        setContent(event.target.value)
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }))
     }
 
     // 뒤로가기 버튼 클릭 시 처리할 함수
@@ -41,16 +40,16 @@ const ModifyAdminQna = () => {
     const handleSubmit = async () => {
         const currentDate = new Date().toISOString().split("T")[0]
 
-        const data: IQnA = {
-            category: selectedCategory,
-            title: title,
-            content: content,
+        const _data: IQnA = {
+            category: data.category,
+            title: data.title,
+            content: data.content,
             createAt: currentDate,
             writer: "admin",
         }
 
         try {
-            const response = await apiInstance.post("/qna/save", data)
+            const response = await apiInstance.post("/qna/save", _data)
             if (response.data.ok) {
                 console.log("Response:", response.data)
                 alert("등록되었습니다.")
@@ -63,11 +62,7 @@ const ModifyAdminQna = () => {
     }
 
     useEffect(() => {
-        if (item) {
-            setSelectedCategory(item.category)
-            setTitle(item.title)
-            setContent(item.content)
-        }
+        if (item) setData(item)
     }, [item])
 
     return (
@@ -96,33 +91,24 @@ const ModifyAdminQna = () => {
                 <Table>
                     <tbody>
                         <TableRow>
-                            <TableColumn>분류</TableColumn>
-                            <TableContent>
-                                {["서비스 이용 관련", "법적효력", "보안", "기타"].map(
-                                    (category) => (
-                                        <label key={category} style={{ margin: "0 16px 0 0" }}>
-                                            <input
-                                                type="checkbox"
-                                                value={category}
-                                                checked={selectedCategory === category}
-                                                onChange={handleCheckboxChange}
-                                            />
-                                            {category}
-                                        </label>
-                                    ),
-                                )}
-                            </TableContent>
-                        </TableRow>
-                        <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input type="text" value={title} onChange={handleTitleChange} />
+                                <Input
+                                    type="text"
+                                    name="title"
+                                    value={data.title}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow style={{ height: "430px" }}>
                             <TableColumn>내용</TableColumn>
                             <TableContent style={{ height: "430px" }}>
-                                <TextArea value={content} onChange={handleContentChange} />
+                                <TextArea
+                                    name="content"
+                                    value={data.content}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                     </tbody>
