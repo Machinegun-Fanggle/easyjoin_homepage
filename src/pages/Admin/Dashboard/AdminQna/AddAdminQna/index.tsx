@@ -49,9 +49,11 @@ const AddAdminQna = () => {
 
         try {
             const response = await apiInstance.post("/qna/save", data)
-            console.log("Response:", response.data)
-            alert("등록되었습니다.")
-            navigate("/admin/dashboard/qna")
+            if (response.data.ok) {
+                console.log("Response:", response.data)
+                alert("등록되었습니다.")
+                navigate("/admin/dashboard/qna")
+            }
         } catch (error: any) {
             console.error("Error:", error.response)
             alert("관리자에게 문의해주십시오.")

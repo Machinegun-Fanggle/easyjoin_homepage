@@ -161,6 +161,7 @@ const QnA = () => {
                     style={{
                         display: "flex",
                         marginTop: 100,
+                        minHeight: "100vh",
                         flexDirection: "column",
                         alignItems: "flex-start",
                         width: "1200px",

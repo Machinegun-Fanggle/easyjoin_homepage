@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import apiInstance from "../../api"
+import { IAccount } from "../../interface"
 
 // 고객센터
 const Admin = () => {
     const [isLoginChecked, setIsLoginChecked] = useState(false)
     const [isIdSaved, setIsIdSaved] = useState(false)
-
+    const navigate = useNavigate()
     const ref = useRef(null)
 
     const handleCheckboxChange = (e: any) => {
@@ -21,17 +23,40 @@ const Admin = () => {
     // 비밀번호 가시성 상태 관리
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
     const [userId, setUserId] = useState("")
+    const [password, setPassword] = useState("")
 
     // 비밀번호 가시성 토글 함수
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible)
     }
 
-    const handleLogin = () => {
-        if (isIdSaved) {
-            localStorage.setItem("userId", userId)
+    const handleLogin = async () => {
+        if (userId == null) {
+            alert("아이디를 입력해주세요.")
+            return
         }
-        // 로그인 로직 (서버에 요청 등) 추가...
+        if (password == null) {
+            alert("비밀번호를 입력해주세요.")
+            return
+        }
+
+        const data: IAccount = {
+            userId: userId,
+            password: password,
+        }
+        try {
+            const response = await apiInstance.post("/account/login", data)
+            if (response.data.ok) {
+                console.log("Response:", response.data)
+                alert("로그인되었습니다.")
+                navigate("/admin/dashboard/qna")
+            } else {
+                alert("비밀번호와 비밀번호를 확인해주세요.")
+            }
+        } catch (error: any) {
+            console.error("Error:", error.response)
+            alert("관리자에게 문의해주십시오.")
+        }
     }
 
     useEffect(() => {
@@ -99,7 +124,11 @@ const Admin = () => {
                                     placeholder="아이디 입력"
                                 />
                                 <SPasswordInputWrapper>
-                                    <SInput type={isPasswordVisible ? "text" : "password"} />
+                                    <SInput
+                                        type={isPasswordVisible ? "text" : "password"}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
                                     <SIconButton onClick={togglePasswordVisibility}>
                                         <img
                                             src={
@@ -154,9 +183,7 @@ const Admin = () => {
                                         아이디 저장
                                     </label>
                                 </div>
-                                <SButton to={"/admin/dashboard"} onClick={handleLogin}>
-                                    로그인
-                                </SButton>
+                                <SButton onClick={() => handleLogin()}>로그인</SButton>
                             </SBorder>
                             <SLink to="/">웹사이트 바로가기</SLink>
                         </div>
@@ -236,7 +263,7 @@ const SInput = styled.input`
     background: #fff;
 `
 
-const SButton = styled(Link)`
+const SButton = styled.button`
     display: flex;
     width: 440px;
     padding: 27px 0px;

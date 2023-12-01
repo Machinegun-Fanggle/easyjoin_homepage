@@ -5,3 +5,8 @@ export interface IQnA {
     createAt: string
     writer: string
 }
+
+export interface IAccount {
+    userId: string
+    password: string
+}
