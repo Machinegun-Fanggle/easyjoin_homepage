@@ -76,7 +76,11 @@ const AddAdminPress = () => {
                     "Content-Type": "multipart/form-data",
                 },
             })
-            // ... 응답 처리
+            if (response.data.ok) {
+                console.log("Response:", response.data)
+                alert("등록되었습니다.")
+                navigate("/admin/dashboard/press")
+            }
         } catch (error: any) {
             console.error("Error:", error.response)
             alert("관리자에게 문의해주십시오.")
