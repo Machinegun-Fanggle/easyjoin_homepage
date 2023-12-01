@@ -1,12 +1,21 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
+import { IPress } from "~/interface"
 
 // 공지사항 등록
 const ModifyAdminPress = () => {
+    const [selectedFileName, setSelectedFileName] = useState("")
+    const [data, setData] = useState<IPress>({
+        subject: "",
+        url: "",
+        content: "",
+        image: "",
+        creater: "admin",
+    })
+
     const navigate = useNavigate()
     const fileInputRef = useRef<HTMLInputElement | null>(null)
-    const [selectedFileName, setSelectedFileName] = useState("")
     const location = useLocation()
     const item = location.state?.item
 
@@ -42,11 +51,7 @@ const ModifyAdminPress = () => {
     }
 
     useEffect(() => {
-        if (item) {
-            // setSelectedCategory(item.category)
-            // setTitle(item.title)
-            // setContent(item.content)
-        }
+        if (item) setData(item)
     }, [item])
 
     return (

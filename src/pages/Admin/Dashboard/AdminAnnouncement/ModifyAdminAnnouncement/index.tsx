@@ -1,12 +1,21 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
+import { IAnnouncement } from "~/interface"
 
 // 공지사항 등록
 const ModifyAdminAnnouncement = () => {
+    const [data, setData] = useState<IAnnouncement>({
+        subject: "",
+        content: "",
+        date: "",
+        creater: "admin",
+    })
+
     const navigate = useNavigate()
     const location = useLocation()
     const item = location.state?.item
+
     // 뒤로가기 버튼 클릭 시 처리할 함수
     const handleBack = () => {
         navigate("/admin/dashboard/announcement") // 이전 페이지로 이동
@@ -24,12 +33,9 @@ const ModifyAdminAnnouncement = () => {
     }
 
     useEffect(() => {
-        if (item) {
-            // setSelectedCategory(item.category)
-            // setTitle(item.title)
-            // setContent(item.content)
-        }
+        if (item) setData(item)
     }, [item])
+
     return (
         <SPageWrapper>
             <SPage1>
