@@ -39,14 +39,23 @@ const ModifyAdminQna = () => {
 
     // '등록' 버튼 클릭 시 처리할 함수
     const handleSubmit = async () => {
+        console.log(item)
         const currentDate = new Date().toISOString().split("T")[0]
+        const id = item?._id
 
-        const data: IQnA = {
+        const qnaData: IQnA = {
             category: selectedCategory,
             title: title,
             content: content,
             createAt: currentDate,
             writer: "admin",
+        }
+
+        const data = {
+            data: {
+                id: id,
+                qnaData: qnaData,
+            },
         }
 
         try {
