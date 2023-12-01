@@ -96,15 +96,17 @@ const AdminAnnouncement = () => {
 
                 <SList>
                     {allData?.map((item, index) => (
-                        <SListItem key={index} onClick={() => handleItemClick(item)}>
+                        <SListItem key={index}>
                             <input
                                 type="checkbox"
                                 checked={checkedItems[index]}
                                 onChange={() => handleCheckboxChange(index)}
                             />
                             {/* <STitle>{item.title}</STitle> */}
-                            <SSubject>{item.subject}</SSubject>
-                            <SDate>{item.date}</SDate>
+                            <SSubject onClick={() => handleItemClick(item)}>
+                                {item.subject}
+                            </SSubject>
+                            <SDate onClick={() => handleItemClick(item)}>{item.date}</SDate>
                         </SListItem>
                     ))}
                 </SList>

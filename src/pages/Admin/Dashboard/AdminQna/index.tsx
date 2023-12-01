@@ -108,15 +108,15 @@ const AdminQna = () => {
 
                 <SList>
                     {allData?.map((item, index) => (
-                        <SListItem key={index} onClick={() => handleItemClick(item)}>
+                        <SListItem key={index}>
                             <input
                                 type="checkbox"
                                 checked={checkedItems[index]}
                                 onChange={() => handleCheckboxChange(index)}
                             />
-                            <STitle>{item.category}</STitle>
-                            <SSubject>{item.title}</SSubject>
-                            <SDate>{item.createAt}</SDate>
+                            <STitle onClick={() => handleItemClick(item)}>{item.category}</STitle>
+                            <SSubject onClick={() => handleItemClick(item)}>{item.title}</SSubject>
+                            <SDate onClick={() => handleItemClick(item)}>{item.createAt}</SDate>
                         </SListItem>
                     ))}
                 </SList>
