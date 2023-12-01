@@ -10,6 +10,7 @@ const ModifyAdminPress = () => {
         url: "",
         content: "",
         image: "",
+        date: "",
         creater: "admin",
     })
 

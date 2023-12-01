@@ -107,7 +107,7 @@ const AdminQna = () => {
                 />
 
                 <SList>
-                    {allData.map((item, index) => (
+                    {allData?.map((item, index) => (
                         <SListItem key={index} onClick={() => handleItemClick(item)}>
                             <input
                                 type="checkbox"
