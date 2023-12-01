@@ -10,6 +10,8 @@ import AdminPress from "./AdminPress"
 import AddAdminQna from "./AdminQna/AddAdminQna"
 import AddAdminPress from "./AdminPress/AddAdminPress"
 import ModifyAdminQna from "./AdminQna/ModifyAdminQna/index"
+import ModifyAdminAnnouncement from "./AdminAnnouncement/ModifyAdminAnnouncement/index"
+import ModifyAdminPress from "./AdminPress/ModifyAdminPress/index"
 
 export default function Dashboard() {
     const current = useLocation().pathname
@@ -27,11 +29,13 @@ export default function Dashboard() {
                     />
                     <Route path={"/announcement"} element={<AdminAnnouncement />} />
                     <Route path={"/announcement/add"} element={<AddAdminAnnouncement />} />
+                    <Route path={"/announcement/modify"} element={<ModifyAdminAnnouncement />} />
                     <Route path={"/qna"} element={<AdminQna />} />
                     <Route path={"/qna/add"} element={<AddAdminQna />} />
                     <Route path={"/qna/modify"} element={<ModifyAdminQna />} />
                     <Route path={"/press"} element={<AdminPress />} />
                     <Route path={"/press/add"} element={<AddAdminPress />} />
+                    <Route path={"/press/modify"} element={<ModifyAdminPress />} />
                 </Routes>
             </SMainWrapper>
         </SWrapper>

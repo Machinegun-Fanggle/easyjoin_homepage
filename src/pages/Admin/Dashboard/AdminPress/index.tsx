@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router"
+import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
 import apiInstance from "../../../../api"
 
 // 공지사항
 const AdminPress = () => {
     const navigate = useNavigate()
-
+    const location = useLocation()
+    const item = location.state?.item
     // 각 항목의 체크 상태를 저장할 상태 배열
     const [checkedItems, setCheckedItems] = useState(new Array(8).fill(false))
 
@@ -23,6 +24,11 @@ const AdminPress = () => {
             .catch((error) => {
                 console.error("Error fetching data:", error)
             })
+    }
+
+    const handleItemClick = (item: any) => {
+        console.log(item)
+        navigate("/admin/dashboard/press/modify", { state: { item } })
     }
 
     useEffect(() => {
@@ -89,19 +95,16 @@ const AdminPress = () => {
                 />
 
                 <SList>
-                    {checkedItems.map((isChecked, index) => (
-                        <SListItem key={index}>
+                    {checkedItems.map((item, index) => (
+                        <SListItem key={index} onClick={() => handleItemClick(item)}>
                             <input
                                 type="checkbox"
-                                checked={isChecked}
+                                checked={item.isChecked}
                                 onChange={() => handleCheckboxChange(index)}
                             />
-                            <STitle>공지</STitle>
-                            <SSubject>
-                                [공지] 전자결제 서비스 이용 계약 시 &apos;개인정보 처리 위탁
-                                계약&apos; 추가
-                            </SSubject>
-                            <SDate>2023.09.07</SDate>
+                            <STitle>{item.title}</STitle>
+                            <SSubject>{item.subject}</SSubject>
+                            <SDate>{item.date}</SDate>
                         </SListItem>
                     ))}
                 </SList>
