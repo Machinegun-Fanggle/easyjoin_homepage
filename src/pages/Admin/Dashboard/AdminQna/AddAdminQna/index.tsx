@@ -1,15 +1,28 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import styled from "styled-components"
+import apiInstance from "../../../../../api"
+import { IQnA } from "../../../../../interface"
 
 // 공지사항 등록
 const AddAdminQna = () => {
     const navigate = useNavigate()
     const [selectedCategory, setSelectedCategory] = useState("")
+    const [title, setTitle] = useState("")
+    const [content, setContent] = useState("")
 
     // 체크박스 선택을 관리하는 함수
     const handleCheckboxChange = (event: any) => {
         setSelectedCategory(event.target.value)
+    }
+
+    const handleTitleChange = (event: any) => {
+        setTitle(event.target.value)
+    }
+
+    // 내용 입력 핸들러
+    const handleContentChange = (event: any) => {
+        setContent(event.target.value)
     }
 
     // 뒤로가기 버튼 클릭 시 처리할 함수
@@ -25,7 +38,20 @@ const AddAdminQna = () => {
     // '등록' 버튼 클릭 시 처리할 함수
     const handleSubmit = () => {
         alert("등록되었습니다.")
-        navigate("/admin/dashboard/qna")
+
+        const currentDate = new Date().toISOString().split("T")[0]
+
+        const data: IQnA = {
+            category: selectedCategory,
+            title: title,
+            content: content,
+            createAt: currentDate,
+            writer: "admin",
+        }
+
+        console.log(data)
+
+        // navigate("/admin/dashboard/qna")
     }
 
     return (
@@ -74,13 +100,13 @@ const AddAdminQna = () => {
                         <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input type="text" />
+                                <Input type="text" value={title} onChange={handleTitleChange} />
                             </TableContent>
                         </TableRow>
                         <TableRow style={{ height: "430px" }}>
                             <TableColumn>내용</TableColumn>
                             <TableContent style={{ height: "430px" }}>
-                                <TextArea />
+                                <TextArea value={content} onChange={handleContentChange} />
                             </TableContent>
                         </TableRow>
                     </tbody>

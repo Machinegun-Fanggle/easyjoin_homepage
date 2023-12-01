@@ -5,14 +5,8 @@ import SearchIcon from "../../assets/search-md.svg"
 import ChevronDown from "../../assets/chevron-down.svg"
 import ChevronUp from "../../assets/chevron-up.svg"
 import QLogo from "../../assets/Q.svg"
-
-export interface IQnA {
-    title: string
-    content: string
-    category: string
-    createAt: string
-    writer: string
-}
+import apiInstance from "../../api"
+import { IQnA } from "../../interface"
 
 // 메인 컴포넌트 함수
 const QnA = () => {
@@ -28,44 +22,27 @@ const QnA = () => {
     const category = ["전체", "서비스 이용 관련", "법적효력", "보안", "기타"]
     const [expandedQnA_Ids, setExpandedQnA_Ids] = useState<number[]>([])
     const [qnAs, setQnAs] = useState<IQnA[]>([])
+    const [allData, setAllData] = useState<IQnA[]>([])
 
-    const searchData = [
-        {
-            title: "서비스 가입 절차가 궁금합니다",
-            content: "새로운 서비스에 가입하고 싶은데, 어떻게 해야 하나요?",
-            category: "서비스 이용 관련",
-            createAt: "2023-11-27",
-            writer: "NewUser",
-        },
-        {
-            title: "개인정보 보호 정책에 대한 질문",
-            content: "개인정보 보호 정책이 어떻게 적용되는지 자세히 알고 싶습니다.",
-            category: "법적효력",
-            createAt: "2023-11-26",
-            writer: "PrivacySeeker",
-        },
-        {
-            title: "계정 보안 강화 방법",
-            content: "제 계정의 보안을 강화하고 싶습니다. 어떤 조치를 취할 수 있나요?",
-            category: "보안",
-            createAt: "2023-11-25",
-            writer: "SecureUser",
-        },
-        {
-            title: "모바일 앱 오류 보고",
-            content: "모바일 앱에서 오류를 발견했어요. 어디에 보고해야 하나요?",
-            category: "기타",
-            createAt: "2023-11-24",
-            writer: "AppTester",
-        },
-    ]
+    useEffect(() => {
+        setSelectedCategory("전체")
+        apiInstance
+            .get("/qna/")
+            .then((response) => {
+                setAllData(response.data.data)
+                setQnAs(response.data.data)
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error)
+            })
+    }, [])
 
     // 검색어 입력 핸들러
     const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const searchText = e.target.value.toLowerCase() // 입력된 검색어를 소문자로 변환
 
         // 검색어와 일치하는 title 또는 content를 가진 항목만 필터링
-        const filteredResults = searchData.filter(
+        const filteredResults = allData.filter(
             (result) =>
                 result.title.toLowerCase().includes(searchText) ||
                 result.content.toLowerCase().includes(searchText),
@@ -79,10 +56,10 @@ const QnA = () => {
     const handleCategory = (category: string) => {
         if (category === "전체") {
             // 선택된 카테고리가 없으면 전체 리스트를 표시
-            setQnAs(searchData)
+            setQnAs(allData)
         } else {
             // 선택된 카테고리와 일치하는 항목만 필터링
-            const filteredQnAs = searchData.filter((qna) => qna.category === category)
+            const filteredQnAs = allData.filter((qna) => qna.category === category)
             setQnAs(filteredQnAs)
         }
     }
@@ -101,7 +78,7 @@ const QnA = () => {
     useEffect(() => {
         const searchTextLower = searchText.toLowerCase()
         // 검색어와 일치하는 title 또는 content를 가진 항목만 필터링
-        const filteredResults = searchData.filter(
+        const filteredResults = allData.filter(
             (result) =>
                 result.title.toLowerCase().includes(searchTextLower) ||
                 result.content.toLowerCase().includes(searchTextLower),
@@ -126,9 +103,6 @@ const QnA = () => {
     }, [])
 
     useEffect(() => {
-        setQnAs(searchData)
-        setSelectedCategory("전체")
-
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
