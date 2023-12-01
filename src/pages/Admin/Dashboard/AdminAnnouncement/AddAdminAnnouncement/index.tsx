@@ -1,10 +1,28 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import styled from "styled-components"
+import apiInstance from "~/api"
+import { IAnnouncement } from "~/interface"
 
 // 공지사항 등록
 const AddAdminAnnouncement = () => {
+    const [data, setData] = useState<IAnnouncement>({
+        subject: "",
+        content: "",
+        date: "",
+        creater: "admin",
+    })
+
     const navigate = useNavigate()
+
+    // 데이터 변경을 처리하는 함수
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }))
+    }
 
     // 뒤로가기 버튼 클릭 시 처리할 함수
     const handleBack = () => {
@@ -17,11 +35,28 @@ const AddAdminAnnouncement = () => {
     }
 
     // '등록' 버튼 클릭 시 처리할 함수
-    const handleSubmit = () => {
-        alert("등록되었습니다.")
-        navigate("/admin/dashboard/announcement")
-    }
+    const handleSubmit = async () => {
+        const currentDate = new Date().toISOString().split("T")[0]
 
+        const _data: IAnnouncement = {
+            subject: data.subject,
+            content: data.content,
+            date: currentDate,
+            creater: "admin",
+        }
+
+        try {
+            const response = await apiInstance.post("/announcement/save", _data)
+            if (response.data.ok) {
+                console.log("Response:", response.data)
+                alert("등록되었습니다.")
+                navigate("/admin/dashboard/announcement")
+            }
+        } catch (error: any) {
+            console.error("Error:", error.response)
+            alert("관리자에게 문의해주십시오.")
+        }
+    }
     return (
         <SPageWrapper>
             <SPage1>
@@ -50,13 +85,22 @@ const AddAdminAnnouncement = () => {
                         <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input type="text" />
+                                <Input
+                                    type="text"
+                                    name="subject"
+                                    value={data.subject}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow style={{ height: "470px" }}>
                             <TableColumn>내용</TableColumn>
                             <TableContent style={{ height: "470px" }}>
-                                <TextArea />
+                                <TextArea
+                                    name="content"
+                                    value={data.content}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                     </tbody>

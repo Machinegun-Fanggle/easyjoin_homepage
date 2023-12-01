@@ -61,6 +61,7 @@ const AddAdminPress = () => {
     const handleSubmit = async () => {
         const formData = new FormData()
         if (selectedFile) {
+            console.log("Selected file:", selectedFile)
             formData.append("file", selectedFile)
         }
 
@@ -69,13 +70,10 @@ const AddAdminPress = () => {
         formData.append("content", data.content)
         formData.append("date", new Date().toISOString().split("T")[0])
         formData.append("creater", "admin")
+        formData.append("image", "???")
 
         try {
-            const response = await apiInstance.post("/press/save", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
+            const response = await apiInstance.post("/press/save", formData)
             if (response.data.ok) {
                 console.log("Response:", response.data)
                 alert("등록되었습니다.")

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router"
 import styled from "styled-components"
 import apiInstance from "../../../../api"
 import { IAnnouncement } from "~/interface"
+
 // 공지사항
 const AdminAnnouncement = () => {
     const [allData, setAllData] = useState<IAnnouncement[]>([])
