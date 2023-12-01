@@ -1,10 +1,29 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 import SearchIcon from "../../assets/Rectangle 1073.svg"
-
+import apiInstance from "../../api"
 // 언론보도
 const Press = () => {
     const ref = useRef(null)
+
+    const getDBData = async () => {
+        apiInstance
+            .get("/press")
+            .then((response) => {
+                if (response.data.ok) {
+                    console.log(response)
+                } else {
+                    console.log("조회에 실패했습니다.")
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error)
+            })
+    }
+
+    useEffect(() => {
+        getDBData()
+    }, [])
 
     useEffect(() => {
         const observer = new IntersectionObserver(

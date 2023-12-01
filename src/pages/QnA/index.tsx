@@ -27,10 +27,14 @@ const QnA = () => {
     useEffect(() => {
         setSelectedCategory("전체")
         apiInstance
-            .get("/qna/")
+            .get("/qna")
             .then((response) => {
-                setAllData(response.data.data)
-                setQnAs(response.data.data)
+                if (response.data.ok) {
+                    setAllData(response.data.data)
+                    setQnAs(response.data.data)
+                } else {
+                    console.log("조회에 실패했습니다.")
+                }
             })
             .catch((error) => {
                 console.error("Error fetching data:", error)
