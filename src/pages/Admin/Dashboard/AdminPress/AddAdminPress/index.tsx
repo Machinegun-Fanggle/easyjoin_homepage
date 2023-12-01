@@ -57,17 +57,17 @@ const AddAdminPress = () => {
     const handleSubmit = async () => {
         const currentDate = new Date().toISOString().split("T")[0]
 
-        const data: IPress = {
-            subject: "",
-            url: "",
-            content: "",
-            image: "",
+        const _data: IPress = {
+            subject: data.subject,
+            url: data.url,
+            content: data.content,
+            image: data.image,
             date: currentDate,
             creater: "admin",
         }
 
         try {
-            const response = await apiInstance.post("/press/save", data)
+            const response = await apiInstance.post("/press/save", _data)
             if (response.data.ok) {
                 console.log("Response:", response.data)
                 alert("등록되었습니다.")
@@ -78,6 +78,10 @@ const AddAdminPress = () => {
             alert("관리자에게 문의해주십시오.")
         }
     }
+
+    useEffect(() => {
+        if (item) setData(item)
+    }, [item])
 
     return (
         <SPageWrapper>
