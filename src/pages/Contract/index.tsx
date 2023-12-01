@@ -481,7 +481,7 @@ const SButton = styled.div`
     line-height: 160%; /* 38.4px */
     margin: 52px 0 0 0;
     display: flex;
-    width: 306px;
+    width: 350px;
     height: 60px;
     padding: 0px 4px 4px 4px;
     justify-content: center;

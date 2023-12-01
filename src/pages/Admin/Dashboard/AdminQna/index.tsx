@@ -1,16 +1,35 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import styled from "styled-components"
+import apiInstance from "../../../../api"
+import { IQnA } from "../../../../interface"
 
 // 공지사항
 const AdminQna = () => {
     const navigate = useNavigate()
+    const [allData, setAllData] = useState<IQnA[]>([])
+
+    useEffect(() => {
+        apiInstance
+            .get("/qna/")
+            .then((response) => {
+                setAllData(response.data.data)
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error)
+            })
+    }, [])
 
     // 각 항목의 체크 상태를 저장할 상태 배열
-    const [checkedItems, setCheckedItems] = useState(new Array(8).fill(false))
+    // const [checkedItems, setCheckedItems] = useState(new Array(8).fill(false))
 
-    // 체크박스 상태를 토글하는 함수
-    const handleCheckboxChange = (index: any) => {
+    const [checkedItems, setCheckedItems] = useState<boolean[]>([])
+
+    useEffect(() => {
+        setCheckedItems(new Array(allData.length).fill(false))
+    }, [allData])
+
+    const handleCheckboxChange = (index: number) => {
         const updatedCheckedItems = [...checkedItems]
         updatedCheckedItems[index] = !updatedCheckedItems[index]
         setCheckedItems(updatedCheckedItems)
@@ -18,11 +37,25 @@ const AdminQna = () => {
 
     // '삭제' 버튼 클릭 시 체크된 항목을 삭제하는 함수
     const handleDelete = () => {
-        // 사용자에게 삭제 확인 요청
         if (window.confirm("삭제하시겠습니까?")) {
-            // 체크되지 않은 항목만 필터링
-            const remainingItems = checkedItems.filter((checked) => !checked)
-            setCheckedItems(remainingItems)
+            // const remainingItems = checkedItems.filter((checked) => !checked)
+            // console.log(remainingItems)
+            // setCheckedItems(remainingItems)
+            const selectedItems = allData.filter((_, index) => checkedItems[index])
+            const idsToDelete = selectedItems.map((item: any) => item._id)
+
+            // 백엔드 API로 삭제 요청 보내기
+            apiInstance
+                .post("/qna/delete", { ids: idsToDelete })
+                .then((response) => {
+                    console.log("삭제 성공:", response)
+                    const newData = allData.filter((item: any) => !idsToDelete.includes(item._id))
+                    setAllData(newData)
+                    setCheckedItems(new Array(newData.length).fill(false))
+                })
+                .catch((error) => {
+                    console.error("삭제 실패:", error)
+                })
         }
     }
 
@@ -69,19 +102,16 @@ const AdminQna = () => {
                 />
 
                 <SList>
-                    {checkedItems.map((isChecked, index) => (
+                    {allData.map((item, index) => (
                         <SListItem key={index}>
                             <input
                                 type="checkbox"
-                                checked={isChecked}
+                                checked={checkedItems[index]}
                                 onChange={() => handleCheckboxChange(index)}
                             />
-                            <STitle>공지</STitle>
-                            <SSubject>
-                                [공지] 전자결제 서비스 이용 계약 시 &apos;개인정보 처리 위탁
-                                계약&apos; 추가
-                            </SSubject>
-                            <SDate>2023.09.07</SDate>
+                            <STitle>{item.category}</STitle>
+                            <SSubject>{item.title}</SSubject>
+                            <SDate>{item.createAt}</SDate>
                         </SListItem>
                     ))}
                 </SList>
@@ -177,7 +207,7 @@ const SListItem = styled.div`
 
 const STitle = styled.div`
     display: flex;
-    width: 100px;
+    width: 200px;
     margin: 0 0px 0 20px;
 `
 
@@ -194,5 +224,5 @@ const SSubject = styled.div`
 
 const SDate = styled.div`
     display: flex;
-    width: 100px;
+    width: 110px;
 `

@@ -36,9 +36,7 @@ const AddAdminQna = () => {
     }
 
     // '등록' 버튼 클릭 시 처리할 함수
-    const handleSubmit = () => {
-        alert("등록되었습니다.")
-
+    const handleSubmit = async () => {
         const currentDate = new Date().toISOString().split("T")[0]
 
         const data: IQnA = {
@@ -49,9 +47,15 @@ const AddAdminQna = () => {
             writer: "admin",
         }
 
-        console.log(data)
-
-        // navigate("/admin/dashboard/qna")
+        try {
+            const response = await apiInstance.post("/qna/save", data)
+            console.log("Response:", response.data)
+            alert("등록되었습니다.")
+            navigate("/admin/dashboard/qna")
+        } catch (error: any) {
+            console.error("Error:", error.response)
+            alert("관리자에게 문의해주십시오.")
+        }
     }
 
     return (
