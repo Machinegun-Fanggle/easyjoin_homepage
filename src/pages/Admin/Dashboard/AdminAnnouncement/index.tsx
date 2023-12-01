@@ -1,10 +1,29 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router"
 import styled from "styled-components"
-
+import apiInstance from "../../../../api"
 // 공지사항
 const AdminAnnouncement = () => {
     const navigate = useNavigate()
+
+    const getDBData = async () => {
+        apiInstance
+            .get("/announcement")
+            .then((response) => {
+                if (response.data.ok) {
+                    console.log(response)
+                } else {
+                    console.log("조회에 실패했습니다.")
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error)
+            })
+    }
+
+    useEffect(() => {
+        getDBData()
+    }, [])
 
     // 각 항목의 체크 상태를 저장할 상태 배열
     const [checkedItems, setCheckedItems] = useState(new Array(8).fill(false))

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import SearchIcon from "../../assets/search-md.svg"
+import apiInstance from "../../api"
 
 // 공지사항
 const Announcement = () => {
@@ -14,6 +15,25 @@ const Announcement = () => {
 
     // 임의의 검색 데이터 배열
     const searchData = ["전자결제 서비스 이용 계약 시 '개인정보 처리 위탁 계약' 추가"]
+
+    const getDBData = async () => {
+        apiInstance
+            .get("/announcement")
+            .then((response) => {
+                if (response.data.ok) {
+                    console.log(response)
+                } else {
+                    console.log("조회에 실패했습니다.")
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error)
+            })
+    }
+
+    useEffect(() => {
+        getDBData()
+    }, [])
 
     // 검색어 입력 핸들러
     const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
