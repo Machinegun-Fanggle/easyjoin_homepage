@@ -7,7 +7,7 @@ import { IPress } from "~/interface"
 
 // 공지사항 등록
 const AddAdminPress = () => {
-    const [selectedFileName, setSelectedFileName] = useState("")
+    const [selectedFile, setSelectedFile] = useState<File | null>(null) // 파일 자체를 저장
     const [data, setData] = useState<IPress>({
         subject: "",
         url: "",
@@ -31,10 +31,13 @@ const AddAdminPress = () => {
     }
     // 파일 입력이 변경될 때 실행될 함수
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (!event.target.files) return // 파일이 없으면 리턴
-        const file = event.target.files[0]
+        const file = event.target.files?.[0] // 선택적 체이닝 사용
         if (file) {
-            setSelectedFileName(file.name) // 파일 이름 설정
+            setSelectedFile(file)
+            setData((prevData) => ({
+                ...prevData,
+                image: file.name, // 파일 이름을 이미지 필드에 설정
+            }))
         }
     }
 
@@ -53,26 +56,27 @@ const AddAdminPress = () => {
     const handleCancel = () => {
         navigate("/admin/dashboard/press")
     }
+
     // '등록' 버튼 클릭 시 처리할 함수
     const handleSubmit = async () => {
-        const currentDate = new Date().toISOString().split("T")[0]
-
-        const _data: IPress = {
-            subject: data.subject,
-            url: data.url,
-            content: data.content,
-            image: data.image,
-            date: currentDate,
-            creater: "admin",
+        const formData = new FormData()
+        if (selectedFile) {
+            formData.append("file", selectedFile)
         }
 
+        formData.append("subject", data.subject)
+        formData.append("url", data.url)
+        formData.append("content", data.content)
+        formData.append("date", new Date().toISOString().split("T")[0])
+        formData.append("creater", "admin")
+
         try {
-            const response = await apiInstance.post("/press/save", _data)
-            if (response.data.ok) {
-                console.log("Response:", response.data)
-                alert("등록되었습니다.")
-                navigate("/admin/dashboard/press")
-            }
+            const response = await apiInstance.post("/press/save", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            // ... 응답 처리
         } catch (error: any) {
             console.error("Error:", error.response)
             alert("관리자에게 문의해주십시오.")
@@ -143,7 +147,7 @@ const AddAdminPress = () => {
                         <TableRow>
                             <TableColumn>첨부파일 추가</TableColumn>
                             <TableContent>
-                                {selectedFileName && <SFileName>{selectedFileName}</SFileName>}
+                                {selectedFile?.name && <SFileName>{selectedFile?.name}</SFileName>}
                                 <SFileInput
                                     type="file"
                                     accept="image/*"
