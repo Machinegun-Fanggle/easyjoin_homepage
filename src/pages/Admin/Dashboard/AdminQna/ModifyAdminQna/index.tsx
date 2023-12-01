@@ -1,22 +1,11 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
 import apiInstance from "../../../../../api"
-// import { IQnA } from "../../../../../interface"
+import { IQnA } from "../../../../../interface"
 
-export interface IQnA {
-    title: string
-    content: string
-    category: string
-    createAt: string
-    writer: string
-}
-
-interface IProps {
-    data: IQnA | undefined
-}
 // 공지사항 등록
-const ModifyAdminQna = (props: IProps) => {
+const ModifyAdminQna = () => {
     const navigate = useNavigate()
     const [selectedCategory, setSelectedCategory] = useState("")
     const [title, setTitle] = useState("")

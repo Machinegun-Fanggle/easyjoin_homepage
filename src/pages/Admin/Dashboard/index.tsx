@@ -29,7 +29,7 @@ export default function Dashboard() {
                     <Route path={"/announcement/add"} element={<AddAdminAnnouncement />} />
                     <Route path={"/qna"} element={<AdminQna />} />
                     <Route path={"/qna/add"} element={<AddAdminQna />} />
-                    <Route path={"/qna/modify"} element={<ModifyAdminQna data={undefined} />} />
+                    <Route path={"/qna/modify"} element={<ModifyAdminQna />} />
                     <Route path={"/press"} element={<AdminPress />} />
                     <Route path={"/press/add"} element={<AddAdminPress />} />
                 </Routes>
