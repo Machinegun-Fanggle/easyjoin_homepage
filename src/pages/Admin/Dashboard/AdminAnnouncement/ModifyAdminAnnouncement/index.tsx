@@ -1,12 +1,29 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router"
 import styled from "styled-components"
+import { IAnnouncement } from "~/interface"
 
 // 공지사항 등록
 const ModifyAdminAnnouncement = () => {
+    const [data, setData] = useState<IAnnouncement>({
+        subject: "",
+        content: "",
+        date: "",
+        creater: "admin",
+    })
+
     const navigate = useNavigate()
     const location = useLocation()
     const item = location.state?.item
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }))
+    }
+
     // 뒤로가기 버튼 클릭 시 처리할 함수
     const handleBack = () => {
         navigate("/admin/dashboard/announcement") // 이전 페이지로 이동
@@ -24,12 +41,9 @@ const ModifyAdminAnnouncement = () => {
     }
 
     useEffect(() => {
-        if (item) {
-            // setSelectedCategory(item.category)
-            // setTitle(item.title)
-            // setContent(item.content)
-        }
+        if (item) setData(item)
     }, [item])
+
     return (
         <SPageWrapper>
             <SPage1>
@@ -58,13 +72,22 @@ const ModifyAdminAnnouncement = () => {
                         <TableRow>
                             <TableColumn>제목</TableColumn>
                             <TableContent>
-                                <Input type="text" />
+                                <Input
+                                    type="text"
+                                    name="subject"
+                                    value={data.subject}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                         <TableRow style={{ height: "470px" }}>
                             <TableColumn>내용</TableColumn>
                             <TableContent style={{ height: "470px" }}>
-                                <TextArea />
+                                <TextArea
+                                    name="content"
+                                    value={data.content}
+                                    onChange={handleInputChange}
+                                />
                             </TableContent>
                         </TableRow>
                     </tbody>
