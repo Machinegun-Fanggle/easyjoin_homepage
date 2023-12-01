@@ -64,7 +64,7 @@ const ModifyAdminQna = () => {
             if (response.data.ok) {
                 console.log("Response:", response.data)
                 alert("수정되었습니다.")
-                // navigate("/admin/dashboard/qna")
+                navigate("/admin/dashboard/qna")
             }
         } catch (error: any) {
             console.error("Error:", error.response)
